@@ -1,63 +1,83 @@
 ---
-tags: [risky, ai, claude, review, git, commit, recipe, workflow]
+tags: [risky, ai, claude, review, git, commit, branch, pr, recipe, workflow]
 ---
 
-# ai-review-and-commit — your #1 loop (Claude edits, you verify, you commit)
+# ai-review-and-commit — your #1 loop (branch, Claude edits, you read, PR)
 
 ```bash
-# GOAL: turn a yolo Claude session into clean, reviewed, conventional commits.
-# `risky` = `claude --dangerously-skip-permissions` — it edits WITHOUT asking,
-# so the review step is not optional: it is the whole point of the loop.
+# GOAL: turn a yolo Claude session into a branch of clean conventional commits
+# and a PR worth skimming. `risky` = `claude --dangerously-skip-permissions` —
+# it edits WITHOUT asking, so reading is not optional: it is the whole loop.
 
-# 1. LAND in the repo
+# 1. LAND and BRANCH — before the agent starts, not after
 z <repo>              # zoxide jump (cd is aliased to z)
+git switch -c session-token-refresh
+                      # name it after THE WORK. Never an icb id — branches and
+                      # items are deliberately not joined.
 
 # 2. RUN the agent
-risky                 # start a fresh --dangerously-skip-permissions session
-risky --resume        # OR pick up an existing session (keeps context)
-                      # ...let it make the changes, then quit back to the shell.
+risky                 # fresh --dangerously-skip-permissions session
+risky --resume        # OR pick up an existing one (keeps context)
 
-# 3. SEE what it did (never commit blind)
-gst                   # git status — the file-level overview (alias: git status)
-git diff              # full diff — pipes through delta automatically (pager)
-lazygit               # OR go visual: hunk-level review, stage/unstage per hunk,
-                      #   'e' to edit a hunk, space to stage. Best for big diffs.
+# 3. CHECKPOINT WHILE IT IS WRITTEN — the step that changes designs
+                      # Stop it at each logical unit and read what it just did,
+                      #   in the session itself. Correct it NOW: after the PR,
+                      #   every fix is rework and you are arguing with a diff.
 
-# 4. STAGE deliberately — one logical change per commit
+# 4. SEE the whole of it (never commit blind)
+gst                   # git status — the file-level overview
+git diff              # full diff — pipes through delta automatically
+lazygit               # OR go visual: hunk-level, 'e' to edit, space to stage
+
+# 5. STAGE deliberately — one logical change per commit
 ga                    # forgit: fzf-pick files/hunks with live preview
-git add -p            # OR raw patch mode if you want the plain prompts
-                      # DO NOT `git add -A` — the CLAUDE.md rule; stage explicitly.
+git add -p            # OR raw patch mode
+                      # DO NOT `git add -A` — stage explicitly.
 
-# 5. COMMIT conventional
-git commit            # opens editor: feat|fix|docs|chore|refactor|test|perf|ci
+# 6. COMMIT conventional
+git commit            # feat|fix|docs|chore|refactor|test|perf|ci
                       #   imperative, ≤50-char subject, body for the WHY.
-                      # (see the git-conventional-commits card for the full spec)
+                      # These commits are the review units inside the PR.
 
-# 6. SHIP (only when you mean to)
-gp                    # git push  — never automatic; push when it's ready
+# 7. PUSH THE BRANCH and OPEN THE PR
+git push -u origin HEAD
+gh pr create --fill --web=false   # or --body-file for a real overview
+                      # Body says what the work was for, what you decided and
+                      # rejected, and WHAT TO LOOK AT. Not a diff restatement.
+
+# 8. THE STANDARDS PASS — in a session that did not write the code
+/audit-pr             # fresh Claude. Posts numbered findings as one comment.
+
+# 9. MERGE is a SEPARATE act, taken deliberately
+gh pr merge --squash --delete-branch
 ```
 
 ## The whole thing in two lines (the common case)
 
 ```bash
-z <repo> && risky              # ...agent works...
-gst → git diff → ga → git commit → gp
+z <repo> && git switch -c <work> && risky      # ...agent works, prefix+d to read...
+gst → ga → git commit → git push -u origin HEAD → gh pr create
 ```
 
 ## Gotchas
 
 ```bash
 # - risky skips ALL permission prompts. If you didn't read the diff, you didn't
-#   review it. Step 3 is the safety you traded away at step 2.
-# - Split unrelated changes into separate commits. If the agent touched three
-#   things, that's three `ga`→`git commit` passes, not one `git add -A`.
-# - `git diff` shows UNSTAGED only. After `ga`, use `git diff --staged` to see
-#   what's actually going into the commit.
-# - Push is step 6, not step 5. Committing ≠ pushing; keep them separate so a
-#   bad commit is a local fix, not a force-push cleanup.
+#   review it. Steps 3 and 4 are the safety you traded away at step 2.
+# - Branch BEFORE the agent runs. Branching after means `git switch -c` carries
+#   the changes over fine, but you spent the whole session on main not knowing
+#   whether you meant to.
+# - Step 3 is the one that gets skipped, and it is the only one that can still
+#   change the design. Step 4 can only find what is already built.
+# - `git diff` shows UNSTAGED only. After `ga`, use `git diff --staged`.
+# - Merging is not part of finishing. Opening the PR is where the loop ends;
+#   merge deploys, so it waits until you have actually read the thing.
+# - Nothing needs CI changes — every generated validate.yml already runs on
+#   `pull_request`.
 ```
 
-Related: `review-diff` (the comprehension pass over what already landed — this card
-verifies before committing, that one is how you still understand the repo a month
-later), `forgit-git` (the `ga`/`gd`/`glo` picker family), `git-conventional-commits`
-(the message format), `git-diff-viewing` (delta ranges/word-diff).
+Related: `open-a-pr` (step 7 in full — what a body should carry),
+`review-and-merge-a-pr` (steps 8-9, and the deep read),
+`gh-dash` (how many PRs are waiting — the backlog is the gauge), `forgit-git`
+(the `ga`/`gd`/`glo` picker family), `git-conventional-commits` (the message
+format), `git-diff-viewing` (delta ranges/word-diff).
