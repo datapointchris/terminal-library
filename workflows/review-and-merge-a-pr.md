@@ -37,6 +37,24 @@ gh pr merge 42 --squash --delete-branch
 #   --delete-branch  removes the remote branch so it doesn't linger
 ```
 
+## Your own PR — the common case here
+
+```bash
+# Steps 4's verdict verbs are a TEAM gesture and do nothing on your own work:
+# GitHub refuses a self-approval, and a required-approval branch protection rule
+# deadlocks a solo repo outright. What replaces them:
+
+gh pr view 42                    # read the overview — this is the actual review
+/audit-pr 42                     # standards pass, from a session that did NOT
+                                 #   write the code. Posts numbered findings.
+review-diff "$(git merge-base main HEAD)..HEAD"
+                                 # the deep read, when the change earns one
+gh pr merge 42 --squash --delete-branch
+
+# Merging deploys. It is a separate act from finishing the work, taken once you
+# have actually read the thing — not once the checks went green.
+```
+
 ## The whole thing
 
 ```bash
