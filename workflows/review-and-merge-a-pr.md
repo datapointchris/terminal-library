@@ -1,77 +1,87 @@
 ---
-tags: [gh, github, pr, pull-request, review, merge, ci, recipe]
+tags: [gh, github, pr, pull-request, review, merge, fleet, claude, nvim, ci, recipe]
 ---
 
-# review and merge a PR from the terminal (gh: find → run it → approve → merge)
+# review and merge a PR (fleet prs → read → merge, no browser)
 
 ```bash
-# GOAL: take a pull request from "haven't looked" to merged without leaving the
-# terminal — and actually RUN the code, not just read the diff, before approving.
+# GOAL: take a PR from "haven't looked" to merged without leaving the terminal.
 #
-# GITHUB. For work / Bitbucket Data Center, this is `bbkt` instead:
+# GITHUB. For work / Bitbucket Data Center this is `bbkt`:
 #   workflows show review-and-merge-a-pr-with-bbkt
 
-# 1. FIND it
-gh pr list                 # open PRs in this repo (number, title, branch)
-gh pr status               # or: PRs relevant to YOU (yours + review-requested)
+# 1. PICK ONE — from anywhere on the machine, any directory
+prs                   # alias for `fleet prs review`
+                      #   fzf over every open PR you have, OLDEST FIRST: the
+                      #   backlog is a gauge and age is what it measures.
+                      #   Esc leaves without doing anything.
 
-# 2. INSPECT before checking out
-gh pr view 42              # description, commits, review state, linked issues
-gh pr diff 42              # the full diff in the pager
-gh pr checks 42            # CI status — is it green? Don't review red without
-                           # knowing why it's red.
+# Opens a window `pr <repo> #<n>`, cd'd into that repo, diff in nvim Diffview.
+# NO Claude — most PRs are browsed and merged, and a session started for you is
+# one you didn't decide you wanted.
 
-# 3. RUN IT — the reason to review in the terminal at all
-gh pr checkout 42          # checks out the PR branch locally. Now build it, run
-                           # the tests, exercise the change. Reading a diff tells
-                           # you it compiles; running it tells you it works.
+# 2. READ IT
+#   <Tab> / <S-Tab>   next / previous file
+#   <leader>e         the file panel
+#   q                 quit Diffview
 
-# 4. REVIEW — leave the verdict
+# 3. MERGE — a separate act, because merging is what deploys
+gh pr merge --squash --delete-branch
+```
+
+## When it earns a conversation
+
+```bash
+prefix |              # split the same window
+claude
+/review-diff          # the reading protocol: triage first, then per commit
+                      #   intent → the 2-4 structural moves → the idiom NAMED.
+                      #   Works out its own range from the window it is in.
+                      # "explain what I'm looking at" reads your cursor off the
+                      #   nvim socket — you point, you don't describe.
+
+/audit-pr             # the standards pass. Run it in a session that did NOT
+                      #   write the code: a reviewer holding the author's
+                      #   context reproduces the author's blind spots.
+```
+
+## Just the list, or the richer TUI
+
+```bash
+fleet prs list        # every open PR, oldest first, no picker
+fleet prs list --json
+gh dash               # sections by state; d diffs, C checks out, m merges
+```
+
+## Someone else's PR
+
+```bash
+# The verdict verbs only mean something here — on your own PR GitHub refuses a
+# self-approval, and a required-approval rule deadlocks a solo repo outright.
+gh pr list                       # open PRs in this repo
+gh pr view 42                    # description, commits, review state
+gh pr checks 42                  # CI — don't review red without knowing why
+gh pr checkout 42                # RUN it. Reading says it compiles.
 gh pr review 42 --approve
 gh pr review 42 --request-changes -b "the retry loop never breaks on 429"
-gh pr review 42 --comment  -b "works, one nit inline"
-
-# 5. MERGE + clean up
-gh pr merge 42 --squash --delete-branch
-#   --squash  collapse the PR to one commit (or --merge / --rebase to taste)
-#   --delete-branch  removes the remote branch so it doesn't linger
-```
-
-## Your own PR — the common case here
-
-```bash
-# Steps 4's verdict verbs are a TEAM gesture and do nothing on your own work:
-# GitHub refuses a self-approval, and a required-approval branch protection rule
-# deadlocks a solo repo outright. What replaces them:
-
-gh pr view 42                    # read the overview — this is the actual review
-/audit-pr 42                     # standards pass, from a session that did NOT
-                                 #   write the code. Posts numbered findings.
-review-diff "$(git merge-base main HEAD)..HEAD"
-                                 # the deep read, when the change earns one
-gh pr merge 42 --squash --delete-branch
-
-# Merging deploys. It is a separate act from finishing the work, taken once you
-# have actually read the thing — not once the checks went green.
-```
-
-## The whole thing
-
-```bash
-gh pr checkout 42  →  test it locally  →  gh pr review 42 --approve
-gh pr merge 42 --squash --delete-branch
 ```
 
 ## Gotchas
 
 ```bash
-# - `gh pr checkout 42` SWITCHES your working branch to the PR. Get back with
-#   `git switch -` (or gsw) when you're done — it doesn't return you automatically.
-# - Check CI (`gh pr checks`) BEFORE merge, not after. `gh pr merge` will happily
-#   merge a PR whose checks are still running unless branch protection blocks it.
-# - Pick the merge strategy deliberately: --squash for a tidy history (one commit
-#   per PR), --rebase to keep each commit, --merge for a merge commit. Your call
-#   per repo's convention.
-# - No PR number → gh acts on the PR for the CURRENT branch. `gh pr view` with no
-#   number only works when you're already ON a PR branch.
+# - `prs` FETCHES, it does not check out. Your branch and working tree stay put
+#   — deliberately, since `gh pr checkout` aborts when the repo is dirty. To run
+#   the code: gh pr checkout <n>
+# - The diff is three-dot (base...head): from where the branch diverged to its
+#   tip, which is exactly what GitHub shows. Never `base..head` — a base branch
+#   that moved renders its own commits as changes the PR reverted.
+# - `gh pr checkout 42` SWITCHES your branch. `git switch -` (gsw) to come back.
+# - Check CI before merging. `gh pr merge` will merge a PR whose checks are
+#   still running unless branch protection stops it.
+# - A PR in a repo missing from ~/dev/repos.json has no local path, so `review`
+#   says so instead of guessing. `fleet prs list` still lists it.
+# - `prs` needs tmux — it opens a window.
 ```
+
+Related: `open-a-pr` (the other end), `gh-dash` (the full TUI),
+`ai-review-and-commit` (the loop that fills this queue), `git-diff-viewing`.

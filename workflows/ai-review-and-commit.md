@@ -19,12 +19,10 @@ git switch -c session-token-refresh
 risky                 # fresh --dangerously-skip-permissions session
 risky --resume        # OR pick up an existing one (keeps context)
 
-# 3. READ IT WHILE IT IS WRITTEN — the step that changes designs
-prefix + d            # review-diff solo: working tree in Diffview, own window,
-                      #   NO second Claude. The session already running answers.
-                      # In that session: "explain what I'm looking at" — it runs
-                      #   `review-diff here` and reads your cursor off the socket.
-                      # Correct it NOW. After the PR, every fix is rework.
+# 3. CHECKPOINT WHILE IT IS WRITTEN — the step that changes designs
+                      # Stop it at each logical unit and read what it just did,
+                      #   in the session itself. Correct it NOW: after the PR,
+                      #   every fix is rework and you are arguing with a diff.
 
 # 4. SEE the whole of it (never commit blind)
 gst                   # git status — the file-level overview
@@ -78,8 +76,8 @@ gst → ga → git commit → git push -u origin HEAD → gh pr create
 #   `pull_request`.
 ```
 
-Related: `open-a-pr` (step 7 in full — what a body should carry), `review-diff`
-(steps 3 and 4 in full, incl. the deep read), `review-and-merge-a-pr` (steps 8-9),
+Related: `open-a-pr` (step 7 in full — what a body should carry),
+`review-and-merge-a-pr` (steps 8-9, and the deep read),
 `gh-dash` (how many PRs are waiting — the backlog is the gauge), `forgit-git`
 (the `ga`/`gd`/`glo` picker family), `git-conventional-commits` (the message
 format), `git-diff-viewing` (delta ranges/word-diff).

@@ -71,5 +71,4 @@ reads twice, and you are the only reader.
 
 Related: `ai-review-and-commit` (the loop this is step 7 of),
 `review-and-merge-a-pr` (the other end), `gh-dash` (every open PR at once),
-`git-conventional-commits` (what makes `--fill` worth using), `review-diff`
-(reading the branch before you open it).
+`git-conventional-commits` (what makes `--fill` worth using).
