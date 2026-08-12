@@ -79,7 +79,7 @@ checked out elsewhere, including in the main repo. That is a feature — it is w
 
 **One worktree per stack, at its top.** A stacked branch checked out in a second worktree is skipped
 silently by `rebase.updateRefs`, leaving that ref on pre-rebase commits. See
-`~/dev/standards/git-workflow.md`.
+`standards/git-workflow.md`.
 
 ## In dotfiles specifically, a checkout *is* the running machine
 
