@@ -1010,6 +1010,23 @@ tools:
     tags: [automation, build-tool, productivity]
     docs_url: "https://taskfile.dev/"
 
+  watchexec:
+    category: automation
+    description: "Run a command when files change"
+    installed_via: cargo
+    usage: "watchexec [-c] -w <path> -- <command>"
+    why_use: "Turns any command you already know into a live view — a test on save, a diff as it is written, a document as it grows"
+    examples:
+      - cmd: "watchexec -c -w src -- pytest -x"
+        desc: "Re-run tests on every save, clearing between runs"
+      - cmd: "watchexec -c -w \"$WT\" -w \"$(git -C \"$WT\" rev-parse --git-dir)/index\" -- \"git -C $WT diff origin/main | delta --paging=never\""
+        desc: "Live diff of a worktree someone else is writing; watching the index is what catches their commits"
+      - cmd: "watchexec -c -w ./docs -- 'glow -w $COLUMNS ./docs/latest.md'"
+        desc: "Re-render a document as it is written"
+    see_also: [task, entr]
+    tags: [automation, file-watching, productivity]
+    docs_url: "https://watchexec.github.io/"
+
   # =================================================================
   # SYSTEM MONITORING
   # =================================================================
