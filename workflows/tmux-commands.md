@@ -50,6 +50,8 @@ rather than the directory. Sessions are on the top status line, the focused
 session's windows on the second.
 
 | Alt + , / .     | previous / next session          |
+| Alt + h / l     | move session left / right        |
+| Alt + a / e     | move session to front / end      |
 | Alt + o         | last session                     |
 | Alt + t         | new session                      |
 | prefix + K      | kill session (asks first)        |
@@ -64,7 +66,14 @@ session's windows on the second.
 
 Both axes sit on one modifier and one hand: windows on `Alt + n / p`, sessions
 on the two keys below them. No Alt+Shift chord — it misfires on the Corne, and
-with four single-modifier keys available there is no need for one.
+with four single-modifier keys available there is no need for one. Moving a
+session obeys the same rule, which is why it is `h / l` and `a / e` rather than
+the `< / >` and `^ / $` the operation suggests — those are all Alt+Shift.
+
+Front and end get their own keys because reordering is not free: there is no
+swap-session in tmux and session ids never change, so a move rebuilds sessions
+to reassign them. Crossing the list is one rebuild pass on `a`/`e` against one
+per step on `h`/`l`. Windows and panes are carried across intact.
 
 ## Copy mode
 
