@@ -18,7 +18,7 @@ name is what tells two `homelab` windows apart.
 | Running session | Process in tmux server (RAM)  | NO               |
 | Resurrect state | ~/.local/share/tmux/resurrect | YES              |
 
-Continuum auto-saves every 15 minutes, window names and pane contents included.
+Continuum auto-saves every minute, window names and pane contents included.
 Its own auto-restore is off — the `sesh` shell wrapper replays the last save
 instead, and only when no tmux server is already running. So the first `sesh`
 after a reboot brings everything back, including sessions you were done with.
