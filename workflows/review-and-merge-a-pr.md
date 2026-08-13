@@ -11,7 +11,8 @@ tags: [gh, github, pr, pull-request, review, merge, fleet, claude, nvim, ci, rec
 #   workflows show review-and-merge-a-pr-with-bbkt
 
 # 1. PICK ONE — from anywhere on the machine, any directory
-prs                   # alias for `fleet prs review`
+prs                   # a dotfiles app, not a fleet command, so the work box
+                      #   has it too. `fleet prs list` is the read-only twin.
                       #   fzf over every open PR you have, OLDEST FIRST: the
                       #   backlog is a gauge and age is what it measures.
                       #   Esc leaves without doing anything.
@@ -78,8 +79,10 @@ gh pr review 42 --request-changes -b "the retry loop never breaks on 429"
 # - `gh pr checkout 42` SWITCHES your branch. `git switch -` (gsw) to come back.
 # - Check CI before merging. `gh pr merge` will merge a PR whose checks are
 #   still running unless branch protection stops it.
-# - A PR in a repo missing from ~/dev/repos.json has no local path, so `review`
-#   says so instead of guessing. `fleet prs list` still lists it.
+# - A PR in a repo the registry does not name has no local path, so `prs` says
+#   so instead of guessing. `fleet prs list` still lists it. Which registry is
+#   `repos_registry` in ~/.config/dotfiles/config.toml — a different file on the
+#   work box, which is how one command answers on both.
 # - `prs` needs tmux — it opens a window.
 ```
 
