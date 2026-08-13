@@ -9,7 +9,7 @@ tags: [tmux, multiplexer, keybindings]
 | prefix + \|       | split vertical          |
 | prefix + -        | split horizontal        |
 | Ctrl + ←↓↑→       | navigate panes (vim)    |
-| Ctrl + Alt + ←↓↑→ | resize panes            |
+| Ctrl+Shift + ←↓↑→ | resize panes            |
 | Ctrl + \          | last pane (vim)         |
 | prefix + z        | zoom pane (fullscreen)  |
 | prefix + x        | close pane (no confirm) |
@@ -17,6 +17,7 @@ tags: [tmux, multiplexer, keybindings]
 | prefix + q        | show pane numbers       |
 | prefix + { / }    | swap pane prev / next   |
 | prefix + ;        | toggle last pane        |
+| prefix + m        | mark pane (for join)    |
 
 ## Reshape (keeps history)
 
@@ -50,8 +51,8 @@ rather than the directory. Sessions are on the top status line, the focused
 session's windows on the second.
 
 | Alt + , / .     | previous / next session          |
-| Alt + h / l     | move session left / right        |
-| Alt + a / e     | move session to front / end      |
+| Alt + h / l     | move session left / right (Linux) |
+| Alt + a / e     | move session to front / end (Linux) |
 | Alt + o         | last session                     |
 | Alt + t         | new session                      |
 | prefix + K      | kill session (asks first)        |
@@ -69,6 +70,11 @@ on the two keys below them. No Alt+Shift chord — it misfires on the Corne, and
 with four single-modifier keys available there is no need for one. Moving a
 session obeys the same rule, which is why it is `h / l` and `a / e` rather than
 the `< / >` and `^ / $` the operation suggests — those are all Alt+Shift.
+
+The four reordering keys are marked Linux because AeroSpace claims them first on
+macOS — `alt-h` and `alt-l` focus windows, `alt-a` and `alt-e` reach workspaces A
+and E. Moving between sessions and windows is unaffected; those keys were picked
+from letters AeroSpace leaves alone.
 
 Front and end get their own keys because reordering is not free: there is no
 swap-session in tmux and session ids never change, so a move rebuilds sessions
@@ -92,11 +98,10 @@ per step on `h`/`l`. Windows and panes are carried across intact.
 
 ## Popups & tools
 
-| prefix + m | universal menu |
-| prefix + t | this reference |
-| prefix + a | Claude popup   |
-| prefix + r | review diff    |
-| prefix + F | tmux-fzf menu  |
+| prefix + t | this reference     |
+| prefix + a | Claude popup       |
+| prefix + p | pick a PR to review |
+| prefix + F | tmux-fzf menu      |
 
 ## General
 

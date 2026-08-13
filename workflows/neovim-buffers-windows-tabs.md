@@ -8,33 +8,38 @@ tags: [neovim, buffers, windows, keybindings]
 **Window** — a viewport into a buffer (splits).
 **Tab** — a layout of windows (like a workspace).
 
-```bash
+```text
 # Buffers (file navigation)
-:e file.txt       open file in current window
-:ls               list open buffers
-:bnext / :bprev   next / previous buffer
-:b name           switch to buffer (partial match works)
-:b 3              switch to buffer number 3
-:bdelete          close current buffer
-<leader>fb        find buffer with Telescope
+:e file.txt         open file in current window
+:ls                 list open buffers
+:b name             switch to buffer (partial match works)
+:b 3                switch to buffer number 3
+gb                  buffer jump menu (snipe)
+]b / [b             next / previous buffer (bufferline order)
+<leader>fb          find buffer with Telescope
+<leader>bd          close buffer, keep the window layout
+<leader>bD          close buffer, discard changes
 
 # Windows (splits)
-:sp [file]        horizontal split
-:vsp [file]       vertical split
-Ctrl+h/j/k/l     navigate between splits (vim-tmux-navigator)
-<leader>r+h/j/k/l  resize splits (10 units)
-<leader>rm        maximize / minimize current split
-:q                close current window
-:only             close all windows except current
+:sp [file]          horizontal split
+:vsp [file]         vertical split
+Ctrl + ←/↓/↑/→      navigate between splits (vim-tmux-navigator)
+Ctrl+Shift + ←/↓/↑/→ resize splits (10 cells, same key as tmux panes)
+<leader>w + h/j/k/l resize splits (10 cells)
+<leader>wm          maximize / minimize current split
+:q                  close current window
+:only               close all windows except current
 
 # Tabs (layouts/contexts)
-<leader>te        new tab
-<leader>tw        close tab
-<tab>             next tab
-<shift-tab>       previous tab
-:tabnew [file]    new tab with optional file
-:tabonly          close all tabs except current
+<leader>te          new tab
+<leader>tw          close tab
+gt / gT             next / previous tab
+:tabnew [file]      new tab with optional file
+:tabonly            close all tabs except current
 ```
+
+`<Tab>` is deliberately unmapped. Terminals send one byte for both `<Tab>` and
+`<C-i>`, so mapping it would shadow jumplist-forward.
 
 **Edit two files side by side:** `:vsp other-file.txt`
 **Quick lookup then return:** `:sp`, look up, `:q`

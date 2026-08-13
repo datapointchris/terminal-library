@@ -29,7 +29,7 @@ Nothing crosses into the shared bucket unless a key explicitly puts it there.
 NEOVIM (leader = Space)
 INTERNAL — this nvim only            SYSTEM CLIPBOARD — crosses apps
 y   yank   → " register              <leader>y   yank selection → clipboard
-d   delete → " register              <leader>Y   yank line      → clipboard
+d   delete → " register              <leader>yy  yank line      → clipboard
 p   paste    " register              <leader>p   paste          ← clipboard
 c   change → " register              <leader>d   delete → black hole (no reg)
 

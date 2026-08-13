@@ -1,30 +1,39 @@
 ---
-tags: [keybindings, splits, aerospace, tmux, neovim]
+tags: [keybindings, splits, aerospace, hyprland, tmux, neovim]
 ---
 
-# keybindings — splits and creation across AeroSpace, Tmux, Neovim
+# keybindings — splits and creation across the window manager, Tmux, Neovim
 
-```yaml
-# AeroSpace
+```text
+# AeroSpace (macOS)
 alt + enter                       new Ghostty terminal
 alt + a/d/e/m/s/x/z               switch workspace (direct)
 Ctrl+Shift+Alt + h/j/k/l          join window with neighbor
-Ctrl+Shift+Alt + g                 flatten workspace tree
+Ctrl+Shift+Alt + g                flatten workspace tree
+
+# Hyprland (Linux)
+SUPER + Return                    new Ghostty terminal
+SUPER + a/d/e/m/s/x/z             switch workspace (direct)
+SUPER + Ctrl + h/j/k/l            move window into neighbor's group
+SUPER + Ctrl + g                  toggle group
+SUPER + '                         toggle split direction
+SUPER + \                         toggle dwindle / master layout
 
 # Tmux
-prefix + :new -s name              new session
-prefix + c                         new window
-prefix + |                         split vertical (side-by-side)
-prefix + -                         split horizontal (stacked)
-prefix + !                         break pane → its own window (keeps history)
-prefix + j / J                     join a window back as a pane (side / stacked)
-prefix + v / e / g                 reflow layout: main+stack / even / tiled
-prefix + Space                     cycle layouts
+Alt + t                           new session (prompts for a name)
+prefix + c                        new window
+prefix + |                        split vertical (side-by-side)
+prefix + -                        split horizontal (stacked)
+prefix + !                        break pane → its own window (keeps history)
+prefix + T                        promote window → its own session
+prefix + j / J                    join a window back as a pane (side / stacked)
+prefix + v / e / g                reflow layout: main+stack / even / tiled
+prefix + Space                    cycle layouts
 
 # Neovim
-<leader>te                         new tab
-:vsp [file]                        vertical split
-:sp [file]                         horizontal split
+<leader>te                        new tab
+:vsp [file]                       vertical split
+:sp [file]                        horizontal split
 ```
 
 Prefer buffers (`<leader>fb`) over splits for file navigation.
