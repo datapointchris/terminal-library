@@ -42,3 +42,7 @@ N                 next match (opposite direction)
 :%s/\s\+$//       remove trailing whitespace
 :%s/^\n//         remove empty lines
 ```
+
+This card covers the `:s` command forms. What goes *inside* the slashes —
+magic levels, captures, `\zs`, expression replacements — is neovim-regex-syntax.
+Choosing which *lines* a command runs on is neovim-global-command.

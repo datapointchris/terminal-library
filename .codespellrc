@@ -2,5 +2,6 @@
 # the words these files actually need, not the whole inherited list.
 #
 #   te — `<leader>te` is a Neovim tab binding, not a misspelling of "the".
+#   enew — `:enew` opens an empty buffer in the current window, not "new".
 [codespell]
-ignore-words-list = te
+ignore-words-list = te,enew
