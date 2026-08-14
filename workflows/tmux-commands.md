@@ -52,7 +52,7 @@ session's windows on the second.
 
 | Alt + , / .     | previous / next session          |
 | prefix + < / >  | move session left / right        |
-| Alt + a / e     | move session to front / end (Linux) |
+| prefix + A / E  | move session to front / end      |
 | Alt + o         | last session                     |
 | Alt + t         | new session                      |
 | prefix + K      | kill session (asks first)        |
@@ -73,8 +73,9 @@ they take the root chord `Alt + { / }`. Windows take the prefix braces that
 stock tmux gave swap-pane. Sessions move least and take `prefix < / >`, which
 window swap vacated.
 
-`Alt + a / e` are the last two marked Linux — AeroSpace reaches workspaces A and
-E with them on macOS. The rest were rehomed off the Alt letters it claims.
+Every reorder key now lives in the prefix table, which is why none is marked
+Linux any more. AeroSpace can only claim a root chord, so moving them there
+retired all four collisions at once — `alt-h`, `alt-l`, `alt-a` and `alt-e`.
 
 Front and end get their own keys because reordering is not free: there is no
 swap-session in tmux and session ids never change, so a move rebuilds sessions
