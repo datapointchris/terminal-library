@@ -18,6 +18,9 @@ SUPER + r                         enter resize submap
 # Tmux
 Ctrl + Shift + ←/↓/↑/→            resize panes (5 cells)
 
+# Corne TMUX layer
+G + left middle thumb + h/j/k/l   resize panes (the thumb is a plain Shift)
+
 # Neovim
 <leader>w + h/j/k/l               resize splits (10 cells)
 <leader>wm                        maximize / minimize current split

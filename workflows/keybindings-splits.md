@@ -30,6 +30,12 @@ prefix + j / J                    join a window back as a pane (side / stacked)
 prefix + v / e / g                reflow layout: main+stack / even / tiled
 prefix + Space                    cycle layouts
 
+# Corne TMUX layer — hold G
+G + \                             split vertical
+G + '                             split horizontal
+G + n                             new window
+G + y                             copy mode
+
 # Neovim
 <leader>te                        new tab
 :vsp [file]                       vertical split

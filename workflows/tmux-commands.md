@@ -15,7 +15,7 @@ tags: [tmux, multiplexer, keybindings]
 | prefix + x        | close pane (no confirm) |
 | prefix + o        | cycle to next pane      |
 | prefix + q        | show pane numbers       |
-| prefix + { / }    | swap pane prev / next   |
+| Alt + { / }       | swap pane back / forward |
 | prefix + ;        | toggle last pane        |
 | prefix + m        | mark pane (for join)    |
 
@@ -35,7 +35,7 @@ tags: [tmux, multiplexer, keybindings]
 | prefix + k     | kill window (asks first)       |
 | prefix + 0-9   | select by number               |
 | prefix + ,     | rename window                  |
-| prefix + < / > | swap window left / right       |
+| prefix + { / } | swap window left / right       |
 | prefix + .     | move window to another session |
 | prefix + f     | find window in this session    |
 
@@ -51,7 +51,7 @@ rather than the directory. Sessions are on the top status line, the focused
 session's windows on the second.
 
 | Alt + , / .     | previous / next session          |
-| Alt + h / l     | move session left / right (Linux) |
+| prefix + < / >  | move session left / right        |
 | Alt + a / e     | move session to front / end (Linux) |
 | Alt + o         | last session                     |
 | Alt + t         | new session                      |
@@ -65,16 +65,16 @@ session's windows on the second.
 | prefix + Ctrl-s | resurrect save                   |
 | prefix + Ctrl-r | resurrect restore                |
 
-Both axes sit on one modifier and one hand: windows on `Alt + n / p`, sessions
-on the two keys below them. No Alt+Shift chord — it misfires on the Corne, and
-with four single-modifier keys available there is no need for one. Moving a
-session obeys the same rule, which is why it is `h / l` and `a / e` rather than
-the `< / >` and `^ / $` the operation suggests — those are all Alt+Shift.
+Both focus axes sit on one modifier and one hand: windows on `Alt + n / p`,
+sessions on the two keys below them.
 
-The four reordering keys are marked Linux because AeroSpace claims them first on
-macOS — `alt-h` and `alt-l` focus windows, `alt-a` and `alt-e` reach workspaces A
-and E. Moving between sessions and windows is unaffected; those keys were picked
-from letters AeroSpace leaves alone.
+Reordering is ranked by how often each level gets moved. Panes move most, so
+they take the root chord `Alt + { / }`. Windows take the prefix braces that
+stock tmux gave swap-pane. Sessions move least and take `prefix < / >`, which
+window swap vacated.
+
+`Alt + a / e` are the last two marked Linux — AeroSpace reaches workspaces A and
+E with them on macOS. The rest were rehomed off the Alt letters it claims.
 
 Front and end get their own keys because reordering is not free: there is no
 swap-session in tmux and session ids never change, so a move rebuilds sessions
