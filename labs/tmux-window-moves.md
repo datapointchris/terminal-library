@@ -114,5 +114,5 @@ tmux kill-session -t '=lab-alpha'; tmux kill-session -t '=lab-beta'; tmux kill-s
 - Killing a session does not remove it from the last resurrect save, and restore
   is all-or-nothing. Anything killed inside the current 15-minute save window
   comes back the next time the `sesh` wrapper restores on a cold start.
-- `prefix t` shows the full keybinding reference in a popup, and `menu` searches
-  the same card by binding or by description.
+- `prefix t` shows the full keybinding reference in a popup, and `doit find`
+  searches the same card by binding or by description.
