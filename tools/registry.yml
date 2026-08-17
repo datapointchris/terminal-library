@@ -1126,66 +1126,67 @@ tools:
   # CUSTOM DOTFILES TOOLS
   # =================================================================
 
-  menu:
+  doit:
     category: custom-tools
-    description: "Federated search across your tools, workflows, and Claude skills"
-    installed_via: dotfiles
-    usage: "menu [term]"
-    why_use: "One search box over everything you own; Enter assembles every lens that has the subject (help, toolbox, tldr, cheat, workflow, skill)"
+    description: "What to do now, and everything that decides it — search, dashboard, cadence and practice over everything you own"
+    installed_via: uv
+    usage: "doit <command>"
+    why_use: "One front door to the whole kit: `find` searches every collection you have, `next` draws from the weights you declared, and `dashboard` reads every app at once. It stewards no records of its own — each domain CLI stays the owner"
     examples:
-      - cmd: "menu"
-        desc: "Interactive picker across tools, workflows, and skills"
-      - cmd: "menu keybind"
-        desc: "Open the picker pre-filtered to a term"
-      - cmd: "menu review"
-        desc: "Show what's due to revisit (cadence register)"
-    see_also: [toolbox, workflows, menu-review]
-    tags: [dotfiles, discovery, tools, search]
+      - cmd: "doit next"
+        desc: "What to do now, drawn from your weighted pursuits"
+      - cmd: "doit find keybind"
+        desc: "Search tools, cards, skills, functions and keybindings for a term"
+      - cmd: "doit show fd"
+        desc: "Everything known about one subject, from every collection that has it"
+      - cmd: "doit kit unresolved"
+        desc: "Index rows naming something this machine cannot run"
+    see_also: [doit-dashboard, doit-review, doit-labs, doit-workflows, toolbox]
+    tags: [discovery, tools, search, attention]
 
-
-  menu-dashboard:
+  doit-dashboard:
     category: custom-tools
-    description: "Cross-app glance behind menu dashboard — everything outstanding, in lanes"
-    installed_via: dotfiles
-    usage: "menu dashboard [--lane <name>] [--json] [--timeout <seconds>]"
-    why_use: "One read-only glance at what is outstanding everywhere: tasks, habits, learning, reading, maintenance, project items, and what is approaching. Independent lanes, each ordered by its own app, so you pick by time and energy rather than following an invented ranking. Use it through `menu dashboard`"
+    description: "Cross-app glance behind doit dashboard — everything outstanding, in lanes"
+    installed_via: uv
+    usage: "doit dashboard [--lane <name>] [--json]"
+    why_use: "One read-only glance at what is outstanding everywhere: tasks, habits, learning, reading, maintenance, project items, and what is approaching. Independent lanes, each ordered by its own app, so you pick by time and energy rather than following an invented ranking"
     examples:
-      - cmd: "menu dashboard"
+      - cmd: "doit dashboard"
         desc: "Every lane, three rows each"
-      - cmd: "menu dashboard --lane maintenance"
+      - cmd: "doit dashboard --lane maintenance"
         desc: "One lane in more depth"
-    see_also: [menu, menu-review, menu-labs, icb, learning]
-    tags: [dotfiles, dashboard, overview, outstanding, glance, json]
+    see_also: [doit, doit-review, doit-labs, icb, learning]
+    tags: [dashboard, overview, outstanding, glance, json]
 
-  menu-review:
+  doit-review:
     category: custom-tools
-    description: "Cadence register behind menu review — what to revisit and when"
-    installed_via: dotfiles
-    usage: "menu review [list | done <id> | edit]"
-    why_use: "Track recurring maintenance, skills, and tools to revisit; due dates derive from last-done plus cadence so there is nothing to hand-maintain. Use it through `menu review`"
+    description: "Cadence register behind doit review — what to revisit and when"
+    installed_via: uv
+    usage: "doit review [due | list | done <id> | edit]"
+    why_use: "Track recurring maintenance, skills, and tools to revisit; due dates derive from last-done plus cadence so there is nothing to hand-maintain. Last-done is observed from shell history and other tools' state files, so an item you did but never reported still counts"
     examples:
-      - cmd: "menu review"
+      - cmd: "doit review due"
         desc: "Show what's due now, most overdue first"
-      - cmd: "menu review done brew-maintenance"
+      - cmd: "doit review done brew-maintenance"
         desc: "Mark an item done, which advances its due date"
-    see_also: [menu, workflows]
-    tags: [dotfiles, discovery, review, cadence]
+    see_also: [doit, doit-workflows]
+    tags: [discovery, review, cadence]
 
-  menu-labs:
+  doit-labs:
     category: custom-tools
-    description: "Hands-on practice deck behind menu labs — scheduled Labs and recall drills"
-    installed_via: dotfiles
-    usage: "menu labs [list | <id> | flash | done <id> | new <name>]"
-    why_use: "Spaced hands-on practice: open a Lab to work through in one pane while you type in another, or run a flash recall drill from your tool examples. Schedule advances from last-practiced. Use it through `menu labs`"
+    description: "Hands-on practice deck behind doit labs — scheduled Labs and recall drills"
+    installed_via: uv
+    usage: "doit labs [due | list | show <id> | flash | done <id> | new <name>]"
+    why_use: "Spaced hands-on practice: open a Lab to work through in one pane while you type in another, or run a flash recall drill from your tool examples. Schedule advances from last-practiced"
     examples:
-      - cmd: "menu labs"
+      - cmd: "doit labs due"
         desc: "Show what's due to practice now"
-      - cmd: "menu labs flash"
+      - cmd: "doit labs flash"
         desc: "Quick recall drill from your tool examples"
-      - cmd: "menu labs done fzf-preview"
+      - cmd: "doit labs done fzf-preview"
         desc: "Mark a Lab practiced, which advances its schedule"
-    see_also: [menu, menu-review, workflows]
-    tags: [dotfiles, discovery, practice, spaced-repetition, labs]
+    see_also: [doit, doit-review, doit-workflows]
+    tags: [discovery, practice, spaced-repetition, labs]
 
   sesh:
     category: session-management
@@ -1202,7 +1203,7 @@ tools:
         desc: "List all available sessions"
       - cmd: "sesh last"
         desc: "Switch to previously active session"
-    see_also: [menu, tmux, tmuxinator]
+    see_also: [doit, tmux, tmuxinator]
     tags: [tmux, workflow, tui, go, zoxide]
     docs_url: "https://github.com/joshmedeski/sesh"
 
@@ -1221,7 +1222,7 @@ tools:
         desc: "Create dev note"
       - cmd: "notes learning"
         desc: "Create learning note"
-    see_also: [zk, gum, menu]
+    see_also: [zk, gum, doit]
     tags: [dotfiles, notes, zk, productivity]
 
   dectl:
@@ -1376,25 +1377,21 @@ tools:
     see_also: [lsalias, lsfunc]
     tags: [dotfiles, discovery, documentation, learning, go]
 
-  workflows:
+  doit-workflows:
     category: custom-tools
-    description: "Personal multi-step workflow quick reference"
-    installed_via: dotfiles
-    usage: "workflows [command] [query]"
-    why_use: "Browse and search documented procedures for complex multi-step tasks"
+    description: "The reference cards — one tool's commands, or one goal carried through several"
+    installed_via: uv
+    usage: "doit workflows [list | show <id> | new <name> | random]"
+    why_use: "Browse and search documented procedures for complex multi-step tasks. Cards live in the terminal-library checkout, so writing one never needs a release"
     examples:
-      - cmd: "workflows"
-        desc: "Show help"
-      - cmd: "workflows list"
-        desc: "List all workflows"
-      - cmd: "workflows search deploy"
-        desc: "Search workflows with fzf"
-      - cmd: "workflows show git-rebase"
-        desc: "Show specific workflow"
-      - cmd: "workflows learn"
-        desc: "Show a random workflow"
-    see_also: [menu, notes]
-    tags: [dotfiles, documentation, procedures, reference]
+      - cmd: "doit workflows list"
+        desc: "Every card and what it covers"
+      - cmd: "doit workflows show git-rebase"
+        desc: "Render one card"
+      - cmd: "doit workflows random"
+        desc: "Render a card at random"
+    see_also: [doit, notes]
+    tags: [documentation, procedures, reference]
 
   aws-profiles:
     category: custom-tools
@@ -1410,28 +1407,6 @@ tools:
     see_also: [terraform]
     tags: [dotfiles, aws, cloud, macOS]
     notes: "Must be sourced (not executed) for environment variables to persist"
-
-  patterns:
-    category: custom-tools
-    description: "Quick timestamped note logging for pattern analysis and tracking"
-    installed_via: dotfiles
-    usage: "patterns 'message' | patterns <command>"
-    why_use: "Capture brief observations throughout the day to identify patterns in health, mood, habits, etc."
-    examples:
-      - cmd: "patterns 'had coffee around 3pm'"
-        desc: "Log a timestamped entry (quotes required)"
-      - cmd: "patterns 'feeling slight heartburn'"
-        desc: "Log observation for later analysis"
-      - cmd: "patterns list"
-        desc: "View all entries in log format with bat"
-      - cmd: "patterns search coffee"
-        desc: "Search entries for matching text"
-      - cmd: "patterns delete"
-        desc: "Delete entries interactively with fzf multi-select"
-      - cmd: "patterns help"
-        desc: "Show help and usage examples"
-    see_also: [notes, jq, bat, fzf]
-    tags: [dotfiles, logging, jsonl, tracking, health]
 
   indy:
     category: custom-tools
@@ -1486,7 +1461,7 @@ tools:
         desc: "Check drift between packages.yml, manifests, and scripts"
       - cmd: "packages stats"
         desc: "Show package counts"
-    see_also: [toolbox, menu]
+    see_also: [toolbox, doit]
     tags: [dotfiles, packages, discovery, yaml]
 
   relate:
@@ -1537,21 +1512,23 @@ tools:
     tags: [webview, gui, rust, cargo]
     docs_url: "https://github.com/datapointchris/webviewrs"
 
-  zmk-build:
+  zmk:
     category: custom-tools
-    description: "Build ZMK keyboard firmware using per-repo workspaces"
+    description: "Build, draw, check and flash a ZMK keyboard config"
     installed_via: dotfiles
-    usage: "zmk-build [--pristine|--update|--clean|--clean-all]"
-    why_use: "Incremental ZMK firmware builds from a standard build.yaml with isolated per-repo west workspaces"
+    usage: "zmk <command>"
+    why_use: "Incremental firmware builds from a standard build.yaml with isolated per-repo west workspaces, plus keymap alignment, SVG rendering and flashing from one place"
     examples:
-      - cmd: "zmk-build"
-        desc: "Build all targets incrementally"
-      - cmd: "zmk-build --pristine"
+      - cmd: "zmk build"
+        desc: "Build every target in build.yaml"
+      - cmd: "zmk build --pristine"
         desc: "Force a clean rebuild of all targets"
-      - cmd: "zmk-build --update"
-        desc: "Force update west dependencies"
-      - cmd: "zmk-build --clean-all"
-        desc: "Remove all repo workspaces"
+      - cmd: "zmk sync"
+        desc: "Align the keymap, redraw the SVG, then build"
+      - cmd: "zmk flash"
+        desc: "Write firmware to a half, picking the target with fzf"
+      - cmd: "zmk check"
+        desc: "Report what is missing or has drifted"
     tags: [zmk, firmware, keyboard, build]
 
   # SHELL UTILITY FUNCTIONS
@@ -1617,30 +1594,6 @@ tools:
     see_also: [git, git-forgit-add]
     tags: [git, staging, workflow]
 
-  gdp:
-    category: version-control
-    description: "Git diff preview for modified files using fzf and delta"
-    installed_via: dotfiles
-    usage: "gdp"
-    why_use: "Interactively preview diffs of modified files with syntax highlighting"
-    examples:
-      - cmd: "gdp"
-        desc: "Launch interactive diff preview"
-    see_also: [git-delta, fzf, git-forgit-diff]
-    tags: [git, diff, fzf, interactive]
-
-  adcomp:
-    category: version-control
-    description: "Git add all, commit with message, and push"
-    installed_via: dotfiles
-    usage: "adcomp <message>"
-    why_use: "Quick workflow for small commits: stage, commit, push in one command"
-    examples:
-      - cmd: 'adcomp "fix: update readme"'
-        desc: "Stage all, commit, and push"
-    see_also: [git, gm]
-    tags: [git, workflow, commit]
-
   gm:
     category: version-control
     description: "Git commit with message"
@@ -1650,7 +1603,7 @@ tools:
     examples:
       - cmd: 'gm "feat: add new feature"'
         desc: "Create commit with message"
-    see_also: [git, adcomp]
+    see_also: [git]
     tags: [git, commit]
 
   git-old-branches:
@@ -1757,20 +1710,6 @@ tools:
         desc: "Show compression savings"
     see_also: [gzip]
     tags: [compression, file-info]
-
-  opendir:
-    category: file-management
-    description: "Open current directory or specified location in file browser"
-    installed_via: dotfiles
-    usage: "opendir [path]"
-    why_use: "Quick access to GUI file browser from terminal"
-    examples:
-      - cmd: "opendir"
-        desc: "Open current directory"
-      - cmd: "opendir ~/Downloads"
-        desc: "Open specific directory"
-    see_also: [open]
-    tags: [file-browser, gui]
 
   # System/Process/Network Functions
   ubuntu-docker:
@@ -1956,18 +1895,6 @@ tools:
         desc: "Start continuous testing"
     see_also: [pytest, venv]
     tags: [python, testing, automation]
-
-  new-py-project:
-    category: automation
-    description: "Create new Python project with poetry and pre-commit"
-    installed_via: dotfiles
-    usage: "new-py-project <name>"
-    why_use: "Scaffold complete Python project with best practices"
-    examples:
-      - cmd: "new-py-project my-app"
-        desc: "Create new Python project"
-    see_also: [poetry, uv]
-    tags: [python, scaffold, automation]
 
   package-lambda:
     category: automation
