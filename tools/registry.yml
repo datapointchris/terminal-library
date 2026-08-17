@@ -9,6 +9,14 @@
 # DURING THE TOOLBOX RETIREMENT: dotfiles still carries the copy toolbox reads,
 # at configs/common/.local/share/toolbox/registry.yml. doit reads this one. An
 # edit here will not show up in `toolbox show` until that copy is deleted.
+#
+# requires: <command>
+#   Optional. The command whose presence decides whether the row is real, for
+#   the rows where `usage` cannot decide it — a shell wrapper a subprocess
+#   cannot see (`br` is broot's, `z` is zoxide's), or software a machine may
+#   not have. `doit kit unresolved` checks it: present and the row resolves,
+#   absent and the row is listed as needing something rather than as a wrong
+#   entry. Name software, never a machine — hostnames get replaced.
 
 version: "1.0"
 last_updated: "2026-07-16"
@@ -187,6 +195,7 @@ tools:
     description: "Interactive directory tree navigator with fuzzy search and cd-on-exit"
     installed_via: dotfiles
     usage: "br [path]"
+    requires: broot
     why_use: "Navigate large trees with fuzzy filtering without losing your place; opens files in $EDITOR; can cd to selected directory on exit"
     examples:
       - cmd: "br"
@@ -212,6 +221,7 @@ tools:
     description: "Smarter cd command that learns your habits"
     installed_via: brew
     usage: "z [pattern]"
+    requires: zoxide
     why_use: "Jump to frequently-used directories by partial match, no need for full paths"
     examples:
       - cmd: "z dot"
@@ -2033,6 +2043,7 @@ tools:
     description: "Run full Homebrew maintenance — update, upgrade, cleanup, autoremove"
     installed_via: dotfiles
     usage: "brew-maintenance"
+    requires: brew
     why_use: "Single command to keep Homebrew fully up to date and cleaned up without running four separate commands"
     examples:
       - cmd: "brew-maintenance"
@@ -2057,6 +2068,7 @@ tools:
     description: "Reload nginx and supervisor in a loop every 15 seconds"
     installed_via: dotfiles
     usage: "reload-dev-forever"
+    requires: nginx
     why_use: "Keep dev services reloading continuously during active development without manual intervention"
     examples:
       - cmd: "reload-dev-forever"
