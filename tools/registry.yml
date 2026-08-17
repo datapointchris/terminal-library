@@ -1370,7 +1370,7 @@ tools:
         desc: "Search dies by name, description, or tags"
       - cmd: "forge dies stats"
         desc: "Show execution history"
-    see_also: [syncer, toolbox]
+    see_also: [syncer, doit]
     tags: [dotfiles, git, automation, workflow, go]
     docs_url: "https://github.com/datapointchris/forge"
 
@@ -1387,31 +1387,9 @@ tools:
         desc: "List all projects"
       - cmd: "todoui items"
         desc: "List project items"
-    see_also: [forge, toolbox]
+    see_also: [forge, doit]
     tags: [dotfiles, productivity, tui, sqlite, go]
     docs_url: "https://github.com/datapointchris/todoui"
-
-  toolbox:
-    category: custom-tools
-    description: "CLI tool discovery and documentation browser"
-    installed_via: dotfiles
-    usage: "toolbox <command> [query]"
-    why_use: "Explore and learn about installed CLI tools with examples and documentation"
-    examples:
-      - cmd: "toolbox"
-        desc: "Interactive tool browser"
-      - cmd: "toolbox list"
-        desc: "List all registered tools"
-      - cmd: "toolbox show ripgrep"
-        desc: "Show details for specific tool"
-      - cmd: "toolbox search git"
-        desc: "Search tools by name or tag"
-      - cmd: "toolbox random"
-        desc: "Learn about a random tool"
-      - cmd: "toolbox installed"
-        desc: "Check which tools are installed"
-    see_also: [lsalias, lsfunc]
-    tags: [dotfiles, discovery, documentation, learning, go]
 
   doit-workflows:
     category: custom-tools
@@ -1461,7 +1439,7 @@ tools:
         desc: "Show index health and last run"
       - cmd: "indy stats"
         desc: "Bar charts of files/chunks per repo"
-    see_also: [relate, toolbox, ripgrep]
+    see_also: [relate, doit, ripgrep]
     tags: [search, semantic, embeddings, sqlite, ollama, mcp]
     docs_url: "https://github.com/datapointchris/indy"
 
@@ -1497,7 +1475,7 @@ tools:
         desc: "Check drift between packages.yml, manifests, and scripts"
       - cmd: "packages stats"
         desc: "Show package counts"
-    see_also: [toolbox, doit]
+    see_also: [doit, doit-dashboard]
     tags: [dotfiles, packages, discovery, yaml]
 
   relate:
@@ -1513,7 +1491,7 @@ tools:
         desc: "Analyze then open an interactive analytical session"
       - cmd: "relate batch urls.txt"
         desc: "Batch analyze and open a meta-analysis session"
-    see_also: [indy, toolbox]
+    see_also: [indy, doit]
     tags: [synthesis, analysis, claude-code, sqlite, mcp, youtube, video, transcript, article, url]
     docs_url: "https://github.com/datapointchris/relate"
 
@@ -1600,7 +1578,7 @@ tools:
         desc: "Show only banner variants and colors"
       - cmd: "formatting_demo status"
         desc: "Show status message functions"
-    see_also: [allcolors, toolbox]
+    see_also: [allcolors, doit]
     tags: [shell, formatting, demo, reference]
 
   allcolors:
