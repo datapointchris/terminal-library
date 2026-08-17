@@ -1015,16 +1015,16 @@ tools:
     description: "Run a command when files change"
     installed_via: cargo
     usage: "watchexec [-c] -w <path> -- <command>"
-    why_use: "Turns any command you already know into a live view — a test on save, a diff as it is written, a document as it grows"
+    why_use: "Turns any command you already know into a live view — the diff an agent is writing, a narration as it grows, a test on save"
     examples:
       - cmd: "watchexec -c -w src -- pytest -x"
         desc: "Re-run tests on every save, clearing between runs"
-      - cmd: "watchexec -c -w \"$WT\" -w \"$(git -C \"$WT\" rev-parse --git-dir)/index\" -- \"git -C $WT diff origin/main | delta --paging=never\""
-        desc: "Live diff of a worktree someone else is writing; watching the index is what catches their commits"
-      - cmd: "watchexec -c -w ./docs -- 'glow -w $COLUMNS ./docs/latest.md'"
-        desc: "Re-render a document as it is written"
-    see_also: [task, entr]
-    tags: [automation, file-watching, productivity]
+      - cmd: "watchexec -c -w \"$WT\" -w \"$(git -C \"$WT\" rev-parse --git-dir)/index\" -- \"git -C $WT diff origin/main | delta --paging=never --width=\\$COLUMNS\""
+        desc: "Live diff of a worktree an agent is writing; the index watch is what catches its commits"
+      - cmd: "watchexec -c -w ~/dev/narrations -- 'glow -w $COLUMNS ~/dev/narrations/latest.md'"
+        desc: "Re-render a narration as entries land"
+    see_also: [git-delta, glow, lazygit, entr]
+    tags: [automation, file-watching, watch, claude, diff]
     docs_url: "https://watchexec.github.io/"
 
   # =================================================================
@@ -1128,9 +1128,9 @@ tools:
 
   doit:
     category: custom-tools
-    description: "What to do now, and everything that decides it — search, dashboard, cadence and practice over everything you own"
+    description: "What to do now, and everything that decides it"
     installed_via: uv
-    usage: "doit <command>"
+    usage: "doit [next | dashboard | find | show | review | labs | kit]"
     why_use: "One front door to the whole kit: `find` searches every collection you have, `next` draws from the weights you declared, and `dashboard` reads every app at once. It stewards no records of its own — each domain CLI stays the owner"
     examples:
       - cmd: "doit next"
@@ -1141,8 +1141,9 @@ tools:
         desc: "Everything known about one subject, from every collection that has it"
       - cmd: "doit kit unresolved"
         desc: "Index rows naming something this machine cannot run"
-    see_also: [doit-dashboard, doit-review, doit-labs, doit-workflows, toolbox]
-    tags: [discovery, tools, search, attention]
+    see_also: [doit-dashboard, doit-review, doit-labs, doit-workflows, icb, learning]
+    tags: [discovery, dashboard, search, cadence, attention]
+    docs_url: "https://github.com/datapointchris/doit"
 
   doit-dashboard:
     category: custom-tools
@@ -1187,6 +1188,36 @@ tools:
         desc: "Mark a Lab practiced, which advances its schedule"
     see_also: [doit, doit-review, doit-workflows]
     tags: [discovery, practice, spaced-repetition, labs]
+
+  prs:
+    category: custom-tools
+    description: "Pick an open PR and open its diff in a tmux window"
+    installed_via: dotfiles
+    usage: "prs [list]"
+    why_use: "Review without leaving the terminal — the picker spans every repo, and the diff lands in its own tmux window beside what you were doing"
+    examples:
+      - cmd: "prs"
+        desc: "Open the picker across every repo's open PRs"
+      - cmd: "prs list"
+        desc: "Print every open PR as a table instead of picking"
+    see_also: [gh-dash, worktree, git]
+    tags: [dotfiles, git, github, review, tmux]
+
+  worktree:
+    category: custom-tools
+    description: "Give a session its own index, and land it on main without a PR"
+    installed_via: dotfiles
+    usage: "worktree [new <slug> | land | drop | list | show | choose]"
+    why_use: "A checkout's index is shared by every session standing in it, so concurrent work collides. `new` isolates in seconds and `land` rebases, fast-forwards main and cleans up — one commit stays one commit"
+    examples:
+      - cmd: "worktree new session-token-refresh"
+        desc: "Isolate a session off origin's default branch"
+      - cmd: "worktree land"
+        desc: "Rebase, push onto main, remove the worktree"
+      - cmd: "worktree choose"
+        desc: "Pick one with fzf across every repo"
+    see_also: [git, prs, lazygit]
+    tags: [dotfiles, git, worktree, isolation]
 
   sesh:
     category: session-management
@@ -1516,8 +1547,8 @@ tools:
     category: custom-tools
     description: "Build, draw, check and flash a ZMK keyboard config"
     installed_via: dotfiles
-    usage: "zmk <command>"
-    why_use: "Incremental firmware builds from a standard build.yaml with isolated per-repo west workspaces, plus keymap alignment, SVG rendering and flashing from one place"
+    usage: "zmk <build|flash|align|draw|sync|check|clean>"
+    why_use: "Incremental local firmware builds from a standard build.yaml, plus a check that catches the keymap drawing falling behind the keymap"
     examples:
       - cmd: "zmk build"
         desc: "Build every target in build.yaml"
