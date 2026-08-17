@@ -6,10 +6,6 @@
 # what is documented here is a shell function or a script no package manager
 # installs. Neither file is derivable from the other.
 #
-# DURING THE TOOLBOX RETIREMENT: dotfiles still carries the copy toolbox reads,
-# at configs/common/.local/share/toolbox/registry.yml. doit reads this one. An
-# edit here will not show up in `toolbox show` until that copy is deleted.
-#
 # requires: <command>
 #   Optional. The command whose presence decides whether the row is real, for
 #   the rows where `usage` cannot decide it — a shell wrapper a subprocess
@@ -19,7 +15,6 @@
 #   entry. Name software, never a machine — hostnames get replaced.
 
 version: "1.0"
-last_updated: "2026-07-16"
 
 tools:
   # =================================================================
