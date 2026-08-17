@@ -695,24 +695,24 @@ tools:
     tags: [python, package-manager, version-manager]
     docs_url: "https://github.com/astral-sh/uv"
 
-  nvm:
+  fnm:
     category: language-manager
-    description: "Node.js version manager for switching Node versions"
-    installed_via: dotfiles
-    usage: "nvm [command] [version]"
-    why_use: "Manage multiple Node.js versions, switch per project, no sudo needed"
+    description: "Fast Node.js version manager, switching per directory from .nvmrc"
+    installed_via: cargo
+    usage: "fnm [command] [version]"
+    why_use: "Reads .nvmrc on entering a directory, so a repo pinning 24 and one pinning 26 each get theirs with nothing typed. `fnm env --use-on-cd` is what wires that up in the shell"
     examples:
-      - cmd: "nvm install --lts"
+      - cmd: "fnm install --lts"
         desc: "Install latest LTS Node.js"
-      - cmd: "nvm use 20"
+      - cmd: "fnm use 20"
         desc: "Switch to Node 20"
-      - cmd: "nvm current"
+      - cmd: "fnm current"
         desc: "Show current version"
-      - cmd: "nvm alias default 22"
-        desc: "Set default Node version"
-    see_also: [npm, node, fnm]
+      - cmd: "fnm default 22"
+        desc: "Set the version a new shell starts on"
+    see_also: [npm, node]
     tags: [nodejs, version-manager, development]
-    docs_url: "https://github.com/nvm-sh/nvm"
+    docs_url: "https://github.com/Schniz/fnm"
 
   direnv:
     category: language-manager
@@ -729,7 +729,7 @@ tools:
         desc: "Show current direnv state"
       - cmd: "echo 'export FOO=bar' > .envrc && direnv allow"
         desc: "Create and activate environment"
-    see_also: [nvm, uv, dotenv]
+    see_also: [fnm, uv, dotenv]
     tags: [environment, shell, development, automation]
     docs_url: "https://direnv.net/"
 
@@ -1869,7 +1869,7 @@ tools:
     examples:
       - cmd: "checknode"
         desc: "Show node and npm info"
-    see_also: [nvm, node, npm]
+    see_also: [fnm, node, npm]
     tags: [node, npm, version]
 
   venv:
