@@ -45,7 +45,7 @@ These are interactive — do them in the pane you're working in.
 5. **Preview while you pick.** `fd -t f | fzf --preview 'bat --color=always {}'`
    - Expect: the highlighted file's contents in a side pane as you move.
    - Why: `--preview` runs a command per highlighted line (`{}` = the line) — the
-     same mechanic `menu` and `menu labs pick` use.
+     same mechanic `doit find` and `doit labs choose` use.
 
 ## The whole thing in one breath
 
