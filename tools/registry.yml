@@ -13,6 +13,14 @@
 #   not have. `doit kit unresolved` checks it: present and the row resolves,
 #   absent and the row is listed as needing something rather than as a wrong
 #   entry. Name software, never a machine — hostnames get replaced.
+#
+# installed_via: <package manager | dotfiles>
+#   `dotfiles` means this repo's shell tree ships it, and the symlink layer
+#   already scopes those per machine. Anything else names a package manager, and
+#   `doit kit unresolved` then asks that machine's dotfiles manifest whether the
+#   box was ever meant to have the tool. A row no manifest here declares is
+#   reported as another machine's rather than as rot, which is what lets `bbkt`
+#   live in this one fleet-wide file without reading as broken on five desks.
 
 version: "1.0"
 
@@ -2035,19 +2043,6 @@ tools:
         desc: "Open fzf layer picker and render selected layer as ASCII art"
     see_also: [yq, gum, chafa]
     tags: [keyboard, zmk, fzf, visualization, chafa, hardware]
-
-  reload-dev-forever:
-    category: custom-tools
-    description: "Reload nginx and supervisor in a loop every 15 seconds"
-    installed_via: dotfiles
-    usage: "reload-dev-forever"
-    requires: nginx
-    why_use: "Keep dev services reloading continuously during active development without manual intervention"
-    examples:
-      - cmd: "reload-dev-forever"
-        desc: "Start looping nginx + supervisor reload every 15 seconds"
-    see_also: []
-    tags: [nginx, supervisor, dev, automation, loop]
 
   yt-dlp:
     category: media
