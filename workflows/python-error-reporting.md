@@ -119,4 +119,12 @@ try:
 except Exception:
     logger.exception('alert failed; original error stands')   # swallow the send
 # original exception keeps propagating — never let the alert replace the cause
+
+# `finally` is the same trap and it is worse: it fires on the SUCCESS path too,
+# so an unguarded cleanup there can invent a failure where there was none.
+finally:
+    try:
+        write_final_state()
+    except Exception:
+        logger.exception('cleanup failed; original outcome stands')
 ```
