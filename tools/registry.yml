@@ -195,11 +195,11 @@ tools:
 
   broot:
     category: navigation
-    description: "Interactive directory tree navigator with fuzzy search and cd-on-exit"
-    installed_via: dotfiles
+    description: "Whole-tree navigator: folds a hierarchy to fit the screen, filters it by name, path or content"
+    installed_via: cargo
     usage: "br [path]"
     requires: broot
-    why_use: "Navigate large trees with fuzzy filtering without losing your place; opens files in $EDITOR; can cd to selected directory on exit"
+    why_use: "Answers where in a tree something is, and how big it is, while yazi answers what is in one directory; search modes keep the tree shape, and verbs act on the result without leaving"
     examples:
       - cmd: "br"
         desc: "Open tree in current directory"
@@ -211,8 +211,16 @@ tools:
         desc: "Show file sizes"
       - cmd: "br -d"
         desc: "Show last-modified dates"
-      - cmd: "Type to filter, Enter to descend, Alt+Enter to cd and exit"
-        desc: "Core navigation pattern"
+      - cmd: "br -w"
+        desc: "Whale spotting: size-sorted, including hidden and gitignored"
+      - cmd: "br --git-status"
+        desc: "Only files with an interesting git status, kept as a tree"
+      - cmd: "t/api,user"
+        desc: "Tokens search: both words appear in the path, any order"
+      - cmd: "c/Token"
+        desc: "Content search, with the matching line shown in the tree"
+      - cmd: "Alt+Enter"
+        desc: "cd and quit on a directory; xdg-open and quit on a file"
       - cmd: ":e"
         desc: "Open selected file in $EDITOR"
     see_also: [zoxide, yazi, fd, eza]
