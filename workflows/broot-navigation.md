@@ -24,23 +24,30 @@ The help table binds two verbs to the same key:
 | `cd` | `alt-Enter` | directory | shell ends up in that directory |
 | `open_leave` | `alt-Enter` | file | hands the file to `xdg-open`, shell does not move |
 
-So `alt-Enter` on a file quits broot without moving you. `:cd` on a file selection
-does nothing at all — it writes no command. To reach the directory a file sits in,
-the sequence is `:parent` then `:cd`.
-
-Bind it in `verbs.hjson`, since a sequence cannot be typed as one internal:
+On a file that means `xdg-open`, which in a terminal usually shows nothing at all,
+so the key reads as dead. Send files to `$EDITOR` instead:
 
 ```hjson
 {
-    invocation: cd_parent
-    shortcut: cdp
-    key: alt-p
+    invocation: edit_leave
+    key: alt-enter
     apply_to: file
-    cmd_sequence: ":parent;:cd"
+    external: "$EDITOR {file}"
+    leave_broot: true
 }
 ```
 
-`apply_to: file` keeps it off directories, where `alt-Enter` already works.
+Directories still reach the built-in `cd`, which keeps the key — broot dispatches
+by `apply_to`, so a user verb scoped to files does not displace it.
+
+`apply_to: file` includes binaries, so `alt-Enter` on a PNG opens it in the editor.
+`text_file` narrows it and lets everything else fall through to `xdg-open`.
+
+**A `cmd_sequence` verb takes its key and then does not register.** In 1.59.0 the
+config parses, no error is printed, and the verb is absent — `:its_name` answers
+`No verb matches`. The key it claimed is left bound to nothing, so binding a
+sequence to `alt-Enter` kills the working directory case too. Use `external` or a
+single `internal` for anything on a key.
 
 ## Opening
 
@@ -98,8 +105,7 @@ Type a space or `:` to start a verb, then its name or shortcut.
 | `↑` `↓` | move the selection |
 | `Enter` | focus a directory, making it the new root |
 | `Enter` on the top line | go up one level |
-| `alt-Enter` | cd and quit (directory) / xdg-open and quit (file) |
-| `alt-p` | cd to the selected file's directory, if you bound `cd_parent` |
+| `alt-Enter` | cd and quit (directory) / xdg-open and quit (file, unless rebound) |
 | `Esc` | clear the filter, else revert to the previous state |
 | `ctrl-s` | total search — look past the rows broot folded away |
 | `ctrl-→` / `ctrl-←` | open or focus a panel to the right or left |

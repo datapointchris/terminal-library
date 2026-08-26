@@ -89,10 +89,12 @@ printf 'export function Signup() {}\n' > web/components/Signup.tsx
    - Now relaunch, select `docs/readme.md`, press `alt-Enter`. Expect: broot quits,
      the file opens in your desktop handler, and the shell has **not** moved.
    - Why: two verbs share that key. `cd` fires on a directory, `open_leave` fires on
-     a file and hands it to `xdg-open`. `:cd` on a file writes no command at all.
-   - The fix is a `cd_parent` verb in `verbs.hjson` running `cmd_sequence:
-     ":parent;:cd"` with `apply_to: file`. Bound to `alt-p`, it puts you in the
-     directory the selected file sits in.
+     a file and hands it to `xdg-open`, which in a terminal often shows nothing.
+   - The fix is an `edit_leave` verb on `alt-enter` with `apply_to: file`,
+     `external: "$EDITOR {file}"` and `leave_broot: true`. Directories keep the
+     built-in `cd`, because broot dispatches the key by `apply_to`.
+   - Trap: a `cmd_sequence` verb claims its key and then fails to register, leaving
+     the key bound to nothing. Keys take `external` or a single `internal`.
 
 ## The whole thing in one breath
 
