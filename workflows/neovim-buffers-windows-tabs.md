@@ -41,6 +41,9 @@ gt / gT             next / previous tab
 `<Tab>` is deliberately unmapped. Terminals send one byte for both `<Tab>` and
 `<C-i>`, so mapping it would shadow jumplist-forward.
 
+Reach for a buffer (`<leader>fb`) rather than a split to get to a file. Splits
+are for seeing two files at once, not for navigating between them.
+
 **Edit two files side by side:** `:vsp other-file.txt`
 **Quick lookup then return:** `:sp`, look up, `:q`
 **Separate contexts:** tabs for different tasks

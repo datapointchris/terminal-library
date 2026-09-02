@@ -19,6 +19,16 @@ tags: [tmux, multiplexer, keybindings]
 | prefix + ;        | toggle last pane        |
 | prefix + m        | mark pane (for join)    |
 
+The two arrow rows cross into Neovim. Ctrl+arrows move between tmux panes and
+Neovim splits without knowing which side they land on — vim-tmux-navigator
+handles the boundary. Ctrl+Shift+arrows resize both, and `tmux.conf` is what
+forwards them: it checks whether the pane is running vim and sends the key on
+when it is.
+
+Ghostty binds `ctrl+shift+arrow_left/right` to tab switching by default, so the
+Ghostty config unbinds both. Without that, resizing left or right silently
+switches terminal tabs instead.
+
 ## Reshape (keeps history)
 
 | prefix + !     | break pane → its own window                 |
