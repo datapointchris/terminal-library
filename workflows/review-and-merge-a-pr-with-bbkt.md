@@ -50,7 +50,7 @@ git log --oneline origin/prod..origin/uat   # in uat, not yet in prod
 git diff origin/uat origin/prod         # full tree comparison
 ```
 
-## Two dots vs three — the one thing to memorise
+## Two dots vs three — the one thing to memorize
 
 ```text
 origin/develop...HEAD   from the MERGE BASE. What my branch ADDS. <- PR view

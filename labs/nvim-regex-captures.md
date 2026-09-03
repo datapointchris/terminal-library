@@ -59,7 +59,7 @@ Undo with `u` after each step.
    - Why: under `\v` the `=` is an operator meaning "zero or one of the
      preceding", so `e=` matched an optional `e` and `(\S+)` then started at
      the `=`. Escape it — `HostName\=` — and it behaves. This is the failure
-     shape worth memorising: well-formed, plausible, wrong.
+     shape worth memorizing: well-formed, plausible, wrong.
 
 5. **Drop the capture group entirely with `\zs`.**
    `u`, then `:%s/HostName=\zs\S\+/[&]/`

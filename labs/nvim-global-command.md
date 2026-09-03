@@ -65,7 +65,7 @@ Undo with `u` after each step so every step starts from the same five lines.
      up first. That is why `:g/^/m0` reverses an entire file, and it is the
      canonical surprise of this command.
 
-7. **Act on the match and its neighbours.** `u`, then `:g/^web/.,+1d`
+7. **Act on the match and its neighbors.** `u`, then `:g/^web/.,+1d`
    - Expect: `web` *and* `worker` are both deleted.
    - Why: inside `:g` the cursor sits on each match, so `.` is that line and
      ranges are relative to it. `.,+1` is "this line and the next".

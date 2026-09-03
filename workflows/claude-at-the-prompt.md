@@ -14,7 +14,7 @@ tags: [zsh, claude, ai, keybindings, autosuggestions, atuin, zle, reference]
 #   Ctrl-X Ctrl-A   what you have NEVER run         costs a Claude round trip, ~5s
 
 # ── 1. GHOST TEXT (zsh-autosuggestions) ─────────────────────────────────────
-# Grey text ahead of the cursor, drawn from history; falls back to completion
+# Gray text ahead of the cursor, drawn from history; falls back to completion
 # when history has nothing. Purely passive — it never runs anything.
 End        # accept the whole suggestion
 Ctrl-E     # same thing (zsh-vi-mode binds ^E to end-of-line)
@@ -53,7 +53,7 @@ Ctrl-E     # same thing (zsh-vi-mode binds ^E to end-of-line)
 # ── 5. Ctrl-X Ctrl-E — EXPLAIN THIS LINE ────────────────────────────────────
 # The inverse. Keeps the line exactly as it is and prints a few lines underneath
 # saying what it does, flag by flag, leading with a warning if it is destructive.
-# Use it on anything Ctrl-X Ctrl-A hands you that you do not recognise.
+# Use it on anything Ctrl-X Ctrl-A hands you that you do not recognize.
 
 # ── SAME THING, WITHOUT A PROMPT LINE ───────────────────────────────────────
 doshell find every file over 100MB under my home directory

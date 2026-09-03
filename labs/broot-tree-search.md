@@ -39,7 +39,7 @@ printf 'export function Signup() {}\n' > web/components/Signup.tsx
    - Expect: `vendor` shows a few `pkgNN` rows then `21 unlisted`, and `api` shows
      `2 unlisted`. A `…` after a directory name means its children are folded.
    - Why: broot never scrolls past the screen. It fits the whole hierarchy by
-     summarising the part that does not fit, so what you see is always the shape of
+     summarizing the part that does not fit, so what you see is always the shape of
      the entire subtree rather than one level of it.
    - Then: `ctrl-s` runs a total search, which reaches into the folded rows.
 

@@ -12,7 +12,7 @@ tags: [jira, issue, ticket, sprint, transition, work, cloud, bbkt, reference]
 jira issue list -a$(jira me)
 ```
 
-Memorising flags is the wrong goal. `list` opens an **interactive table** and the
+Memorizing flags is the wrong goal. `list` opens an **interactive table** and the
 work happens in there — including `?`, which prints the whole key map. Learn the
 keys once and the flags stop mattering.
 

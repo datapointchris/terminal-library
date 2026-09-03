@@ -28,7 +28,7 @@ confuse because both put movement on the right-hand home row.
 ```text
 h/j/k/l         home row          focus window (directional)
 y/u/i/o         top row           move window (directional)
-n/m/,/.         bottom row        move window into neighbour's group
+n/m/,/.         bottom row        move window into neighbor's group
 a/s/d           home row          go to workspace A / S / D
 e/x/z                             go to workspace E / X / Z
 v                                 go to workspace M

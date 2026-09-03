@@ -21,7 +21,7 @@ alias for.
 
 ```bash
 eza -l                 # plain long view WITH permissions/owner/time back
-eza -lh                # add a header row (-h/--header) labelling each column
+eza -lh                # add a header row (-h/--header) labeling each column
 eza -l --total-size    # dir sizes = sum of everything inside (unix only)
 eza -l -@              # show extended attributes (xattrs) per file
 eza -lo                # octal permissions instead of rwx (-o)

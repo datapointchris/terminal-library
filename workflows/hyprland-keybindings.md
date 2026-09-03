@@ -13,7 +13,7 @@ see `aerospace-keybindings.md` for the other side.
 ```text
 SUPER + h/j/k/l                   focus window (directional)
 SUPER + shift + h/j/k/l           move window (directional)
-SUPER + ctrl + h/j/k/l            move window into neighbour's group
+SUPER + ctrl + h/j/k/l            move window into neighbor's group
 SUPER + ctrl + g                  toggle group
 SUPER + q                         close window
 SUPER + f                         toggle floating / tiling
