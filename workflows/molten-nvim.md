@@ -49,19 +49,19 @@ V (select lines)
 # Use <leader>mc per cell, or <leader>me ip on any block
 
 # %%
-import httpx
+import httpx2
 from pathlib import Path
 BASE_URL = "http://localhost:8000"
 
 # %% Upload a file
 file_path = Path("test-data/sample.csv")
 with open(file_path, "rb") as f:
-    resp = httpx.post(f"{BASE_URL}/api/upload",
-                      files={"file": (file_path.name, f, "text/csv")})
+    resp = httpx2.post(f"{BASE_URL}/api/upload",
+                       files={"file": (file_path.name, f, "text/csv")})
 print(resp.status_code, resp.json())
 
 # %% Check the result
-for item in httpx.get(f"{BASE_URL}/api/files").json():
+for item in httpx2.get(f"{BASE_URL}/api/files").json():
     print(f"{item['id']}: {item['name']} ({item['size']} bytes)")
 ```
 
