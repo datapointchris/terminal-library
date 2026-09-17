@@ -91,18 +91,35 @@ in.
 Only when a narration is running (`/narrate` in the agent's pane). It is one markdown file, appended
 per turn.
 
+`/narrate` splits this pane itself, so there is usually nothing to run. To open it by hand, or after
+closing it:
+
 ```bash
-less +F ~/dev/narrations/$(date +%F)-*.md     # follow, keeps scrollback and search
+~/.claude/hooks/narrate pane      # split the reader beside this pane
+~/.claude/hooks/narrate watch     # or run it in this pane
+```
+
+The reader follows whichever narration is active rather than one file. Each entry is rendered with
+`glow` as it lands and printed once, so scrollback and search keep working and nothing redraws under
+what is being read. A narration closing is announced and the pane then waits for the next one.
+
+Its header says whether entries are actually coming, and `narrate status` prints the same rows:
+
+```bash
+~/.claude/hooks/narrate status
+```
+
+`owner` is the row to read. A narration is gated on the session that opened it, and an owner that is
+not a live session means no entry will ever be written while everything else looks fine.
+
+Raw instead of rendered, which is what to reach for when following a closed one:
+
+```bash
+less +F ~/dev/narrations/$(date +%F)-*.md
 ```
 
 `less +F` behaves like `tail -f` until you press `Ctrl-C`, which drops you into a normal pager with
-everything still there — `/` searches, `F` resumes following. Nothing to install.
-
-Rendered instead of raw:
-
-```bash
-watchexec -c -w ~/dev/narrations -- "glow -w \$COLUMNS ~/dev/narrations/$(date +%F)-*.md"
-```
+everything still there — `/` searches, `F` resumes following.
 
 `~/dev` is Syncthing-only, so this pane is fleet machines only — on a box without it, the command
 says so and there is nothing to configure.
@@ -124,5 +141,5 @@ writing. Use it when the agent is idle, or accept that you are sharing a working
 ```text
 pane 1   claude, working
 pane 2   watchexec + git diff + delta      <- what it wrote
-pane 3   less +F on the narration          <- why it wrote it
+pane 3   narrate watch                     <- why it wrote it
 ```
