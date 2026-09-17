@@ -1042,8 +1042,8 @@ tools:
         desc: "Re-run tests on every save, clearing between runs"
       - cmd: "watchexec -c -w \"$WT\" -w \"$(git -C \"$WT\" rev-parse --git-dir)/index\" -- \"git -C $WT diff origin/main | delta --paging=never --width=\\$COLUMNS\""
         desc: "Live diff of a worktree an agent is writing; the index watch is what catches its commits"
-      - cmd: "watchexec -c -w ~/dev/narrations -- 'glow -w $COLUMNS ~/dev/narrations/latest.md'"
-        desc: "Re-render a narration as entries land"
+      - cmd: "watchexec -c -w ~/docs -- 'glow -w $COLUMNS ~/docs/index.md'"
+        desc: "Re-render a markdown file as it is edited"
     see_also: [git-delta, glow, lazygit, entr]
     tags: [automation, file-watching, watch, claude, diff]
     docs_url: "https://watchexec.github.io/"
@@ -1239,6 +1239,23 @@ tools:
         desc: "Pick one with fzf across every repo"
     see_also: [git, prs, lazygit]
     tags: [dotfiles, git, worktree, isolation]
+
+  narrate:
+    category: custom-tools
+    description: "Follow a Claude session's reasoning in a second pane, not its diff"
+    installed_via: dotfiles
+    requires: tmux
+    usage: "~/.claude/hooks/narrate [status | pane | watch | start | stop]"
+    why_use: "`/narrate` in the working pane starts the narration and splits the reading pane, so you rarely type this. Reach for it when entries stop appearing — `status` names which of the five things went wrong, and `owner` is the one that silently stops every turn being written"
+    examples:
+      - cmd: "~/.claude/hooks/narrate status"
+        desc: "Why is nothing appearing — owner, transcript, entry count, whether a writer is running"
+      - cmd: "~/.claude/hooks/narrate pane"
+        desc: "Reopen the reading pane after closing it"
+      - cmd: "~/.claude/hooks/narrate watch --file ~/dev/narrations/2026-09-17-ypl.md"
+        desc: "Read a narration whose session is already over"
+    see_also: [glow, watchexec, worktree, doit-workflows]
+    tags: [claude, narration, tmux, learning, reference]
 
   sesh:
     category: session-management
