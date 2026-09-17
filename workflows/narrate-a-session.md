@@ -20,6 +20,26 @@ tags: [claude, narration, tmux, glow, learning, reference]
 # long turn is normal. A pane quiet across several finished turns is not.
 ```
 
+## Two things share the name, and they are two halves of one concept
+
+```text
+/narrate            the SKILL   ~/.claude/skills/narrate/SKILL.md
+                    the standard: what an entry should say, how dense, when it
+                    has drifted off its focus. Writes nothing itself.
+
+narrate <verb>      the TOOL    ~/.claude/hooks/narrate
+                    the mechanics: creates the file, binds the owning session,
+                    splits the pane, reports health, stamps it closed. Judges
+                    no words.
+```
+
+The skill is read by two different sessions. Yours reads § Starting and § Closing
+and calls the tool. The writer's headless session reads § How to write one,
+§ Density and § Drifting off focus, and appends the entry.
+
+**Which one you want**: *what should this entry say* is the skill. *Why is nothing
+being written* is the tool.
+
 ## Starting one — you type this in the working session
 
 ```bash
