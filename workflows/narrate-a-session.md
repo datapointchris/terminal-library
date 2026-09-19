@@ -14,7 +14,7 @@ tags: [claude, narration, tmux, glow, learning, reference]
 # one-way — you read, the work continues.
 #
 #   pane 1   claude, working                   <- what it is doing
-#   pane 2   narrate watch                     <- why it is doing it
+#   pane 2   narrate-ctl watch                 <- why it is doing it
 #
 # Entries land about a minute BEHIND the turn they describe. A quiet pane during a
 # long turn is normal. A pane quiet across several finished turns is not.
@@ -27,7 +27,7 @@ tags: [claude, narration, tmux, glow, learning, reference]
                     the standard: what an entry should say, how dense, when it
                     has drifted off its focus. Writes nothing itself.
 
-narrate <verb>      the TOOL    ~/.claude/hooks/narrate
+narrate-ctl <verb>  the TOOL    ~/.claude/hooks/narrate-ctl
                     the mechanics: creates the file, binds the owning session,
                     splits the pane, reports health, stamps it closed. Judges
                     no words.
@@ -69,13 +69,13 @@ Everything else is left out rather than summarized.
 #
 # So a narration that stops filling has usually FINISHED, not broken. Check
 # which before assuming:
-narrate status                 # "none active" = it closed. rows with [XX] = it broke.
+narrate-ctl status                 # "none active" = it closed. rows with [XX] = it broke.
 ```
 
-## When nothing is appearing — `narrate status`
+## When nothing is appearing — `narrate-ctl status`
 
 ```bash
-~/.claude/hooks/narrate status
+~/.claude/hooks/narrate-ctl status
 ```
 
 ```text
@@ -107,8 +107,8 @@ rejected silently and the file stays empty while nothing anywhere says so.
 ## Reading it
 
 ```bash
-~/.claude/hooks/narrate pane    # reopen the reading pane beside this one
-~/.claude/hooks/narrate watch   # or run the reader in THIS pane
+~/.claude/hooks/narrate-ctl pane    # reopen the reading pane beside this one
+~/.claude/hooks/narrate-ctl watch   # or run the reader in THIS pane
 ```
 
 ```bash
@@ -125,7 +125,7 @@ rejected silently and the file stays empty while nothing anywhere says so.
 # Only the clock on the bottom row keeps moving.
 
 # Reading one that is already closed:
-narrate watch --file ~/dev/narrations/2026-09-17-ypl-go-cli-over-the-api.md
+narrate-ctl watch --file ~/dev/narrations/2026-09-17-ypl-go-cli-over-the-api.md
 glow -p ~/dev/narrations/$(date +%F)-*.md
 less +F ~/dev/narrations/$(date +%F)-*.md     # raw, follows like tail -f
 ```
@@ -163,12 +163,12 @@ valuable as a record.
 /narrate back [focus]                  # start over a conversation already going
 /narrate stop                          # close
 
-narrate status                         # why is nothing appearing
-narrate pane                           # reopen the reading pane
-narrate watch [--file <path>]          # read in this pane
-narrate start <slug> --title T --focus F   # what /narrate runs underneath
-narrate stop                           # what /narrate stop runs underneath
+narrate-ctl status                         # why is nothing appearing
+narrate-ctl pane                           # reopen the reading pane
+narrate-ctl watch [--file <path>]          # read in this pane
+narrate-ctl start <slug> --title T --focus F   # what /narrate runs underneath
+narrate-ctl stop                           # what /narrate stop runs underneath
 
-# narrate lives at ~/.claude/hooks/narrate and is not on PATH; the skill calls it
+# narrate-ctl lives at ~/.claude/hooks/narrate-ctl and is not on PATH; the skill calls it
 # by absolute path and you rarely need it at all.
 ```

@@ -95,18 +95,18 @@ per turn.
 closing it:
 
 ```bash
-~/.claude/hooks/narrate pane      # split the reader beside this pane
-~/.claude/hooks/narrate watch     # or run it in this pane
+~/.claude/hooks/narrate-ctl pane      # split the reader beside this pane
+~/.claude/hooks/narrate-ctl watch     # or run it in this pane
 ```
 
 The reader follows whichever narration is active rather than one file. Each entry is rendered with
 `glow` as it lands and printed once, so scrollback and search keep working and nothing redraws under
 what is being read. A narration closing is announced and the pane then waits for the next one.
 
-Its header says whether entries are actually coming, and `narrate status` prints the same rows:
+Its header says whether entries are actually coming, and `narrate-ctl status` prints the same rows:
 
 ```bash
-~/.claude/hooks/narrate status
+~/.claude/hooks/narrate-ctl status
 ```
 
 `owner` is the row to read. A narration is gated on the session that opened it, and an owner that is
@@ -141,5 +141,5 @@ writing. Use it when the agent is idle, or accept that you are sharing a working
 ```text
 pane 1   claude, working
 pane 2   watchexec + git diff + delta      <- what it wrote
-pane 3   narrate watch                     <- why it wrote it
+pane 3   narrate-ctl watch                 <- why it wrote it
 ```
