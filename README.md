@@ -6,6 +6,16 @@ A curated body of terminal knowledge, authored by hand.
 - `labs/` — hands-on practice Labs, each with a cadence in its frontmatter
 - `tools/` — the tool registry: what each tool is, why to reach for it, what to type
 
+The index is a command rather than a list in this file, because a list here goes stale the
+first time a card is added:
+
+```bash
+doit workflows list    # every card and what it covers
+doit labs list         # every Lab and its schedule status
+doit find <term>       # search the cards, tools, functions, aliases and keybindings at once
+doit workflows show <card>
+```
+
 `tools/registry.yml` is reference, not declaration. What puts a tool on a machine is
 dotfiles' `packages.yml`; this says what the thing is once it is there. The two describe
 largely different populations — most of what is documented here is a shell function or a
