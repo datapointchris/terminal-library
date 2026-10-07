@@ -1472,7 +1472,7 @@ tools:
         desc: "Show index health and last run"
       - cmd: "indy stats"
         desc: "Bar charts of files/chunks per repo"
-    see_also: [relate, doit, ripgrep]
+    see_also: [digest, doit, ripgrep]
     tags: [search, semantic, embeddings, sqlite, ollama, mcp]
     docs_url: "https://github.com/datapointchris/indy"
 
@@ -1511,22 +1511,24 @@ tools:
     see_also: [doit, doit-dashboard]
     tags: [dotfiles, packages, discovery, yaml]
 
-  relate:
+  digest:
     category: custom-tools
     description: "Claude Code-focused information management and cross-content synthesis — analyzes YouTube videos, articles, and URLs"
     installed_via: uv
-    usage: "relate <command> [args]"
+    usage: "digest <command> [args]"
     why_use: "Ingest content you can't read manually, store structured analyses in SQLite, and synthesize across them with interactive Claude sessions"
     examples:
-      - cmd: "relate analyze 'https://example.com/article'"
+      - cmd: "digest analyze 'https://example.com/article'"
         desc: "Analyze a URL, save to DB, display via glow"
-      - cmd: "relate analyze 'https://example.com' --discuss"
+      - cmd: "digest analyze 'https://example.com' --discuss"
         desc: "Analyze then open an interactive analytical session"
-      - cmd: "relate batch urls.txt"
-        desc: "Batch analyze and open a meta-analysis session"
+      - cmd: "digest synthesize urls.txt"
+        desc: "Read every source in a list and cross-analyze them into one analysis"
+      - cmd: "digest cluster urls.txt"
+        desc: "Group a list into topic clusters, each for its own synthesize run"
     see_also: [indy, doit]
-    tags: [synthesis, analysis, claude-code, sqlite, mcp, youtube, video, transcript, article, url]
-    docs_url: "https://github.com/datapointchris/relate"
+    tags: [synthesis, analysis, claude-code, sqlite, youtube, video, transcript, article, url]
+    docs_url: "https://github.com/datapointchris/digest"
 
   syncer:
     category: custom-tools
@@ -2080,7 +2082,7 @@ tools:
         desc: "List available subtitle/caption languages for a video"
       - cmd: "yt-dlp --skip-download --write-auto-subs --sub-langs en --sub-format json3 -o '%(id)s.%(ext)s' <url>"
         desc: "Download English auto-captions as structured json3"
-    see_also: [yt-transcript, relate, jq, ffmpeg]
+    see_also: [yt-transcript, digest, jq, ffmpeg]
     tags: [youtube, video, audio, transcript, captions, subtitles, download, media]
 
   yt-transcript:
@@ -2094,7 +2096,7 @@ tools:
         desc: "Summarize a tutorial into a workflow in a specified style"
       - cmd: "yt-transcript 'https://youtu.be/VIDEO' > notes.txt"
         desc: "Save the raw transcript to a file"
-    see_also: [yt-dlp, relate, jq]
+    see_also: [yt-dlp, digest, jq]
     tags: [youtube, video, transcript, captions, subtitles, summarize, media, pipe]
 
 # =================================================================

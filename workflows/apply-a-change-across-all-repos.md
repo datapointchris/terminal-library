@@ -23,7 +23,7 @@ forge exec -n -- git status --short    # -n/--dry-run: names the repos, runs
 
 # 3. FAN OUT — pick the form that matches the job
 forge exec -- git pull                 # one-off inline command, every repo
-forge exec -F relate,nomad -- <cmd>    # -F/--filter: only these repos
+forge exec -F digest,nomad -- <cmd>    # -F/--filter: only these repos
 forge dies run <name>                  # a REUSABLE maintenance script (a "die").
                                        # If you'll ever run it again, it belongs
                                        # here — never hand-edit a per-repo script.
