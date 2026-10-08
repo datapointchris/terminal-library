@@ -2026,24 +2026,28 @@ tools:
     category: custom-tools
     description: "Find broken file references, validate variable paths, and detect fragile path patterns"
     installed_via: uv
-    usage: "refcheck [OPTIONS] [path]"
+    usage: "refcheck check [OPTIONS] [path]"
     why_use: "Proactive error detection before running tests - catches broken paths in seconds vs minutes of test failures"
     examples:
-      - cmd: "refcheck"
+      - cmd: "refcheck check"
         desc: "Validate all file references in current directory"
-      - cmd: "refcheck install/"
+      - cmd: "refcheck check install/"
         desc: "Check specific directory for broken references"
-      - cmd: "refcheck --pattern 'old/path/' --desc 'Now new/path/'"
+      - cmd: "refcheck check --pattern 'old/path/' --desc 'Now new/path/'"
         desc: "Find old pattern after refactoring"
-      - cmd: "refcheck --type sh --skip-docs"
+      - cmd: "refcheck check --moves-since origin/main"
+        desc: "Find what still points at every path moved since main"
+      - cmd: "refcheck check --name oldtool --desc 'Now newtool'"
+        desc: "Find where a renamed or removed tool is still named"
+      - cmd: "refcheck check --type sh --skip-docs"
         desc: "Check only shell scripts, skip documentation"
-      - cmd: "refcheck --strict"
+      - cmd: "refcheck check --strict"
         desc: "Treat warnings as errors (strict mode for CI)"
-      - cmd: "refcheck --learn-rules"
+      - cmd: "refcheck learn-rules"
         desc: "Learn path mappings from git rename history"
     see_also: [grep, fd]
     tags: [validation, testing, refactoring, ci]
-    notes: "Resolves variable paths ($SCRIPT_DIR, $DOTFILES_DIR). Learns from git history to suggest correct paths. Config at ~/.config/refcheck/config.toml."
+    notes: "Resolves variable paths ($SCRIPT_DIR, $DOTFILES_DIR). Learns from git history to suggest correct paths. Bare `refcheck` prints usage. Per-repo config in .refcheck.toml, per-user at ~/.config/refcheck/config.toml."
     docs_url: "docs/apps/refcheck.md"
 
   brew-maintenance:
