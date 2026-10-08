@@ -54,4 +54,4 @@ forge exec -- <cmd>  (or forge dies run <name>)  →  syncer   # apply + verify
 ```
 
 Related: `synthesize-a-batch-of-sources` (another "drive many things at once"
-tool). For where each project *stands* rather than acting on them: `forge status`.
+tool). For where each project *stands* rather than acting on them: `fleet status`.
