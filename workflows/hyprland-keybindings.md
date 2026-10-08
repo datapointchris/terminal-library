@@ -36,7 +36,7 @@ SUPER + ctrl + w                  toggle the spare HDMI output, parking 9 on it
 ```
 
 Workspaces are named rather than numbered, so the letter is the workspace. `B`
-is defined in the config but commented out.
+has a persistent workspace but no binding.
 
 ## Layout
 
@@ -48,10 +48,11 @@ SUPER + r                         enter resize submap
   esc or enter                    leave the submap
 ```
 
-`SUPER + '` is a `layoutmsg`, not a top-level dispatcher — dwindle owns the
-split toggle, so the binding has to address the layout rather than the
-compositor. `SUPER + \` shells out to `hyprctl keyword general:layout` and flips
-the value it reads back, because Hyprland has no toggle dispatcher for layouts.
+`SUPER + '` is a layout message (`hl.dsp.layout('togglesplit')`), not a
+top-level dispatcher — dwindle owns the split toggle, so the binding has to
+address the layout rather than the compositor. `SUPER + \` is bound to a Lua
+function that reads `general.layout` and sets the other one, because Hyprland
+has no toggle dispatcher for layouts.
 
 ## Applications and system
 
@@ -65,7 +66,7 @@ Print                             screenshot a region to the clipboard
 SUPER + Print                     screenshot the screen to the clipboard
 ```
 
-`rofi-keybinds` reads `hyprctl binds` and renders the `bindd` descriptions, so
+`rofi-keybinds` reads `hyprctl binds` and renders each bind's description, so
 it is the live list and this card is the annotated one. When the two disagree,
 the config is right and this card is stale.
 
@@ -79,21 +80,21 @@ XF86AudioPlay / Prev / Next       playerctl transport
 XF86MonBrightnessUp / Down        brightness +/- 10% (repeats on hold)
 ```
 
-## Fullscreen is bound to mode 1, not mode 0
+## Fullscreen is bound to maximized, not true fullscreen
 
-Hyprland has two fullscreen modes and only one is bound. `fullscreen, 1`
-maximizes: the window fills the workspace, and waybar and the gaps stay.
-`fullscreen, 0` is true fullscreen and covers them, which also strands the other
-tiled windows on that workspace behind the bar. Only mode 1 is bound, and that
-matches AeroSpace's `fullscreen` — it fills the workspace and leaves the menu bar
-up.
+Hyprland has two fullscreen modes and only one is bound.
+`hl.dsp.window.fullscreen({ mode = 'maximized' })` (mode 1) fills the workspace,
+and waybar and the gaps stay. Mode `'fullscreen'` (mode 0) is true fullscreen and
+covers them, which also strands the other tiled windows on that workspace behind
+the bar. Only maximized is bound, and that matches AeroSpace's `fullscreen` — it
+fills the workspace and leaves the menu bar up.
 
 ## The scratchpad stash is silent
 
 The scratchpad pair sits on one key so the two halves are found together. Show is
 ``SUPER + ` ``, stash is the same key with shift. The stash is silent: the window
 leaves without focus following it, so an empty scratchpad shows nothing but
-`decoration:dim_special` dimming the workspace behind, 0.2 by default. That dim
+`decoration.dim_special` dimming the workspace behind, 0.2 by default. That dim
 with no window is what an empty scratchpad looks like, not a failed keybind.
 
 ## Pseudotile is bound to no key
@@ -103,5 +104,5 @@ pseudotiled window holds its whole tile slot but draws at its own stored size,
 centered inside it, so it will not grow when the workspace has room. It reads as
 a stuck window rather than as a setting. Neither float nor maximize clears it,
 and `hyprctl clients` reports the flag in no field — the only tell is arithmetic,
-a window smaller than its tile with equal space on both sides. `hyprctl dispatch
-pseudo` is the one way into or out of it.
+a window smaller than its tile with equal space on both sides.
+`hyprctl dispatch 'hl.dsp.window.pseudo()'` is the one way into or out of it.
