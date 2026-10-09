@@ -1411,15 +1411,13 @@ tools:
     category: custom-tools
     description: "Personal project organization with local-first SQLite"
     installed_via: go-install
-    usage: "todoui [command]"
-    why_use: "Track projects, tasks, and items with a TUI interface backed by local SQLite, no server required"
+    usage: "todoui [sync]"
+    why_use: "Organize personal projects, their items, sub-tasks and dependencies in a vim-keyed TUI over local SQLite, synced to ichrisbirch in the background"
     examples:
       - cmd: "todoui"
-        desc: "Launch the TUI interface"
-      - cmd: "todoui projects"
-        desc: "List all projects"
-      - cmd: "todoui items"
-        desc: "List project items"
+        desc: "Open the TUI"
+      - cmd: "todoui sync"
+        desc: "Push queued changes and pull from the ichrisbirch API now"
     see_also: [forge, doit]
     tags: [dotfiles, productivity, tui, sqlite, go]
     docs_url: "https://github.com/datapointchris/todoui"
