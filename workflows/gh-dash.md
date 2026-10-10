@@ -63,7 +63,7 @@ doit next             # the `pr` pursuit, on a 3d cadence, pins when overdue
 #   because gh-dash allows only ONE wildcard per owner — these repos live under
 #   ~/tools, ~/code, ~/webapps and ~/. Regenerate rather than hand-edit:
 #     jq -r '.owner as $o | .repos[] | "    \($o)/\(.name): \(.path)"' \
-#       ~/dev/repos.json | sort
+#       "$(repos-registry)" | sort
 # - Sections filter by STATE, not by role. The stock config ships team filters
 #   (review-requested:@me, -author:@me) which can never match when every PR is
 #   your own — three empty sections and one real one.

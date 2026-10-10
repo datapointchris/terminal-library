@@ -1461,7 +1461,7 @@ tools:
     why_use: "Local-first semantic search (sqlite-vec + ollama, no external APIs) across all your indexed repos and notes"
     examples:
       - cmd: "indy index"
-        desc: "Index all active repos from ~/dev/repos.json"
+        desc: "Index every repo in the registry its config names, and its extra directories"
       - cmd: "indy search 'query'"
         desc: "Semantic search across all indexed content"
       - cmd: "indy search 'query' --owned"
@@ -1471,7 +1471,7 @@ tools:
       - cmd: "indy stats"
         desc: "Bar charts of files/chunks per repo"
     see_also: [digest, doit, ripgrep]
-    tags: [search, semantic, embeddings, sqlite, ollama, mcp]
+    tags: [search, semantic, embeddings, sqlite, ollama]
     docs_url: "https://github.com/datapointchris/indy"
 
   logsift:
