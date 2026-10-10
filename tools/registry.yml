@@ -15,7 +15,7 @@
 #   entry. Name software, never a machine — hostnames get replaced.
 #
 # installed_via: <package manager | dotfiles>
-#   `dotfiles` means this repo's shell tree ships it, and the symlink layer
+#   `dotfiles` means the dotfiles shell tree ships it, and the symlink layer
 #   already scopes those per machine. Anything else names a package manager, and
 #   `doit kit unresolved` then asks that machine's dotfiles manifest whether the
 #   box was ever meant to have the tool. A row no manifest here declares is
@@ -1260,7 +1260,7 @@ tools:
   sesh:
     category: session-management
     description: "Smart tmux session manager with zoxide integration and fzf picker"
-    installed_via: go-install
+    installed_via: go
     usage: "sesh connect [session-name]"
     why_use: "Quick tmux session switching with zoxide directory tracking, fzf-based interactive picker, named session configs"
     examples:
@@ -1385,7 +1385,7 @@ tools:
   forge:
     category: custom-tools
     description: "Run commands and dies (reusable scripts) across all git repos"
-    installed_via: go-install
+    installed_via: go
     usage: "forge <command> [args]"
     why_use: "Execute maintenance scripts and ad-hoc commands across your entire repo fleet with filtering, dry-run, and execution tracking"
     examples:
@@ -1410,7 +1410,7 @@ tools:
   todoui:
     category: custom-tools
     description: "Personal project organization with local-first SQLite"
-    installed_via: go-install
+    installed_via: go
     usage: "todoui [sync]"
     why_use: "Organize personal projects, their items, sub-tasks and dependencies in a vim-keyed TUI over local SQLite, synced to ichrisbirch in the background"
     examples:
@@ -1912,7 +1912,7 @@ tools:
     description: "Display node and npm version and location"
     installed_via: dotfiles
     usage: "checknode"
-    why_use: "Verify which node/npm version is active (useful with nvm)"
+    why_use: "Verify which node/npm version is active (useful with fnm)"
     examples:
       - cmd: "checknode"
         desc: "Show node and npm info"
@@ -2129,7 +2129,8 @@ categories:
 install_methods:
   - brew: "Homebrew package manager (macOS/Linux)"
   - cargo: "Rust package manager"
-  - npm: "Node.js package manager (via nvm)"
+  - go: "Go toolchain (go install)"
+  - npm: "Node.js package manager (via fnm)"
   - uv: "Python package manager"
   - script: "Installation script"
   - cask: "Homebrew cask (GUI applications)"
