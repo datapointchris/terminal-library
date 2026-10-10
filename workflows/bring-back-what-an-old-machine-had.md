@@ -50,6 +50,10 @@ safekeep backup run && safekeep files list --from "$(date +%F)" | rg file
 ```bash
 # - A file you dropped on purpose stays in --missing forever; nothing records a
 #   "no". Read past it.
+# - A file under a dir a symlink manager links (~/.config/nvim) is written
+#   THROUGH the link, into the repo it points at. --skip-symlinked skips it.
+# - files list exiting 1 means part of a snapshot was unreadable; the paths
+#   are on stderr and the list is incomplete. Fix access, list again.
 # - Never edit or delete inside the backup drive. Unchanged files are hard links
 #   shared by every snapshot, so an edit there changes all of them at once.
 # - Restoring a file does not add it to the config. Step 4 is how you find out.
