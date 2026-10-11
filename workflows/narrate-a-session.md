@@ -147,7 +147,7 @@ less +F ~/dev/narrations/$(date +%F)-*.md     # raw, follows like tail -f
 
 | It is not | That lives in |
 | --- | --- |
-| a status | `.planning/status.md` |
+| a status | the repo's `status.md` |
 | what to do next | `icb` |
 | a durable lesson | `~/notes/dev/`, via `capture-note` |
 | a draft blog post | genericized on the way out, citing the narration id |
