@@ -77,11 +77,11 @@ narrate-ctl status                 # "none active" = it closed. rows with [XX] =
 ## When nothing is appearing — `narrate-ctl status`
 
 ```bash
-~/.claude/hooks/narrate-ctl status
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl status
 ```
 
 ```text
-  [ok] file        /home/chris/dev/narrations/2026-09-17-ypl-go-cli-over-the-api.md
+  [ok] file        /home/chris/dev/claude-session-narrations/2026-09-17-ypl-go-cli-over-the-api.md
   [ok] owner       ypl-ba in /home/chris/.worktrees/ypl/cli-reads
   [ok] transcript  24985 lines, 783 unnarrated
   [--] entries     3 written, file touched 1m ago, status: live
@@ -109,8 +109,8 @@ rejected silently and the file stays empty while nothing anywhere says so.
 ## Reading it
 
 ```bash
-~/.claude/hooks/narrate-ctl pane    # reopen the reading pane beside this one
-~/.claude/hooks/narrate-ctl watch   # or run the reader in THIS pane
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl pane    # reopen the reading pane beside this one
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl watch   # or run the reader in THIS pane
 ```
 
 ```bash
@@ -127,9 +127,9 @@ rejected silently and the file stays empty while nothing anywhere says so.
 # Only the clock on the bottom row keeps moving.
 
 # Reading one that is already closed:
-narrate-ctl watch --file ~/dev/narrations/2026-09-17-ypl-go-cli-over-the-api.md
-glow -p ~/dev/narrations/$(date +%F)-*.md
-less +F ~/dev/narrations/$(date +%F)-*.md     # raw, follows like tail -f
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl watch --file ~/dev/claude-session-narrations/2026-09-17-ypl-go-cli-over-the-api.md
+glow -p ~/dev/claude-session-narrations/$(date +%F)-*.md
+less +F ~/dev/claude-session-narrations/$(date +%F)-*.md     # raw, follows like tail -f
 ```
 
 ## Asking about one while it is being written
@@ -171,6 +171,7 @@ narrate-ctl watch [--file <path>]            # read in this pane
 narrate-ctl start <slug> --title T --focus F # what the skill runs underneath
 narrate-ctl stop                             # what the skill's stop runs underneath
 
-# narrate-ctl lives at ~/.claude/hooks/narrate-ctl and is not on PATH; the skill calls it
-# by absolute path and you rarely need it at all.
+# narrate-ctl lives at ~/.claude/hooks/narrate-ctl and is not on PATH. It imports the
+# ~/.claude package, so it runs as: uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl
+# The skill calls it that way, and you rarely need it at all.
 ```

@@ -95,8 +95,8 @@ The skill splits this pane itself, so there is usually nothing to run. To open i
 closing it:
 
 ```bash
-~/.claude/hooks/narrate-ctl pane      # split the reader beside this pane
-~/.claude/hooks/narrate-ctl watch     # or run it in this pane
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl pane      # split the reader beside this pane
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl watch     # or run it in this pane
 ```
 
 The reader follows whichever narration is active rather than one file. Each entry is rendered with
@@ -106,7 +106,7 @@ what is being read. A narration closing is announced and the pane then waits for
 Its header says whether entries are actually coming, and `narrate-ctl status` prints the same rows:
 
 ```bash
-~/.claude/hooks/narrate-ctl status
+uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl status
 ```
 
 `owner` is the row to read. A narration is gated on the session that opened it, and an owner that is
@@ -115,7 +115,7 @@ not a live session means no entry will ever be written while everything else loo
 Raw instead of rendered, which is what to reach for when following a closed one:
 
 ```bash
-less +F ~/dev/narrations/$(date +%F)-*.md
+less +F ~/dev/claude-session-narrations/$(date +%F)-*.md
 ```
 
 `less +F` behaves like `tail -f` until you press `Ctrl-C`, which drops you into a normal pager with
