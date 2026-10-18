@@ -149,7 +149,7 @@ less +F ~/dev/narrations/$(date +%F)-*.md     # raw, follows like tail -f
 | --- | --- |
 | a status | the repo's `status.md` |
 | what to do next | `icb` |
-| a durable lesson | `~/notes/dev/`, via `capture-note` |
+| a durable lesson | `~/notes/dev/`, via `write-dev-note` |
 | a draft blog post | genericized on the way out, citing the narration id |
 
 A narration is feedstock. It keeps the real hostnames, real paths and real item

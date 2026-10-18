@@ -17,7 +17,8 @@ Three neighbors take what does not belong here:
 
 - **dotfiles puts a tool on a machine.** This says what the tool is once it is there.
 - **`~/notes/dev/` takes the insight that took effort to understand.** This takes the commands you
-  type. The Claude Code skill `capture-note` files there, and `capture-workflow` files here.
+  type. The Claude Code skill `write-dev-note` files there, and `write-terminal-library-card` files
+  here.
 - **`terminal-library-fleet` holds the fleet's standards and declarations.** It is a separate repo
   with a different reader: `fleet standards` reads it a rule at a time.
 
@@ -120,8 +121,8 @@ pre-commit install --install-hooks -t pre-commit -t commit-msg
 The commit-msg stage holds a message to conventional commits. CI runs the same hooks on every push
 and pull request to `main`. A commit from a checkout without them is still checked, after the fact.
 
-From a Claude Code session, `/capture-workflow` writes a card from what the session worked out, then
-commits and pushes it.
+From a Claude Code session, `/write-terminal-library-card` writes a card from what the session
+worked out, then commits and pushes it.
 
 A card or a Lab opens on front matter, one blank line, then the `# ` title:
 
