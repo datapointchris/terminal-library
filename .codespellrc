@@ -1,5 +1,6 @@
-# Carried over from dotfiles' ignore-words-list when the cards moved out. Only
-# the words these files actually need, not the whole inherited list.
+# Key sequences and editor commands the cards quote, which codespell would
+# otherwise correct as typos. A word goes here only when a card needs it, in
+# the same commit as that card, with a line saying what it is.
 #
 #   te — `<leader>te` is a Neovim tab binding, not a misspelling of "the".
 #   enew — `:enew` opens an empty buffer in the current window, not "new".
