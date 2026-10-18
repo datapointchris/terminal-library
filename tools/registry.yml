@@ -1246,7 +1246,7 @@ tools:
     installed_via: dotfiles
     requires: tmux
     usage: "~/.claude/hooks/narrate-ctl [status | pane | watch | start | stop]"
-    why_use: "`/narrate` in the working pane starts the narration and splits the reading pane, so you rarely type this. Reach for it when entries stop appearing — `status` names which of the five things went wrong, and `owner` is the one that silently stops every turn being written"
+    why_use: "`/narrate-work-as-it-happens` in the working pane starts the narration and splits the reading pane, so you rarely type this. Reach for it when entries stop appearing — `status` names which of the five things went wrong, and `owner` is the one that silently stops every turn being written"
     examples:
       - cmd: "~/.claude/hooks/narrate-ctl status"
         desc: "Why is nothing appearing — owner, transcript, entry count, whether a writer is running"

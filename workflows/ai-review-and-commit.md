@@ -46,7 +46,7 @@ gh pr create --fill --web=false   # or --body-file for a real overview
                       # rejected, and WHAT TO LOOK AT. Not a diff restatement.
 
 # 8. THE STANDARDS PASS — in a session that did not write the code
-/audit-pr             # fresh Claude. Posts numbered findings as one comment.
+/review-pr            # fresh Claude. Posts numbered findings as one comment.
 
 # 9. MERGE is a SEPARATE act, taken deliberately
 gh pr merge --squash --delete-branch

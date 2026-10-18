@@ -35,7 +35,7 @@ gh pr view            # description, commits, checks, comments (current branch)
 gh pr view --web=false --comments
 
 # 5. THE STANDARDS PASS — from a session that did not write the code
-/audit-pr             # numbered findings, posted as one comment
+/review-pr            # numbered findings, posted as one comment
 
 # 6. FIX and the PR updates itself
 git commit && git push               # pushing to the branch updates the PR

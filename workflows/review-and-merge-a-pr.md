@@ -35,13 +35,14 @@ gh pr merge --squash --delete-branch
 ```bash
 prefix |              # split the same window
 claude
-/review-diff          # the reading protocol: triage first, then per commit
+/walk-through-recent-commits
+                      # the reading protocol: triage first, then per commit
                       #   intent → the 2-4 structural moves → the idiom NAMED.
                       #   Works out its own range from the window it is in.
                       # "explain what I'm looking at" reads your cursor off the
                       #   nvim socket — you point, you don't describe.
 
-/audit-pr             # the standards pass. Run it in a session that did NOT
+/review-pr            # the standards pass. Run it in a session that did NOT
                       #   write the code: a reviewer holding the author's
                       #   context reproduces the author's blind spots.
 ```

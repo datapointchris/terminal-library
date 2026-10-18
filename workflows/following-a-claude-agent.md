@@ -88,10 +88,10 @@ in.
 
 ## 4. Live narration — the prose
 
-Only when a narration is running (`/narrate` in the agent's pane). It is one markdown file, appended
-per turn.
+Only when a narration is running (`/narrate-work-as-it-happens` in the agent's pane). It is one
+markdown file, appended per turn.
 
-`/narrate` splits this pane itself, so there is usually nothing to run. To open it by hand, or after
+The skill splits this pane itself, so there is usually nothing to run. To open it by hand, or after
 closing it:
 
 ```bash

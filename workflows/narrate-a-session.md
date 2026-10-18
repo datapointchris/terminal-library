@@ -20,17 +20,18 @@ tags: [claude, narration, tmux, glow, learning, reference]
 # long turn is normal. A pane quiet across several finished turns is not.
 ```
 
-## Two things share the name, and they are two halves of one concept
+## Two things share the `narrate` name, and they are two halves of one concept
 
 ```text
-/narrate            the SKILL   ~/.claude/skills/narrate/SKILL.md
-                    the standard: what an entry should say, how dense, when it
-                    has drifted off its focus. Writes nothing itself.
+/narrate-work-as-it-happens   the SKILL
+    ~/.claude/skills/narrate-work-as-it-happens/SKILL.md
+    the standard: what an entry should say, how dense, when it has
+    drifted off its focus. Writes nothing itself.
 
-narrate-ctl <verb>  the TOOL    ~/.claude/hooks/narrate-ctl
-                    the mechanics: creates the file, binds the owning session,
-                    splits the pane, reports health, stamps it closed. Judges
-                    no words.
+narrate-ctl <verb>            the TOOL
+    ~/.claude/hooks/narrate-ctl
+    the mechanics: creates the file, binds the owning session, splits
+    the pane, reports health, stamps it closed. Judges no words.
 ```
 
 The skill is read by two different sessions. Yours reads § Starting and § Closing
@@ -44,21 +45,22 @@ being written* is the tool.
 
 ```bash
 # In the pane where Claude is working. Not in a shell.
-/narrate                       # start one over what is about to happen
-/narrate <title>               # same, naming it yourself
-/narrate back                  # the conversation is already going; record it from here
-/narrate back <focus>          # same, but scoped to ONE thread of it
-/narrate stop                  # close it
+/narrate-work-as-it-happens                # start one over what is about to happen
+/narrate-work-as-it-happens <title>        # same, naming it yourself
+/narrate-work-as-it-happens back           # the conversation is going; record from here
+/narrate-work-as-it-happens back <focus>   # same, but scoped to ONE thread of it
+/narrate-work-as-it-happens stop           # close it
 
-# /narrate splits the reading pane itself. There is nothing to open and nothing
+# The skill splits the reading pane itself. There is nothing to open and nothing
 # to configure. It prints the path once and then never mentions the narration
 # again — that silence is the design, not a failure.
 ```
 
 **`back <focus>` scopes the whole file, not just the title.** A session that opened
-on a PipeWire bug and ended on git worktrees, narrated `/narrate back 'the git
-rebase workflow'`, starts at the git decision and never mentions the speaker.
-Everything else is left out rather than summarized.
+on a PipeWire bug and ended on git worktrees, narrated
+`/narrate-work-as-it-happens back 'the git rebase workflow'`, starts at the git
+decision and never mentions the speaker. Everything else is left out rather than
+summarized.
 
 ## It closes itself when the work moves on
 
@@ -98,7 +100,7 @@ that that one is not today's fault.
 | `writer` | `running now` means an entry is being written; wait a minute |
 
 **`owner` is the row to read first.** A narration is gated on the session id that
-opened it. `/narrate` binds that at creation from the tmux pane, so it is right —
+opened it. The skill binds that at creation from the tmux pane, so it is right —
 but a narration started some other way leaves it for the first Stop hook to claim,
 and Claude Code's conversation-title generator is a headless session that fires
 within seconds of any prompt on the machine. If it wins, every real turn is
@@ -159,15 +161,15 @@ valuable as a record.
 ## Everything, in one place
 
 ```bash
-/narrate [title]                       # start, in the working pane
-/narrate back [focus]                  # start over a conversation already going
-/narrate stop                          # close
+/narrate-work-as-it-happens [title]          # start, in the working pane
+/narrate-work-as-it-happens back [focus]     # start over a conversation already going
+/narrate-work-as-it-happens stop             # close
 
-narrate-ctl status                         # why is nothing appearing
-narrate-ctl pane                           # reopen the reading pane
-narrate-ctl watch [--file <path>]          # read in this pane
-narrate-ctl start <slug> --title T --focus F   # what /narrate runs underneath
-narrate-ctl stop                           # what /narrate stop runs underneath
+narrate-ctl status                           # why is nothing appearing
+narrate-ctl pane                             # reopen the reading pane
+narrate-ctl watch [--file <path>]            # read in this pane
+narrate-ctl start <slug> --title T --focus F # what the skill runs underneath
+narrate-ctl stop                             # what the skill's stop runs underneath
 
 # narrate-ctl lives at ~/.claude/hooks/narrate-ctl and is not on PATH; the skill calls it
 # by absolute path and you rarely need it at all.
