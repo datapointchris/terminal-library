@@ -1,5 +1,5 @@
 ---
-tags: [hyprland, keybindings, window-manager, wayland, linux]
+tags: [hyprland, keybindings, window-manager, wayland, linux, screenshot]
 ---
 
 # Hyprland keybindings — mod = `SUPER`
@@ -62,8 +62,9 @@ SUPER + Space                     launcher (rofi -show drun)
 SUPER + v                         clipboard history (rofi-clipboard)
 SUPER + shift + /                 show the live keybind list (rofi-keybinds)
 SUPER + shift + r                 reload config
-Print                             screenshot a region to the clipboard
-SUPER + Print                     screenshot the screen to the clipboard
+SUPER + shift + p                 screenshot a region to the clipboard
+SUPER + ctrl + p                  screenshot the screen to the clipboard
+Print / SUPER + Print             the same two, on a keyboard with a Print key
 ```
 
 `rofi-keybinds` reads `hyprctl binds` and renders each bind's description, so

@@ -1,5 +1,5 @@
 ---
-tags: [aerospace, keybindings, window-manager]
+tags: [aerospace, keybindings, window-manager, screenshot]
 ---
 
 # AeroSpace keybindings
@@ -16,6 +16,8 @@ alt + '                            toggle tiles horizontal / vertical
 alt + \                            toggle accordion horizontal / vertical
 alt + tab                          switch to previous workspace
 alt + enter                        open new Ghostty terminal
+alt + shift + p                    screenshot a region to the clipboard
+alt + ctrl + p                     screenshot the screen to the clipboard
 alt + r                            enter Resize Mode
 alt + shift + r                    reload config
 alt + shift + ;                    enter Service Mode
