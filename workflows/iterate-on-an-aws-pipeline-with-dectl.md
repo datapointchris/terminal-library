@@ -72,7 +72,8 @@ dectl --env prod <pipeline> jenkins <action> --follow
 #   dev and succeeds; dectl warns once on stderr.
 # - sfn plan and deploy exist only on a machine whose config names a
 #   definition_file. A deploy left uncommitted is undone by the next
-#   `terraform apply`, so commit the .asl.json you deployed from.
+#   `terraform apply`, so commit the .asl.json you deployed from. Writing
+#   that template, JSONata and $${ included: `write-a-jsonata-state-machine-dectl-deploys`.
 # - Deploy paths resolve from the working directory unless the pipeline sets
 #   resolve_paths_from. `dectl <pipeline> list` marks which.
 # - A durable execution over 15 minutes needs `run --async --name <name>`. The
