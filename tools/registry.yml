@@ -1296,25 +1296,29 @@ tools:
 
   dectl:
     category: custom-tools
-    description: "Data engineering control CLI for AWS Glue/Lambda/Step Functions pipelines"
+    description: "Data engineering control CLI for AWS Glue, Lambda, Step Functions, S3, Iceberg and Jenkins pipelines"
     installed_via: uv
-    usage: "dectl PIPELINE RESOURCE ACTION [ALIAS] [OPTIONS]"
-    why_use: "Self-documenting control plane over your AWS DE pipelines — one {env}-templated config drives dev/staging/prod for glue, lambda, sfn, s3, and deploy"
+    usage: "dectl PIPELINE RESOURCE ALIAS VERB [OPTIONS]"
+    why_use: "One {env}-templated config names each pipeline's resources under short aliases, so the deploy, run and logs loop against dev, staging or prod changes only the final word"
     examples:
-      - cmd: "dectl"
-        desc: "Top-level help: available pipelines + active environment banner"
+      - cmd: "dectl reference"
+        desc: "Print the whole command grammar, whatever the local config holds"
       - cmd: "dectl <pipeline> list"
-        desc: "Show alias -> real AWS name mapping for a pipeline"
-      - cmd: "dectl <pipeline> lambda deploy error-notifier"
-        desc: "Fast local loop — update $LATEST and test directly"
-      - cmd: "dectl <pipeline> lambda deploy error-notifier --publish"
-        desc: "Publish an immutable version and move the configured alias"
-      - cmd: "dectl <pipeline> sfn watch ingest"
-        desc: "Tail the most recent Step Functions execution history"
+        desc: "Show each alias beside the real AWS name it acts on"
+      - cmd: "dectl <pipeline> glue <job> plan"
+        desc: "Diff a Glue job's definition against the config, uploading nothing"
+      - cmd: "dectl <pipeline> lambda <fn> deploy"
+        desc: "Zip the function's source and update $LATEST, leaving the live alias alone"
+      - cmd: "dectl <pipeline> lambda <fn> deploy --publish"
+        desc: "Publish an immutable version and move the configured live alias"
+      - cmd: "dectl <pipeline> sfn <machine> run --payload-file in.json --follow"
+        desc: "Start a state machine execution and tail its history"
+      - cmd: "dectl <pipeline> jenkins <action> --follow"
+        desc: "Queue the pipeline's Jenkins build with that action's parameters and stream its console"
       - cmd: "dectl --env prod <pipeline> list"
-        desc: "Target the prod environment for a pipeline"
+        desc: "Resolve every {env} name for prod instead of the config's environment"
     see_also: [forge, syncer]
-    tags: [aws, data-engineering, lambda, glue, step-functions, python, cli]
+    tags: [aws, data-engineering, lambda, glue, step-functions, s3, iceberg, jenkins, python, cli]
     docs_url: "https://github.com/datapointchris/dectl"
 
   bbkt:
@@ -2002,22 +2006,26 @@ tools:
     category: custom-tools
     description: "Config-driven file preservation with self-describing dated snapshots - rsync-based backup and restore"
     installed_via: uv
-    usage: "safekeep <backup|snapshots|restore|config|init> [OPTIONS]"
+    usage: "safekeep [-c NAME] <backup|snapshots|files|tags|restore|config|update> [VERB] [OPTIONS]"
     why_use: "Back up scattered config files, scripts, and git-untracked WIP to a network drive, and restore them onto a rebuilt machine with file modes intact"
     examples:
-      - cmd: "safekeep backup"
-        desc: "Run backup using auto-detected config"
-      - cmd: "safekeep backup --dry-run"
-        desc: "Preview what would be copied"
-      - cmd: "safekeep snapshots"
-        desc: "List snapshots at the destination"
-      - cmd: "safekeep restore --to /tmp/restore-test"
-        desc: "Rehearse a restore, picking snapshot and groups with fzf"
-      - cmd: "safekeep restore --to / --tag wip"
-        desc: "Restore every group tagged 'wip'"
-    see_also: [packup, rsync, fzf]
-    tags: [backup, restore, rsync, config-driven, snapshots, network]
-    notes: "Backup is Python stdlib only; restore shells out to fzf for interactive selection. Config at ~/.config/safekeep/<name>.json. Each snapshot carries a manifest recording groups, tags, and file modes, so it restores without the config that made it. Snapshots are never pruned. Bare `safekeep` prints usage — nothing writes without an explicit verb."
+      - cmd: "safekeep backup run"
+        desc: "Copy every source the config lists into a new snapshot"
+      - cmd: "safekeep backup run -n"
+        desc: "Preview what a backup would copy, writing nothing"
+      - cmd: "safekeep snapshots list"
+        desc: "List the snapshots at the destination, newest first, with their labels"
+      - cmd: "safekeep files list --missing"
+        desc: "Find the files older snapshots hold that this machine lacks"
+      - cmd: "safekeep restore --to ~/.cache/safekeep/rehearsal --all"
+        desc: "Rehearse restoring the newest snapshot into a scratch directory"
+      - cmd: "safekeep restore --to / --from <snapshot> --all --on-conflict overwrite"
+        desc: "Roll this machine back to an older snapshot, keeping no .pre-restore copies"
+      - cmd: "safekeep restore --to / --tag secrets"
+        desc: "Restore every source the newest snapshot recorded as tagged secrets"
+    see_also: [packup, fzf]
+    tags: [backup, restore, rsync, config-driven, snapshots, rollback, network]
+    notes: "Copies with rsync; restore's interactive pickers need fzf. Configs are TOML files in $XDG_CONFIG_HOME/safekeep, one per config name. Each snapshot carries a manifest recording groups, tags, and file modes, so it restores without the config that made it. Snapshots are never pruned, and unchanged files hard-link into the previous one. Bare `safekeep` prints usage — nothing writes without an explicit verb."
     docs_url: "docs/apps/safekeep.md"
 
   refcheck:
