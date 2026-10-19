@@ -130,7 +130,8 @@ dectl sales sfn process-orders run --payload-file in.json --follow
 # - {name} in config is dectl's variable; ${name} in the file is Terraform's.
 #   ${NAME} in config is never a variable. {env} never goes in the file: a
 #   Terraform ${env} takes an entry `env: "{env}"`.
-# - A {typo} naming no variable fails the load, so it never reaches AWS.
+# - A {typo} naming no variable fails the load, so it never reaches AWS. A
+#   literal {date} for a Glue job or Jenkinsfile to fill is written {{date}}.
 # - The template is not JSON until rendered: an editor flags the bare
 #   ${copy_timeout_seconds}. Step Functions rejects a bare top-level $ in an
 #   expression; use $states.input, $states.result or an Assign'd $variable.
