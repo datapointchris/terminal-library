@@ -1532,6 +1532,57 @@ tools:
     tags: [synthesis, analysis, claude-code, sqlite, youtube, video, transcript, article, url]
     docs_url: "https://github.com/datapointchris/digest"
 
+  learning:
+    category: custom-tools
+    description: "Learning tracks, their units and the resources behind them, from the terminal"
+    installed_via: github-release
+    usage: "learning <command> [args]"
+    why_use: "See where every track stands and what comes next in the curriculum without opening the web app. Every command takes --json"
+    examples:
+      - cmd: "learning auth login"
+        desc: "Sign in once so every later command can reach the API"
+      - cmd: "learning overview"
+        desc: "Snapshot of the current section and each track's current unit"
+      - cmd: "learning plan"
+        desc: "The whole curriculum in its computed order"
+    see_also: [doit, doit-dashboard]
+    tags: [learning, study, curriculum, tracks, resources, api, json, go]
+    docs_url: "https://github.com/datapointchris/learning"
+
+  meso:
+    category: custom-tools
+    description: "Training log: movements, workouts, cycles, sessions and body measurements"
+    installed_via: github-release
+    usage: "meso <command> [args]"
+    why_use: "Plan cycles and log training from the terminal, then read the history back as stats or one review payload. Every command takes --json"
+    examples:
+      - cmd: "meso auth login"
+        desc: "Sign in once so every later command can reach the API"
+      - cmd: "meso stats"
+        desc: "Aggregated metrics, library and session counts"
+      - cmd: "meso review"
+        desc: "Recent training history pulled into one payload"
+    see_also: [doit, doit-dashboard]
+    tags: [fitness, training, workout, exercise, measurements, api, json, go]
+    docs_url: "https://github.com/datapointchris/meso"
+
+  nomad:
+    category: custom-tools
+    description: "City and trip research: trips, their stops, cities and attractions"
+    installed_via: github-release
+    usage: "nomad <command> [args]"
+    why_use: "Research cities and lay out a trip stop by stop from the terminal. Every command takes --json"
+    examples:
+      - cmd: "nomad auth login"
+        desc: "Sign in once so every later command can reach the API"
+      - cmd: "nomad trips list"
+        desc: "Every trip, the starting point for its stops"
+      - cmd: "nomad trips list --json"
+        desc: "The same trips as JSON for a script"
+    see_also: [doit]
+    tags: [travel, trips, cities, attractions, research, api, json, go]
+    docs_url: "https://github.com/datapointchris/nomad"
+
   syncer:
     category: custom-tools
     description: "Check if local git repos are fully synced before switching machines"
@@ -2138,6 +2189,7 @@ install_methods:
   - brew: "Homebrew package manager (macOS/Linux)"
   - cargo: "Rust package manager"
   - go: "Go toolchain (go install)"
+  - github-release: "Prebuilt binary downloaded from the tool's GitHub releases"
   - npm: "Node.js package manager (via fnm)"
   - uv: "Python package manager"
   - script: "Installation script"
