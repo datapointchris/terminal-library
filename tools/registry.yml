@@ -1317,9 +1317,40 @@ tools:
         desc: "Queue the pipeline's Jenkins build with that action's parameters and stream its console"
       - cmd: "dectl --env prod <pipeline> list"
         desc: "Resolve every {env} name for prod instead of the config's environment"
-    see_also: [forge, syncer]
+    see_also: [forge, syncer, sparkxray]
     tags: [aws, data-engineering, lambda, glue, step-functions, s3, iceberg, jenkins, python, cli]
     docs_url: "https://github.com/datapointchris/dectl"
+
+  sparkxray:
+    category: custom-tools
+    description: "Read a Spark event log offline, with no JVM, and find why the run was slow"
+    installed_via: uv
+    usage: "sparkxray RESOURCE VERB [LOG] [OPTIONS]"
+    why_use: "Ranks what slowed a run by the wall time a fix could recover, then walks from a finding to its stage, tasks and query plan. Reads a file, an S3 object, a History Server or a cached app id, and every command's stderr names the next one to run"
+    examples:
+      - cmd: "sparkxray findings list ./eventlog.zstd"
+        desc: "Read a log into the cache and list what slowed the run, costliest first; exits 3 on a high finding"
+      - cmd: "sparkxray findings show <app-id> stage.shuffle-skew:s4"
+        desc: "One finding's evidence, the thresholds that judged it, and how to fix it"
+      - cmd: "sparkxray tasks list <app-id> --stage 4 --sort duration_ms -n 5"
+        desc: "The five slowest tasks of stage 4, to find the partition it waited on"
+      - cmd: "sparkxray plans show <app-id> --sql 0"
+        desc: "A query's last plan as a tree, each node's metrics, and the findings that name a node"
+      - cmd: "sparkxray logs diff ./good.zstd ./slow.zstd"
+        desc: "What got slower between a good run and a slow one, and which settings and findings differ"
+      - cmd: "sparkxray executors simulate <app-id> --executors 2..64"
+        desc: "Estimate the run's wall time and core-hours at other executor counts"
+      - cmd: "sparkxray tables query <app-id> \"select stage_id, max(duration_ms) from tasks_effective group by all\""
+        desc: "Run DuckDB SQL over the log's Parquet tables"
+      - cmd: "sparkxray logs ingest <app-id> --glue-run <job-name>:<run-id>"
+        desc: "Join a Glue run's CloudWatch metrics, so the driver-memory rules can run"
+      - cmd: "sparkxray reports write <app-id> --out reports/slow.md"
+        desc: "Write one Markdown report of the run for a ticket, findings first"
+      - cmd: "sparkxray capabilities show --json"
+        desc: "Every command, rule, table, schema and error code, for a program or an agent"
+    see_also: [dectl, jq]
+    tags: [spark, pyspark, event-log, performance, aws, glue, s3, data-engineering, debugging, python, cli]
+    docs_url: "https://github.com/datapointchris/sparkxray"
 
   bbkt:
     category: custom-tools
