@@ -40,10 +40,10 @@ sparkxray tasks list <app-id> --stage 4 --sort duration_ms -n 5   # its slowest
 # 3. THE QUERY — which SQL execution, and which node of its plan
 sparkxray sql list <app-id>                       # each one's share of the run
 sparkxray sql show <app-id> 0                     # jobs, operators, what AQE changed
-sparkxray plans show <app-id> --sql 0             # last plan, findings on its nodes
-sparkxray plans show <app-id> --sql 0 --initial   # the plan before AQE re-planned
-sparkxray plans show <app-id> --sql 0 --plan-version 1     # one AQE step at a time
-sparkxray plans show <app-id> --sql 0 --json      # each metric's min/median/max
+sparkxray plans show <app-id> 0                   # last plan, findings on its nodes
+sparkxray plans show <app-id> 0 --initial         # the plan before AQE re-planned
+sparkxray plans show <app-id> 0 --plan-version 1  # one AQE step at a time
+sparkxray plans show <app-id> 0 --json            # each metric's min/median/max
 
 # 4. EXECUTORS — too many, too few, or idle
 sparkxray executors list <app-id>                 # lifetime, idle share, peak heap
@@ -119,7 +119,7 @@ sparkxray rules show stage.shufle-skew --json 2>&1 >/dev/null | jq .error
 # THE WHOLE THING IN FOUR LINES
 sparkxray findings list ./slow.zstd               # what, costliest first
 sparkxray findings show <app-id> <finding-id>     # why, and the fix
-sparkxray plans show <app-id> --sql <sql-id>      # where in the query
+sparkxray plans show <app-id> <sql-id>            # where in the query
 sparkxray logs diff ./good.zstd ./slow.zstd       # what changed since it was fine
 ```
 

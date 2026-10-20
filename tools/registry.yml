@@ -1334,7 +1334,7 @@ tools:
         desc: "One finding's evidence, the thresholds that judged it, and how to fix it"
       - cmd: "sparkxray tasks list <app-id> --stage 4 --sort duration_ms -n 5"
         desc: "The five slowest tasks of stage 4, to find the partition it waited on"
-      - cmd: "sparkxray plans show <app-id> --sql 0"
+      - cmd: "sparkxray plans show <app-id> 0"
         desc: "A query's last plan as a tree, each node's metrics, and the findings that name a node"
       - cmd: "sparkxray logs diff ./good.zstd ./slow.zstd"
         desc: "What got slower between a good run and a slow one, and which settings and findings differ"
