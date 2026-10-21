@@ -98,9 +98,9 @@ The comment block at the top of `tools/registry.yml` defines `requires` and
   reveals `cmd`, so `desc` says what the command does without repeating it.
 - **`category` comes from the `categories` list at the foot of the file.** The
   reader groups by whatever an entry says. Nothing checks it against the list.
-- **An entry for a tool installed nowhere is deleted.** Saying what you have is the
-  registry's whole job, and a full entry for an absent binary says it wrongly. A
-  tool that only some machines have keeps its entry, marked as the header describes.
+- **An entry for a tool installed nowhere is deleted.** A full entry for an absent
+  binary tells the reader they have a command they do not. A tool that only some
+  machines have keeps its entry, marked as the header describes.
 - **Deleting an entry means sweeping every `see_also` that names it.** Those lists
   sit in other entries' blocks.
 
@@ -112,7 +112,7 @@ as in `# 1. ASK GITHUB WHY`, and most recipes close on `## Gotchas`.
 
 - **A key, flag or command goes on a card after it was run, or read from the config
   that binds it.** A key written from memory can name a binding that moved or never
-  existed. The card reads just as sure of itself either way.
+  existed, and nothing on the card shows which keys were run.
 - **A wrong claim is fixed in place.** The sentences around it stay as written. A
   card that is not wrong is not restyled.
 - **A path that differs per machine is written as the command or config key that
@@ -127,5 +127,4 @@ says so on its first line. A hand edit is lost at the next regeneration.
 
 `.codespellrc` is this repo's own. A key sequence codespell reads as a typo goes in
 its `ignore-words-list`, with a comment naming what the word is. It lands in the
-same commit as the card that needs it. `te` is a Neovim binding. `ot` is a broot
-shortcut.
+same commit as the card that needs it.
