@@ -17,9 +17,9 @@ prs                   # a dotfiles app, not a fleet command, so the work box
                       #   backlog is a gauge and age is what it measures.
                       #   Esc leaves without doing anything.
 
-# Opens a window `pr <repo> #<n>`, cd'd into that repo, diff in nvim Diffview.
-# NO Claude — most PRs are browsed and merged, and a session started for you is
-# one you didn't decide you wanted.
+# d opens a window `diff <repo> #<n>`, cd'd into that repo, diff in nvim
+# Diffview. NO Claude — most PRs are browsed and merged, and a session started
+# for you is one you didn't decide you wanted.
 
 # 2. READ IT
 #   <Tab> / <S-Tab>   next / previous file
@@ -33,14 +33,12 @@ gh pr merge --squash --delete-branch
 ## When it earns a conversation
 
 ```bash
-prefix |              # split the same window
-claude
-/walk-through-recent-commits
-                      # the reading protocol: triage first, then per commit
-                      #   intent → the 2-4 structural moves → the idiom NAMED.
-                      #   Works out its own range from the window it is in.
+# e on the PR in prs  # a window `explain <repo> #<n>` running
+                      #   /explain-code-changes #<n> — the reading protocol:
+                      #   triage first, then per commit intent → the 2-4
+                      #   structural moves → the idiom NAMED.
                       # "explain what I'm looking at" reads your cursor off the
-                      #   nvim socket — you point, you don't describe.
+                      #   diff window's nvim socket — open it with d first.
 
 /review-pr            # the standards pass. Run it in a session that did NOT
                       #   write the code: a reviewer holding the author's
