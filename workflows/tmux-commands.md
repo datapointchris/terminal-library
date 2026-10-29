@@ -43,6 +43,7 @@ switches terminal tabs instead.
 | Alt + n / p    | previous / next window         |
 | prefix + c     | new window                     |
 | prefix + k     | kill window (asks first)       |
+| prefix + W     | rebuild as monitor (asks)      |
 | prefix + 0-9   | select by number               |
 | prefix + ,     | rename window                  |
 | prefix + { / } | swap window left / right       |
