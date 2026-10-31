@@ -1,6 +1,5 @@
 ---
 tags: [fzf, fuzzy, search, interactive, keybindings]
-cadence: 1mo
 ---
 
 # Fuzzy-find anything with fzf

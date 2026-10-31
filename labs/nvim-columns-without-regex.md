@@ -1,6 +1,5 @@
 ---
 tags: [neovim, visual-block, multicursor, vim-visual-multi, sort, filter, columns]
-cadence: 2mo
 ---
 
 # Reshape columns without writing a regex

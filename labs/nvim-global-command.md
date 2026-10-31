@@ -1,6 +1,5 @@
 ---
 tags: [neovim, global, ex, batch, normal, macros, registers, filter]
-cadence: 1mo
 ---
 
 # Run a command on every matching line (:g and :v)

@@ -1,6 +1,5 @@
 ---
 tags: [broot, tree, search, navigation, git, disk-usage]
-cadence: 2mo
 ---
 
 # Search a whole tree with broot

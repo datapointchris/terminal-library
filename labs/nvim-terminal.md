@@ -1,6 +1,5 @@
 ---
 tags: [neovim, terminal, floaterminal, keymaps, workflow]
-cadence: 1mo
 ---
 
 # Drive the terminal without leaving Neovim (Floaterminal + modes)

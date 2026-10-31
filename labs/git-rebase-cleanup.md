@@ -1,6 +1,5 @@
 ---
 tags: [git, rebase, history, squash, version-control]
-cadence: 2mo
 ---
 
 # Clean up history with interactive rebase

@@ -1,6 +1,5 @@
 ---
 tags: [git, bisect, debug, version-control]
-cadence: 2mo
 ---
 
 # Find the commit that broke it with git bisect

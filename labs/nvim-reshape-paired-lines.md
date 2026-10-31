@@ -1,6 +1,5 @@
 ---
 tags: [neovim, regex, substitute, global, registers, reshape, extract]
-cadence: 1mo
 ---
 
 # Collapse two lines into one (cross-line substitute)

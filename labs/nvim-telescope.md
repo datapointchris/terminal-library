@@ -1,6 +1,5 @@
 ---
 tags: [neovim, telescope, fuzzy, navigation, keybindings]
-cadence: 1mo
 ---
 
 # Navigate a project with Telescope

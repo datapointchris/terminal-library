@@ -1,6 +1,5 @@
 ---
 tags: [neovim, registers, clipboard, keymaps, editing]
-cadence: 1mo
 ---
 
 # Keep your yank while you edit (register-safe moves)

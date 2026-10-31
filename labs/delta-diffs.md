@@ -1,6 +1,5 @@
 ---
 tags: [delta, git, diff, viewer]
-cadence: 2mo
 ---
 
 # Read diffs better with delta

@@ -1,6 +1,5 @@
 ---
 tags: [awk, text, data, shell]
-cadence: 1mo
 ---
 
 # Read fields and aggregate with awk

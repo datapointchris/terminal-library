@@ -1,6 +1,5 @@
 ---
 tags: [jq, json, query, data]
-cadence: 1mo
 ---
 
 # Query and reshape JSON with jq

@@ -1,6 +1,5 @@
 ---
 tags: [git, stash, version-control, workflow]
-cadence: 1mo
 ---
 
 # Shelve work in progress with git stash

@@ -1,6 +1,5 @@
 ---
 tags: [neovim, telescope, quickfix, cfdo, refactor, mass-edit]
-cadence: 2mo
 ---
 
 # Refactor across every file (grep to quickfix to mass edit)

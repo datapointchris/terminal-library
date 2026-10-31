@@ -1,6 +1,5 @@
 ---
 tags: [eza, ls, listing, tree, git, files]
-cadence: 1mo
 ---
 
 # List and explore directories with eza

@@ -1,6 +1,5 @@
 ---
 tags: [zoxide, cd, navigation, jump]
-cadence: 1mo
 ---
 
 # Jump around with zoxide

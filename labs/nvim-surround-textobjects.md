@@ -1,6 +1,5 @@
 ---
 tags: [neovim, mini, surround, textobjects, editing]
-cadence: 1mo
 ---
 
 # Edit structurally with surround and text objects

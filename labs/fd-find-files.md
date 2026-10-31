@@ -1,6 +1,5 @@
 ---
 tags: [fd, find, search, files]
-cadence: 3w
 ---
 
 # Find files fast with fd

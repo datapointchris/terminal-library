@@ -1,6 +1,5 @@
 ---
 tags: [neovim, regex, pattern, magic, captures, substitute, syntax]
-cadence: 1mo
 ---
 
 # Vim regex: magic levels, captures and \zs

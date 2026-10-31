@@ -1,6 +1,5 @@
 ---
 tags: [git, github, rebase, merge, conflicts, pull-requests]
-cadence: 2mo
 ---
 
 # Diagnose a branch that will not merge

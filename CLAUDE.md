@@ -10,8 +10,8 @@ reads every file, and the shapes below are what it parses.
   what you are doing. A reference card holds one tool's commands and keys, and takes
   the tool's name. A recipe card carries one goal through several tools in order. It
   takes the goal's name, verb first, and carries the `recipe` tag.
-- **`labs/` drills a tool rather than describing it.** A Lab is worked through on a
-  schedule, in a scratch directory, at your own keyboard.
+- **`labs/` drills a tool rather than describing it.** A Lab is worked through in a
+  scratch directory, at your own keyboard.
 - **`tools/registry.yml` answers "what was that command".** One entry describes one
   thing you can type: a binary, a shell function or a script.
 
@@ -20,8 +20,8 @@ second card on a covered topic is sprawl. The card that covers it is extended in
 Keybindings go on the card of the tool that binds them, never on a card cut by
 activity across several tools.
 
-Practice dates, caches and personal lists are state or intentions. They live in the
-reader's own config and state directories, never here.
+Practice schedules, practice dates, caches and personal lists are state or
+intentions. They live in the reader's own config and state directories, never here.
 
 ## The reader parses every entry, and one bad file breaks the listing
 
@@ -30,14 +30,12 @@ A card or a Lab opens on front matter, one blank line, then the `# ` title:
 ```markdown
 ---
 tags: [git, vcs, stash]
-cadence: 1mo
 ---
 
 # git stash — save and restore uncommitted work
 ```
 
-- **The front matter holds `tags`, plus `cadence` on a Lab.** Nothing else in it is
-  read.
+- **The front matter holds `tags`.** Nothing else in it is read.
 - **The title is the first `# ` line.** It is never a front-matter key.
 - **Front matter that does not parse as YAML fails `doit workflows list` and
   `doit find` for every card.** No hook catches it. `check-yaml` reads YAML files,
@@ -55,15 +53,16 @@ cadence: 1mo
 
 ## A filename is an ID, and renaming one breaks what cites it
 
-`doit workflows show`, `doit labs done` and every cross-reference take the stem. A
+`doit workflows show`, `doit labs show` and every cross-reference take the stem. A
 stem is what `doit workflows new` derives from a title: lowercase, spaces as hyphens,
 and nothing but letters, digits and hyphens.
 
 - **Find every citation before renaming, with `rg -n '<old-stem>'`.** Cards cite
   cards by stem, and a registry example cites a card
   (`doit workflows show git-rebase`).
-- **A renamed Lab loses its practice history.** The reader keys the last-practiced
-  date on the stem, so the renamed Lab reads as never done.
+- **A renamed Lab drops off the reader's practice schedule.** The reader keys the
+  schedule and the last-practiced date on the stem, in its own config and state, so
+  those entries are renamed with it.
 - **`workflows/tmux-commands.md` is read by name.** Its table rows feed the tmux
   keybindings into search. A row counts when its first cell starts with `prefix`,
   `Ctrl` or `Alt`. A literal pipe in a key is written `\|`. Renaming the file,
@@ -79,10 +78,6 @@ scratch directory, usually starting from `LAB=$(mktemp -d) && cd "$LAB"`.
 
 - **Every step is run against the Lab's own Setup block.** A Vim regex can return a
   plausible wrong answer with no error, and only running it shows that.
-- **`cadence` is `<n>d`, `<n>w`, `<n>mo` or `<n>y`, or a bare number of days.**
-  Anything else reads as zero days. The Lab then comes due again on the day it is
-  practiced, and nothing reports the mistake.
-- **A Lab without `cadence` is practiced on demand.** It never comes due.
 
 ## A registry entry describes a command that exists, spelled the way you type it
 

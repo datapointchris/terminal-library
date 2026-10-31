@@ -1,6 +1,5 @@
 ---
 tags: [tmux, session, window, multiplexer, keybindings]
-cadence: 1mo
 ---
 
 # Move windows between tmux sessions

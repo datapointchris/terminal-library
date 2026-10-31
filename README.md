@@ -27,11 +27,11 @@ Three neighbors take what does not belong here:
 A machine needs doit and nothing else. doit clones this repo on its first run.
 
 ```bash
-dotfiles packages apply --package doit  # the reader, wherever this box's manifest declares it
+uv tool install --index https://pypi.ichrisbirch.com/simple/ doit  # the reader
 doit content status                     # the first run clones; prints the path and what chose it
 doit find stash                         # every collection at once; pick a row to open it
 doit workflows show git-stash           # one card, named by its filename stem
-doit labs due                           # the Labs whose cadence has come round
+doit labs list                          # every Lab, with its title and tags
 doit workflows list                     # proves the cards parse: one bad front matter fails it all
 ```
 
@@ -59,8 +59,8 @@ fleet. `git clone` is the one channel that reaches all of them.
   card carries one goal through several tools in order. It takes the goal's name, verb first, and
   carries the `recipe` tag.
 - **`labs/` drills a tool rather than describing it.** A Lab is worked through at your own keyboard,
-  in a scratch directory the Lab stages. A `cadence` in its front matter decides when it comes due
-  again. A Lab without one is practiced on demand.
+  in a scratch directory the Lab stages. A Lab carries no schedule. When to practice it is the
+  reader's, kept in its own config.
 - **`tools/registry.yml` answers "what was that command".** One entry describes one thing you can
   type: a binary, a shell function or a script.
 
@@ -81,8 +81,8 @@ them.
 doit find --source workflow <term>  # one collection; --help lists them
 doit show <name>                    # everything indexed under one name, on one page
 doit tools show <entry>             # one registry entry: what it is, why, what to type
-doit labs list                      # every Lab and when it next comes due
-doit labs done <stem>               # mark a Lab practiced, which starts its cadence again
+doit labs list                      # every Lab, with its title and tags
+doit labs show <stem>               # one Lab, to read while you work in another pane
 doit labs flash                     # a recall drill built from the registry's examples
 ```
 
@@ -104,7 +104,7 @@ doit labs flash                     # a recall drill built from the registry's e
 
 ```bash
 doit workflows new rsync         # writes workflows/rsync.md from a template; refuses a stem that exists
-doit labs new rsync mirrors      # the same for a Lab, scaffolded with Setup, Steps and cadence: 1mo
+doit labs new rsync mirrors      # the same for a Lab, scaffolded with Setup and Steps
 doit content edit rsync          # opens an existing card or Lab by its stem
 "$EDITOR" "$(doit content path)/tools/registry.yml"  # the registry has no doit verb
 doit content status              # what is written and not yet committed
@@ -129,13 +129,12 @@ A card or a Lab opens on front matter, one blank line, then the `# ` title:
 ```markdown
 ---
 tags: [git, stash, version-control, workflow]
-cadence: 1mo
 ---
 
 # Shelve work in progress with git stash
 ```
 
-- **The front matter holds `tags`, plus `cadence` on a Lab.** Nothing else in it is read.
+- **The front matter holds `tags`.** Nothing else in it is read.
 - **Every word a reader might search for goes in `tags`.** Reuse the existing vocabulary, which
   `rg --no-filename '^tags:' workflows labs` prints.
 - **Every code fence names a language, because markdownlint requires one.** `bash` holds commands to
@@ -153,14 +152,14 @@ written.
 
 ## A filename is an ID, and renaming one breaks what cites it
 
-`doit workflows show`, `doit labs done` and every cross-reference take the stem. A stem is what
+`doit workflows show`, `doit labs show` and every cross-reference take the stem. A stem is what
 `doit workflows new` derives from a title: lowercase, spaces as hyphens, and nothing but letters,
 digits and hyphens.
 
 - **Find every citation before renaming, with `rg -n '<old-stem>'`.** Cards cite cards by stem. A
   registry example cites a card, as in `doit workflows show git-rebase`.
-- **A renamed Lab loses its practice history.** doit keys the last-practiced date on the stem, so the
-  renamed Lab reads as never done.
+- **A renamed Lab drops off doit's practice schedule.** doit keys the schedule and the last-practiced
+  date on the stem, in its own config and state, so those entries are renamed with it.
 
 ## A Lab is run end to end before it is committed
 
@@ -171,9 +170,6 @@ bold imperative and its command, then `Expect:` and `Why:` lines. Most Labs clos
 
 - **Every step is run against the Lab's own Setup block.** A Vim regex can return a plausible wrong
   answer with no error. Only running it shows that.
-- **`cadence` is `<n>d`, `<n>w`, `<n>mo` or `<n>y`, or a bare number of days.** Anything else reads
-  as zero days. The Lab then comes due again on the day it is practiced, and nothing reports the
-  mistake.
 
 ## A registry entry describes a command that exists, spelled the way you type it
 

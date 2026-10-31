@@ -1,6 +1,5 @@
 ---
 tags: [rg, ripgrep, search, grep, code]
-cadence: 3w
 ---
 
 # Search code fast with ripgrep
