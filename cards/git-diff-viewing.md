@@ -31,7 +31,7 @@ Use the `origin/` ref, not a bare `main`. A local copy of a branch you don't wor
 on is pinned at whenever you created it, so it silently diffs you against a stale
 target while looking like a normal branch; `origin/main` is current after any
 fetch and needs no local branch at all. Full PR recipe:
-`workflows show review-and-merge-a-pr-with-bbkt`.
+`cards show review-and-merge-a-pr-with-bbkt`.
 
 ## forgit — fzf picker with live delta preview (no re-running)
 

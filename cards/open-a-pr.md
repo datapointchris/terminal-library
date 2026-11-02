@@ -10,7 +10,7 @@ tags: [gh, github, pr, pull-request, branch, review, recipe, workflow]
 # body is the deliverable, not a formality.
 #
 # GITHUB. For work / Bitbucket Data Center this is `bbkt`:
-#   workflows show review-and-merge-a-pr-with-bbkt
+#   cards show review-and-merge-a-pr-with-bbkt
 
 # 1. BRANCH — named after the work
 git switch -c split-config-loader

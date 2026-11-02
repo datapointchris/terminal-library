@@ -34,5 +34,5 @@ tags: [neovim, telescope, grep, pickers, keybindings]
 
 # Handy
 <leader>fg then type, then <C-q>   grep -> quickfix in two steps
-# For editing every quickfix entry afterward: workflows show neovim-refactor-across-files
+# For editing every quickfix entry afterward: cards show neovim-refactor-across-files
 ```

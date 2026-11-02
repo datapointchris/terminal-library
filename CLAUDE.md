@@ -1,12 +1,12 @@
 # terminal-library
 
 Notes on how command-line tools are driven, and the sequences worked out at the
-terminal so they are not reassembled from scratch. There is no code here. `doit`
+terminal so they are not reassembled from scratch. There is no code here. `howto`
 reads every file, and the shapes below are what it parses.
 
 ## Three directories answer three questions
 
-- **`workflows/` answers "how do I do this".** A card is what to run once you know
+- **`cards/` answers "how do I do this".** A card is what to run once you know
   what you are doing. A reference card holds one tool's commands and keys, and takes
   the tool's name. A recipe card carries one goal through several tools in order. It
   takes the goal's name, verb first, and carries the `recipe` tag.
@@ -37,13 +37,13 @@ tags: [git, vcs, stash]
 
 - **The front matter holds `tags`.** Nothing else in it is read.
 - **The title is the first `# ` line.** It is never a front-matter key.
-- **Front matter that does not parse as YAML fails `doit workflows list` and
-  `doit find` for every card.** No hook catches it. `check-yaml` reads YAML files,
+- **Front matter that does not parse as YAML fails `howto cards list` and
+  `howto find` for every card.** No hook catches it. `check-yaml` reads YAML files,
   never the block at the top of a `.md`.
 - **Search reads the filename, the title and the tags, never the body.** Every word a
   reader might search for goes in `tags`. Reuse the existing vocabulary, which
-  `rg --no-filename '^tags:' workflows labs` prints.
-- **Only `*.md` directly inside `workflows/` and `labs/` is read.** A file in a
+  `rg --no-filename '^tags:' cards labs` prints.
+- **Only `*.md` directly inside `cards/` and `labs/` is read.** A file in a
   subdirectory is invisible.
 - **A card is shown through `bat` in a terminal, as raw markdown.** Cards cite each
   other by stem in backticks, as in "See `git-merge-conflicts`". A markdown link
@@ -53,17 +53,17 @@ tags: [git, vcs, stash]
 
 ## A filename is an ID, and renaming one breaks what cites it
 
-`doit workflows show`, `doit labs show` and every cross-reference take the stem. A
-stem is what `doit workflows new` derives from a title: lowercase, spaces as hyphens,
+`howto cards show`, `howto labs show` and every cross-reference take the stem. A
+stem is what `howto cards new` derives from a title: lowercase, spaces as hyphens,
 and nothing but letters, digits and hyphens.
 
 - **Find every citation before renaming, with `rg -n '<old-stem>'`.** Cards cite
   cards by stem, and a registry example cites a card
-  (`doit workflows show git-rebase`).
-- **A renamed Lab drops off the reader's practice schedule.** The reader keys the
-  schedule and the last-practiced date on the stem, in its own config and state, so
-  those entries are renamed with it.
-- **`workflows/tmux-commands.md` is read by name.** Its table rows feed the tmux
+  (`howto cards show git-rebase`).
+- **A renamed Lab drops off any practice schedule kept for it.** A tool that
+  schedules practice keys the schedule and the last-practiced date on the stem, in
+  its own config and state, so those entries are renamed with it.
+- **`cards/tmux-commands.md` is read by name.** Its table rows feed the tmux
   keybindings into search. A row counts when its first cell starts with `prefix`,
   `Ctrl` or `Alt`. A literal pipe in a key is written `\|`. Renaming the file,
   writing a key as `C-a`, or putting a column before the key drops those rows
@@ -89,7 +89,7 @@ The comment block at the top of `tools/registry.yml` defines `requires` and
 - **`usage` starts with what you type.** A key is a package name as often as a
   command, so search takes the invocation from `usage`. The `ripgrep` entry's
   `usage` starts with `rg`.
-- **Each example becomes a flashcard.** `doit labs flash` prompts with `desc` and
+- **Each example becomes a flashcard.** `howto labs flash` prompts with `desc` and
   reveals `cmd`, so `desc` says what the command does without repeating it.
 - **`category` comes from the `categories` list at the foot of the file.** The
   reader groups by whatever an entry says. Nothing checks it against the list.

@@ -61,14 +61,14 @@ doshell find every file over 100MB under my home directory
 # clipboard. Use this when you are starting from nothing; use Ctrl-X Ctrl-A when
 # you are already halfway through typing and stuck.
 
-dochoose
+howto-choose-next
 # The same for the picker: opens it, loads the pick at your NEXT prompt instead
 # of replacing the line you are on. Reach for it when what you have already
 # typed is worth keeping.
 
-doit choose --source func
+howto choose --source func
 # The verb underneath both, in any shell. It prints the invocation and nothing
-# else, so `$(doit choose)` composes — bash gets this, just not the keybinding,
+# else, so `$(howto choose)` composes — bash gets this, just not the keybinding,
 # because `print -z` and the ZLE buffer are zsh's.
 
 # ── WHY `?` DOES NOTHING SPECIAL ────────────────────────────────────────────
@@ -85,12 +85,12 @@ The Claude widgets are defined in the SHELL CONFIG section of `.zshrc`, and the
 calls behind them are `doshell_suggest_command` and `doshell_explain_command` in
 `shell/common/functions.sh`, shared with `doshell`.
 
-`doit-choose-widget` and `dochoose` are not in dotfiles at all — `doit
-shell-widgets zsh` emits them and `.zshrc` caches the block, the same split the
-doit completion and startup nudge use. doit is a subprocess and the line editor
-belongs to its parent, so the insert is something doit can only emit; putting the
-block in dotfiles instead is what broke the last two times, because a config repo
-then carries another tool's internals.
+`howto-choose-widget` and `howto-choose-next` are not in dotfiles at all —
+`howto shell widgets zsh` emits them and `.zshrc` caches the block, the same
+split howto's completion uses. howto is a subprocess and the line editor belongs
+to its parent, so the insert is something howto can only emit; putting the block
+in dotfiles instead is what broke the last two times, because a config repo then
+carries another tool's internals.
 
 All three are bound inside `zvm_after_init`, because zsh-vi-mode wipes the keymap
 once the rc file finishes.

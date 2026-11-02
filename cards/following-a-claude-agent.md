@@ -19,7 +19,7 @@ git -C ~/dotfiles worktree list
 git -C ~/.dotfiles-wt/<branch> status --short
 ```
 
-That is the answer nearly every time. See `workflows show git-worktrees`.
+That is the answer nearly every time. See `cards show git-worktrees`.
 
 **Several agents running at once?** Claude Code keeps a live registry:
 
@@ -46,7 +46,7 @@ prefix v      # main-vertical: one tall pane left, the rest stacked right
 prefix z      # zoom one pane full-screen and back
 ```
 
-More in `workflows show tmux-commands`.
+More in `cards show tmux-commands`.
 
 ## 3. Live diff — the code
 
@@ -70,7 +70,7 @@ Four things that are wrong if you leave them out:
 - **`--width=$COLUMNS`** — a piped stdout hides the terminal size from delta and it silently falls
   back to 80 columns.
 - **`origin/main`, not `main`** — a local `main` is pinned at your last checkout of it. See
-  `workflows show git-diff-viewing`.
+  `cards show git-diff-viewing`.
 - **Never let the command write into the watched directory.** Output to a file under `$WT` retriggers
   the watch, which retriggers the write; measured at 232 runs from a single edit. Print to the
   terminal.

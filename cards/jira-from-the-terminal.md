@@ -6,7 +6,7 @@ tags: [jira, issue, ticket, sprint, transition, work, cloud, bbkt, reference]
 
 ```bash
 # GOAL: triage, read and transition Jira issues from the terminal. `bbkt` is the
-# pull request half of this loop — `workflows show review-and-merge-a-pr-with-bbkt`.
+# pull request half of this loop — `cards show review-and-merge-a-pr-with-bbkt`.
 
 # THE ONE COMMAND. Everything else is a key press inside the table.
 jira issue list -a$(jira me)

@@ -10,17 +10,17 @@
 #   Optional. The command whose presence decides whether the row is real, for
 #   the rows where `usage` cannot decide it — a shell wrapper a subprocess
 #   cannot see (`br` is broot's, `z` is zoxide's), or software a machine may
-#   not have. `doit kit unresolved` checks it: present and the row resolves,
+#   not have. `howto tools unresolved` checks it: present and the row resolves,
 #   absent and the row is listed as needing something rather than as a wrong
 #   entry. Name software, never a machine — hostnames get replaced.
 #
 # installed_via: <package manager | dotfiles>
 #   `dotfiles` means the dotfiles shell tree ships it, and the symlink layer
 #   already scopes those per machine. Anything else names a package manager, and
-#   `doit kit unresolved` then asks that machine's dotfiles manifest whether the
-#   box was ever meant to have the tool. A row no manifest here declares is
-#   reported as another machine's rather than as rot, which is what lets `bbkt`
-#   live in this one fleet-wide file without reading as broken on five desks.
+#   `howto tools unresolved` then asks that machine's manifest whether the box
+#   was ever meant to have the tool. A row no manifest here declares is reported
+#   as another machine's rather than as rot, which is what lets a tool one
+#   machine needs live in this one file without reading as broken on the rest.
 
 version: "1.0"
 
@@ -1151,19 +1151,17 @@ tools:
     category: custom-tools
     description: "What to do now, and everything that decides it"
     installed_via: uv
-    usage: "doit [next | dashboard | find | show | review | labs | kit]"
-    why_use: "One front door to the whole kit: `find` searches every collection you have, `next` draws from the weights you declared, and `dashboard` reads every app at once. It stewards no records of its own — each domain CLI stays the owner"
+    usage: "doit [next | dashboard | today | happened | review | pursuits]"
+    why_use: "What deserves the next hour: `next` draws from the weights you declared, `today` holds what the day can finish, and `dashboard` reads every app at once. It stewards no records of its own — each domain CLI stays the owner"
     examples:
       - cmd: "doit next"
         desc: "What to do now, drawn from your weighted pursuits"
-      - cmd: "doit find keybind"
-        desc: "Search tools, cards, functions and keybindings for a term"
-      - cmd: "doit show fd"
-        desc: "Everything known about one subject, from every collection that has it"
-      - cmd: "doit kit unresolved"
-        desc: "Index rows naming something this machine cannot run"
-    see_also: [doit-dashboard, doit-review, doit-labs, doit-workflows, icb, learning]
-    tags: [discovery, dashboard, search, cadence, attention]
+      - cmd: "doit today"
+        desc: "What today still owes, above what it has had"
+      - cmd: "doit happened --since 7d"
+        desc: "What every record says happened this past week"
+    see_also: [doit-dashboard, doit-review, howto, icb, learning]
+    tags: [dashboard, cadence, attention, pursuits]
     docs_url: "https://github.com/datapointchris/doit"
 
   doit-dashboard:
@@ -1177,7 +1175,7 @@ tools:
         desc: "Every lane, three rows each"
       - cmd: "doit dashboard --lane maintenance"
         desc: "One lane in more depth"
-    see_also: [doit, doit-review, doit-labs, icb, learning]
+    see_also: [doit, doit-review, icb, learning]
     tags: [dashboard, overview, outstanding, glance, json]
 
   doit-review:
@@ -1193,21 +1191,40 @@ tools:
         desc: "Mark an item done, which advances its due date"
       - cmd: "doit review done rg-search-code"
         desc: "Mark a Lab practiced, which advances its practice schedule"
-    see_also: [doit, doit-workflows]
+    see_also: [doit, howto-labs]
     tags: [discovery, review, cadence]
 
-  doit-labs:
+  howto:
     category: custom-tools
-    description: "Hands-on practice deck behind doit labs — Labs and recall drills"
+    description: "How do I do this: one search over the cards, the Labs, this registry and your shell"
     installed_via: uv
-    usage: "doit labs [list | show <id> | choose | flash | new <name> | edit <id>]"
+    usage: "howto [find | show | choose | list | cards | tools | labs | library | shell]"
+    why_use: "One search over every reference collection: this registry, the cards, the Labs, and your shell's functions, aliases, git aliases, forgit shortcuts, tmux keys and zsh keys. Pick a row and see everything known about it. It keeps no state, so it runs on any box"
+    examples:
+      - cmd: "howto find keybind"
+        desc: "Search tools, cards, functions and keybindings for a term"
+      - cmd: "howto show fd"
+        desc: "Everything known about one subject, from every collection that has it"
+      - cmd: "howto choose"
+        desc: "Pick a command and print it, ready to run or edit"
+      - cmd: "howto tools unresolved"
+        desc: "Registry rows naming something this machine cannot run"
+    see_also: [howto-cards, howto-labs, doit]
+    tags: [discovery, search, reference, cheatsheet, fzf]
+    docs_url: "https://github.com/datapointchris/howto"
+
+  howto-labs:
+    category: custom-tools
+    description: "Hands-on practice Labs behind howto labs, and recall drills"
+    installed_via: uv
+    usage: "howto labs [list | show <id> | choose | flash | new <name> | edit <id>]"
     why_use: "Hands-on practice: open a Lab to work through in one pane while you type in another, or run a flash recall drill from your tool examples. When each Lab comes due is the practice block of doit review"
     examples:
-      - cmd: "doit labs show fzf-fuzzy"
+      - cmd: "howto labs show fzf-fuzzy"
         desc: "Open a Lab to work through in another pane"
-      - cmd: "doit labs flash"
+      - cmd: "howto labs flash"
         desc: "Quick recall drill from your tool examples"
-    see_also: [doit, doit-review, doit-workflows]
+    see_also: [howto, doit-review, howto-cards]
     tags: [discovery, practice, spaced-repetition, labs]
 
   prs:
@@ -1254,7 +1271,7 @@ tools:
         desc: "Reopen the reading pane after closing it"
       - cmd: "uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl watch --file ~/dev/claude-session-narrations/2026-09-17-ypl.md"
         desc: "Read a narration whose session is already over"
-    see_also: [glow, watchexec, worktree, doit-workflows]
+    see_also: [glow, watchexec, worktree, howto-cards]
     tags: [claude, narration, tmux, learning, reference]
 
   sesh:
@@ -1474,20 +1491,20 @@ tools:
     tags: [dotfiles, productivity, tui, sqlite, go]
     docs_url: "https://github.com/datapointchris/todoui"
 
-  doit-workflows:
+  howto-cards:
     category: custom-tools
     description: "The reference cards — one tool's commands, or one goal carried through several"
     installed_via: uv
-    usage: "doit workflows [list | show <id> | new <name> | random]"
+    usage: "howto cards [list | show <id> | new <name> | random]"
     why_use: "Browse and search documented procedures for complex multi-step tasks. Cards live in the terminal-library checkout, so writing one never needs a release"
     examples:
-      - cmd: "doit workflows list"
+      - cmd: "howto cards list"
         desc: "Every card and what it covers"
-      - cmd: "doit workflows show git-rebase"
+      - cmd: "howto cards show git-rebase"
         desc: "Render one card"
-      - cmd: "doit workflows random"
+      - cmd: "howto cards random"
         desc: "Render a card at random"
-    see_also: [doit, notes]
+    see_also: [howto, notes]
     tags: [documentation, procedures, reference]
 
   aws-profiles:

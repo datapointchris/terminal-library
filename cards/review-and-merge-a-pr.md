@@ -8,7 +8,7 @@ tags: [gh, github, pr, pull-request, review, merge, fleet, claude, nvim, ci, rec
 # GOAL: take a PR from "haven't looked" to merged without leaving the terminal.
 #
 # GITHUB. For work / Bitbucket Data Center this is `bbkt`:
-#   workflows show review-and-merge-a-pr-with-bbkt
+#   cards show review-and-merge-a-pr-with-bbkt
 
 # 1. PICK ONE — from anywhere on the machine, any directory
 prs                   # a dotfiles app, not a fleet command, so the work box
