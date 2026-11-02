@@ -1276,6 +1276,23 @@ tools:
     tags: [tmux, workflow, tui, go, zoxide]
     docs_url: "https://github.com/joshmedeski/sesh"
 
+  tmux-tree-editor:
+    category: session-management
+    description: "Rearrange tmux sessions, windows and panes in yazi-style columns, applied on close"
+    installed_via: go
+    usage: "tmux-tree-editor [-L name | -S path]"
+    why_use: "Cut and paste panes, windows and sessions where they belong, rename and kill them, and see every tmux command in a plan before anything changes"
+    examples:
+      - cmd: "prefix + j"
+        desc: "Open the editor in a popup over the current server"
+      - cmd: "tmux-tree-editor -L scratch"
+        desc: "Edit the server a tmux -L scratch started instead"
+      - cmd: "tmux-tree-editor -version"
+        desc: "Print the installed version"
+    see_also: [sesh, tmux]
+    tags: [tmux, session, window, pane, tui, go, rearrange]
+    docs_url: "https://github.com/datapointchris/tmux-tree-editor"
+
   notes:
     category: custom-tools
     description: "Interactive wrapper for zk note-taking with auto-discovery"

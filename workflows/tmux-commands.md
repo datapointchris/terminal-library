@@ -32,11 +32,16 @@ switches terminal tabs instead.
 ## Reshape (keeps history)
 
 | prefix + !     | break pane → its own window                 |
-| prefix + j / J | join a window in as a pane (side / stacked) |
+| prefix + j     | tree editor: move panes, windows, sessions  |
 | prefix + v     | layout: big main + stack                    |
 | prefix + e     | layout: even split                          |
 | prefix + g     | layout: tiled grid                          |
 | prefix + Space | cycle layouts                               |
+
+`prefix + j` opens tmux-tree-editor in a popup. Cut with `x` and paste with
+`p` to join a window into another as panes, split a pane out as a window, or
+move windows between sessions; `q` shows the plan and `y` applies it. Its keys
+are on `tmux-tree-editor`.
 
 ## Windows
 
@@ -113,7 +118,6 @@ per step on `h`/`l`. Windows and panes are carried across intact.
 | prefix + t | this reference     |
 | prefix + a | Claude popup       |
 | prefix + p | pick a PR to review |
-| prefix + F | tmux-fzf menu      |
 
 ## General
 

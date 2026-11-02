@@ -67,14 +67,17 @@ tmux new-window  -d -t lab-inbox -n 'stray task'
      `automatic-rename` still tracks the running command until a window is named
      explicitly — so an unnamed window drifts and a named one never does.
 
-6. **Collapse two windows into one.** From the target window, `prefix j` and pick
-   another window
-   - Expect: that window's pane is pulled in beside the current one.
-   - Why: `prefix j` / `prefix J` join side-by-side or stacked, and `prefix !`
-     breaks a pane back out into its own window. Between them, "two windows" and
-     "one window, two panes" are the same content in different shapes — grouping
-     is a display decision you can change at any time, not something to get right
-     when you create it.
+6. **Collapse two windows into one.** `prefix j` opens the tree editor. Go down to
+   `lab-inbox`, `l` into its windows, `j` to `stray task` and `x` to cut it. Then
+   `k` to `scratch`, `l` into its panes, `p`, and `q`
+   - Expect: the plan reads `move pane "~" into window "scratch"`. `y` applies it
+     and closes, leaving `scratch` with two panes side by side and no
+     `stray task`.
+   - Why: a window pasted into another window's panes column joins it, split
+     along the longer side, and `prefix !` breaks a pane back out into its own
+     window. Between them, "two windows" and "one window, two panes" are the same
+     content in different shapes — grouping is a display decision you can change
+     at any time, not something to get right when you create it.
    - Alternative: `prefix v` / `e` / `g` reshape the panes you already have into
      main-vertical, even, or tiled.
 
