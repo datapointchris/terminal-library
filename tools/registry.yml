@@ -7,20 +7,15 @@
 # installs. Neither file is derivable from the other.
 #
 # requires: <command>
-#   Optional. The command whose presence decides whether the row is real, for
-#   the rows where `usage` cannot decide it — a shell wrapper a subprocess
-#   cannot see (`br` is broot's, `z` is zoxide's), or software a machine may
-#   not have. `howto tools unresolved` checks it: present and the row resolves,
-#   absent and the row is listed as needing something rather than as a wrong
-#   entry. Name software, never a machine — hostnames get replaced.
+#   Optional. The command the row is built on, where `usage` cannot name it — a
+#   shell wrapper a subprocess cannot see (`br` is broot's, `z` is zoxide's), or
+#   software only some machines have. Name software, never a machine, because
+#   hostnames get replaced.
 #
 # installed_via: <package manager | dotfiles>
 #   `dotfiles` means the dotfiles shell tree ships it, and the symlink layer
-#   already scopes those per machine. Anything else names a package manager, and
-#   `howto tools unresolved` then asks that machine's manifest whether the box
-#   was ever meant to have the tool. A row no manifest here declares is reported
-#   as another machine's rather than as rot, which is what lets a tool one
-#   machine needs live in this one file without reading as broken on the rest.
+#   scopes those per machine. Anything else names the package manager that
+#   installs it.
 
 version: "1.0"
 
@@ -1207,8 +1202,8 @@ tools:
         desc: "Everything known about one subject, from every collection that has it"
       - cmd: "howto choose"
         desc: "Pick a command and print it, ready to run or edit"
-      - cmd: "howto tools unresolved"
-        desc: "Registry rows naming something this machine cannot run"
+      - cmd: "howto cards show tmux-commands"
+        desc: "One reference card, rendered through bat"
     see_also: [howto-cards, howto-labs, doit]
     tags: [discovery, search, reference, cheatsheet, fzf]
     docs_url: "https://github.com/datapointchris/howto"

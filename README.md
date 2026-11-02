@@ -173,8 +173,7 @@ Most also carry `see_also` and `docs_url`.
   shows as a row of its own.
 - **An entry for a tool installed nowhere is deleted.** Saying what you have is the registry's whole
   job. A full entry for an absent binary says it wrongly. A tool that only some machines have
-  keeps its entry, marked as the header describes. `howto tools unresolved` lists the rows this
-  machine cannot run.
+  keeps its entry, marked as the header describes.
 - **Deleting an entry means sweeping every `see_also` that names it.** Those lists sit in other
   entries' blocks.
 
