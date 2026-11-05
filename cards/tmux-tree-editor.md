@@ -15,6 +15,8 @@ reaches tmux until the plan is shown and `y` confirms it. `?` lists every key.
 | `j` / `k` | Down / up within a column |
 | `h` / `l` | Column left / right |
 | `g` / `G` | First / last row |
+| `ctrl+d` / `ctrl+u` | Half a screen down / up |
+| `]` / `[` | The next / previous session's windows, or the next / previous window's panes |
 
 ## Edit (staged, not yet applied)
 
@@ -26,8 +28,8 @@ reaches tmux until the plan is shown and `y` confirms it. `?` lists every key.
 | `<Esc>` | Clear the cut and the selection |
 | `r` | Rename a session or window, retitle a pane |
 | `a` | Add a session, window or pane after the cursor |
-| `d` | Mark to kill; again to keep. With a selection, every selected one |
-| `J` / `K` | Shift down / up within its column |
+| `D` | Mark to kill; again to keep. With a selection, every selected one |
+| `M` | Move within its column: `j` / `k` walk it, `<Enter>` drops it, `<Esc>` puts it back |
 | `u` | Undo the last edit |
 | `R` | Reload from tmux, dropping the edit |
 
@@ -36,7 +38,7 @@ reaches tmux until the plan is shown and `y` confirms it. `?` lists every key.
 | Key | Action |
 | --- | --- |
 | `w` | Show the plan; `y` applies it |
-| `q` | Close. With an edit staged the plan opens: `y` applies and closes, `d` closes without applying, `<Esc>` goes back |
+| `q` | Close. With an edit staged the plan opens: `y` applies and closes, `D` closes without applying, `<Esc>` goes back |
 
 ## Where a paste lands decides what it becomes
 

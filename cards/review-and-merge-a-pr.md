@@ -33,7 +33,7 @@ gh pr merge --squash --delete-branch
 ## When it earns a conversation
 
 ```bash
-# e on the PR in prs  # a window `explain <repo> #<n>` running
+# C on the PR in prs  # a window `explain <repo> #<n>` running
                       #   /explain-code-changes #<n> — the reading protocol:
                       #   triage first, then per commit intent → the 2-4
                       #   structural moves → the idiom NAMED.
