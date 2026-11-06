@@ -6,12 +6,6 @@
 # what is documented here is a shell function or a script no package manager
 # installs. Neither file is derivable from the other.
 #
-# requires: <command>
-#   Optional. The command the row is built on, where `usage` cannot name it — a
-#   shell wrapper a subprocess cannot see (`br` is broot's, `z` is zoxide's), or
-#   software only some machines have. Name software, never a machine, because
-#   hostnames get replaced.
-#
 # installed_via: <package manager | dotfiles>
 #   `dotfiles` means the dotfiles shell tree ships it, and the symlink layer
 #   scopes those per machine. Anything else names the package manager that
@@ -193,7 +187,6 @@ tools:
     description: "Whole-tree navigator: folds a hierarchy to fit the screen, filters it by name, path or content"
     installed_via: cargo
     usage: "br [path]"
-    requires: broot
     why_use: "Answers where in a tree something is, and how big it is, while yazi answers what is in one directory; search modes keep the tree shape, and verbs act on the result without leaving"
     examples:
       - cmd: "br"
@@ -227,7 +220,6 @@ tools:
     description: "Smarter cd command that learns your habits"
     installed_via: brew
     usage: "z [pattern]"
-    requires: zoxide
     why_use: "Jump to frequently-used directories by partial match, no need for full paths"
     examples:
       - cmd: "z dot"
@@ -1256,7 +1248,6 @@ tools:
     category: custom-tools
     description: "Follow a Claude session's reasoning in a second pane, not its diff"
     installed_via: dotfiles
-    requires: tmux
     usage: "uv run --project ~/.claude python ~/.claude/hooks/narrate-ctl [status | pane | watch | start | stop]"
     why_use: "`/narrate-work-as-it-happens` in the working pane starts the narration and splits the reading pane, so you rarely type this. Reach for it when entries stop appearing — `status` names which of the five things went wrong, and `owner` is the one that silently stops every turn being written"
     examples:
@@ -2172,7 +2163,6 @@ tools:
     description: "Run full Homebrew maintenance — update, upgrade, cleanup, autoremove"
     installed_via: dotfiles
     usage: "brew-maintenance"
-    requires: brew
     why_use: "Single command to keep Homebrew fully up to date and cleaned up without running four separate commands"
     examples:
       - cmd: "brew-maintenance"

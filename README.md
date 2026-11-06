@@ -160,8 +160,7 @@ bold imperative and its command, then `Expect:` and `Why:` lines. Most Labs clos
 
 ## A registry entry describes a command that exists, spelled the way you type it
 
-The comment block at the top of `tools/registry.yml` defines `requires` and `installed_via`. Every
-entry carries `category`, `description`, `installed_via`, `usage`, `why_use`, `examples` and `tags`.
+The comment block at the top of `tools/registry.yml` defines `installed_via`. Every entry carries `category`, `description`, `installed_via`, `usage`, `why_use`, `examples` and `tags`.
 Most also carry `see_also` and `docs_url`.
 
 - **`usage` starts with what you type.** A key is a package name as often as a command, so search

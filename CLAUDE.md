@@ -81,8 +81,8 @@ scratch directory, usually starting from `LAB=$(mktemp -d) && cd "$LAB"`.
 
 ## A registry entry describes a command that exists, spelled the way you type it
 
-The comment block at the top of `tools/registry.yml` defines `requires` and
-`installed_via`. Every entry carries `category`, `description`, `installed_via`,
+The comment block at the top of `tools/registry.yml` defines `installed_via`.
+Every entry carries `category`, `description`, `installed_via`,
 `usage`, `why_use`, `examples` and `tags`. Most also carry `see_also` and
 `docs_url`.
 
