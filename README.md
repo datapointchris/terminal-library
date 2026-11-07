@@ -127,8 +127,8 @@ tags: [git, stash, version-control, workflow]
 - **Every code fence names a language, because markdownlint requires one.** `bash` holds commands to
   run. `text` holds keystrokes, output and pane layouts.
 - **A key, flag or command goes on a card after it was run, or read from the config that binds it.**
-  A key written from memory can name a binding that moved or never existed. The card reads just as
-  sure of itself either way.
+  A key written from memory can name a binding that moved or never existed, and nothing on the card
+  shows which keys were run.
 - **A path that differs per machine is written as the command or config key that yields it.** Every
   clone reads the same card. A path from one machine's layout is wrong on the next.
 
@@ -170,9 +170,9 @@ Most also carry `see_also` and `docs_url`.
 - **`category` comes from the `categories` list at the foot of the file.** Nothing checks it against
   the list. `howto tools categories list` counts what the entries say, so a misspelled category
   shows as a row of its own.
-- **An entry for a tool installed nowhere is deleted.** Saying what you have is the registry's whole
-  job. A full entry for an absent binary says it wrongly. A tool that only some machines have
-  keeps its entry, marked as the header describes.
+- **An entry for a tool installed nowhere is deleted.** A full entry for an absent binary tells the
+  reader they have a command they do not. A tool that only some machines have keeps its entry,
+  marked as the header describes.
 - **Deleting an entry means sweeping every `see_also` that names it.** Those lists sit in other
   entries' blocks.
 

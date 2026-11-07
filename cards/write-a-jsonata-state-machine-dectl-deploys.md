@@ -8,11 +8,9 @@ tags: [dectl, aws, step-functions, sfn, jsonata, asl, terraform, templatefile, t
 # GOAL: one definition template that Terraform's templatefile() and `dectl sfn
 # deploy` render to the same bytes, filled from config written once: variables
 # for what differs, YAML anchors for what repeats, JSONata in both files.
-# Both files below are dectl's tests/layered_pipelines_config, verbatim apart
-# from comments. dectl's suite loads the config, resolves both pipelines
-# through the installed CLI, and deploys the definition to live Step Functions.
-# dectl's README carries the same config with what every value resolves to
-# and the exact message for each common mistake.
+# Both files below are copied from dectl's tests/layered_pipelines_config,
+# verbatim apart from comments. dectl's README carries the same config with
+# what every value resolves to and the exact message for each common mistake.
 ```
 
 ## 1. THE TEMPLATE — flow.asl.json.tftpl

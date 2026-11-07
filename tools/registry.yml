@@ -1303,7 +1303,7 @@ tools:
     description: "Data engineering control CLI for AWS Glue, Lambda, Step Functions, S3, Iceberg and Jenkins pipelines"
     installed_via: uv
     usage: "dectl PIPELINE RESOURCE ALIAS VERB [OPTIONS]"
-    why_use: "One {env}-templated config names each pipeline's resources under short aliases, so the deploy, run and logs loop against dev, staging or prod changes only the final word"
+    why_use: "One {env}-templated config names each pipeline's resources under short aliases. The verb is the last word, so the deploy, run and logs loop changes only that word, and --env moves the same commands between dev, staging and prod"
     examples:
       - cmd: "dectl reference"
         desc: "Print the whole command grammar, whatever the local config holds"

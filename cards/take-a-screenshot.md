@@ -9,7 +9,7 @@ tags: [screenshot, screen-capture, print-screen, grim, slurp, wl-clipboard, clip
 # as a PNG. Every key puts the image on the CLIPBOARD and saves no file.
 # The Corne has no Print key, so the P binds are the ones that always work.
 
-# 1. CAPTURE — same keys on both desks
+# 1. CAPTURE — shift + p and ctrl + p on both, under each desk's mod key
                          Hyprland (Arch)        AeroSpace (Mac)
 region to clipboard      SUPER + shift + p      alt + shift + p
 screen to clipboard      SUPER + ctrl + p       alt + ctrl + p
