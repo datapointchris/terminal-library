@@ -382,10 +382,6 @@ tools:
     usage: "fleet <noun> <verb>"
     why_use: "One question about all the repos at once — forge acts on repos one at a time, fleet reads across them"
     examples:
-      - cmd: "prs"
-        desc: "Alias for `fleet prs review` — pick an open PR, open its diff in a window"
-      - cmd: "fleet prs list"
-        desc: "Every open PR across the portfolio, oldest first"
       - cmd: "fleet status"
         desc: "What each repo's planning says"
     see_also: [gh, gh-dash, forge, git-delta]
@@ -1216,17 +1212,21 @@ tools:
 
   prs:
     category: custom-tools
-    description: "Pick an open PR and open its diff in a tmux window"
-    installed_via: dotfiles
-    usage: "prs [list]"
-    why_use: "Review without leaving the terminal — the picker spans every repo, and the diff lands in its own tmux window beside what you were doing"
+    description: "Every open PR across the registry's repos on one self-refreshing board, with a key per action"
+    installed_via: go
+    usage: "prs tui [--pr <owner/name#number>] | prs list [--json] | prs config show"
+    why_use: "Review and merge without leaving the terminal — the board spans every repo, refreshes every minute, and d opens the diff in nvim inside it. prefix p in tmux toggles the prs-board session that holds it"
     examples:
-      - cmd: "prs"
-        desc: "Open the picker across every repo's open PRs"
+      - cmd: "prs tui"
+        desc: "Open the board on every open PR"
+      - cmd: "prs tui --pr owner/repo#12"
+        desc: "Open the board on one PR, and q returns to the caller"
       - cmd: "prs list"
-        desc: "Print every open PR as a table instead of picking"
+        desc: "Print every open PR once, as a table"
+      - cmd: "prs list --json | jq -r '.[].url'"
+        desc: "Just the links"
     see_also: [gh-dash, worktree, git]
-    tags: [dotfiles, git, github, review, tmux]
+    tags: [git, github, review, tmux, tui]
 
   worktree:
     category: custom-tools
