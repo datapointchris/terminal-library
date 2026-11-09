@@ -1143,7 +1143,7 @@ tools:
         desc: "What today still owes, above what it has had"
       - cmd: "doit happened --since 7d"
         desc: "What every record says happened this past week"
-    see_also: [doit-dashboard, doit-review, howto, icb, learning]
+    see_also: [doit-dashboard, doit-review, howto, learning, life]
     tags: [dashboard, cadence, attention, pursuits]
     docs_url: "https://github.com/datapointchris/doit"
 
@@ -1158,7 +1158,7 @@ tools:
         desc: "Every lane, three rows each"
       - cmd: "doit dashboard --lane maintenance"
         desc: "One lane in more depth"
-    see_also: [doit, doit-review, icb, learning]
+    see_also: [doit, doit-review, learning, life]
     tags: [dashboard, overview, outstanding, glance, json]
 
   doit-review:
@@ -1583,6 +1583,23 @@ tools:
     see_also: [doit, doit-dashboard]
     tags: [learning, study, curriculum, tracks, resources, api, json, go]
     docs_url: "https://github.com/datapointchris/learning"
+
+  life:
+    category: custom-tools
+    description: "Tasks, habits, books, articles, events, countdowns, recipes and the shopping list, from the terminal"
+    installed_via: github-release
+    usage: "life <resource> <verb> [args]"
+    why_use: "Read what is outstanding across the life apps in one call, and change any record without opening the web app. Every read takes --json"
+    examples:
+      - cmd: "life auth login https://life.ichrisbirch.com"
+        desc: "Sign in once so every later command can reach the API"
+      - cmd: "life overview"
+        desc: "Everything outstanding right now across the apps"
+      - cmd: "life tasks list"
+        desc: "Open tasks in the order to do them"
+    see_also: [doit, doit-dashboard]
+    tags: [tasks, habits, books, productivity, api, json, go]
+    docs_url: "https://github.com/datapointchris/life"
 
   meso:
     category: custom-tools

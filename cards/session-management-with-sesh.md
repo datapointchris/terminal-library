@@ -30,6 +30,6 @@ Picker sources (filter with ctrl keys inside fzf):
 **Two active initiatives** — `prefix + L` (no picker needed)
 **Forgot what's running** — `prefix + s`
 
-Configured sessions live in `~/.config/sesh/sesh.toml` and are deliberately few — `dotfiles`, `dev`, `ichrisbirch`. They show under Ctrl-g even when not running, and selecting one creates and attaches in a single step. Everything else is reached through zoxide or `fd`, which create a session on the spot and are meant to be killed when the work ends.
+Configured sessions live in `~/.config/sesh/sesh.toml` and are deliberately few — `dotfiles`, `dev`, `life`. They show under Ctrl-g even when not running, and selecting one creates and attaches in a single step. Everything else is reached through zoxide or `fd`, which create a session on the spot and are meant to be killed when the work ends.
 
 Note the picker creates a **session** for whatever you select. To pull a directory into the session you are already in, open a window there instead (`prefix + c`, then `prefix + ,` to name it).
