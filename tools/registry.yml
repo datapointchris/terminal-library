@@ -2152,11 +2152,13 @@ tools:
         desc: "Check only shell scripts, skip documentation"
       - cmd: "refcheck check --strict"
         desc: "Treat warnings as errors (strict mode for CI)"
-      - cmd: "refcheck learn-rules"
+      - cmd: "refcheck rules learn"
         desc: "Learn path mappings from git rename history"
+      - cmd: "refcheck config show"
+        desc: "Show every exclusion and setting a run resolves, and the layer that set each"
     see_also: [grep, fd]
     tags: [validation, testing, refactoring, ci]
-    notes: "Resolves variable paths ($SCRIPT_DIR, $DOTFILES_DIR). Learns from git history to suggest correct paths. Bare `refcheck` prints usage. Per-repo config in .refcheck.toml, per-user at ~/.config/refcheck/config.toml."
+    notes: "Resolves any variable a script sets to its own directory or the repo root. Learns from git history to suggest correct paths. Bare `refcheck` prints usage. Per-repo config in .refcheck.toml, per-user at $XDG_CONFIG_HOME/refcheck/config.toml; a key it does not read exits 2."
     docs_url: "docs/apps/refcheck.md"
 
   brew-maintenance:
