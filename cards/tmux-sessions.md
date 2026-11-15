@@ -14,19 +14,23 @@ name is what tells two `homelab` windows apart.
 
 | Component       | What it is                    | Survives reboot? |
 | --------------- | ----------------------------- | ---------------- |
-| sesh.toml       | Recipe for creating sessions  | YES              |
 | Running session | Process in tmux server (RAM)  | NO               |
 | Resurrect state | ~/.local/share/tmux/resurrect | YES              |
 
-Continuum auto-saves every minute, window names and pane contents included.
-Its own auto-restore is off — the `sesh` shell wrapper replays the last save
-instead, and only when no tmux server is already running. So the first `sesh`
-after a reboot brings everything back, including sessions you were done with.
+Continuum saves every minute, window names and pane contents included, and a
+shutdown saves once more before anything is stopped. When the server starts,
+the last whole save comes back. So after a reboot, plain `tmux` brings
+everything back, including sessions you were done with.
+
+Each pane gets its program back. Claude resumes its own conversation with its
+own flags. abtop, btop, yazi, watch, ssh and `prs tui` start again, plus what
+`~/.config/tmux/restored-programs.conf` adds on that machine. Anything else
+comes back typed at the prompt, waiting for Enter.
 
 ```bash
 # Key bindings
 prefix + d              # detach (session keeps running)
-prefix + s              # session picker (sesh + fzf)
+prefix + s              # session tree (x kills one, t tags, X kills the tagged)
 prefix + L              # last session (instant toggle)
 prefix + Ctrl-s         # manual resurrect save
 prefix + Ctrl-r         # manual resurrect restore
@@ -36,11 +40,10 @@ prefix + Ctrl-r         # manual resurrect restore
 
 ```bash
 # Sessions missing after reboot?
-prefix + Ctrl-r                         # try manual restore first
-tmux show-options -g | grep continuum   # verify it's enabled
-
-# Restore an older save
-ls -lt ~/.local/share/tmux/resurrect/*.txt | head
-ln -sf tmux_resurrect_OLDER.txt ~/.local/share/tmux/resurrect/last
-# then: prefix + Ctrl-r
+tmux-snapshots list                     # newest saves, whole or cut off, and which is last
+tmux-snapshots restore <stamp>          # bring an older one back into the running server
+tmux show-options -g | rg continuum     # verify it's enabled
 ```
+
+A program started as a pane's own process, with no shell under it, comes back
+as an empty shell. Start it from the prompt and it restarts.

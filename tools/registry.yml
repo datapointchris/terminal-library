@@ -1244,25 +1244,6 @@ tools:
     see_also: [git, prs, lazygit]
     tags: [dotfiles, git, worktree, isolation]
 
-  sesh:
-    category: session-management
-    description: "Smart tmux session manager with zoxide integration and fzf picker"
-    installed_via: go
-    usage: "sesh connect [session-name]"
-    why_use: "Quick tmux session switching with zoxide directory tracking, fzf-based interactive picker, named session configs"
-    examples:
-      - cmd: "prefix + s"
-        desc: "Open fzf session picker in tmux popup"
-      - cmd: "sesh connect dotfiles"
-        desc: "Connect to or create dotfiles session"
-      - cmd: "sesh list"
-        desc: "List all available sessions"
-      - cmd: "sesh last"
-        desc: "Switch to previously active session"
-    see_also: [doit, tmux, tmuxinator]
-    tags: [tmux, workflow, tui, go, zoxide]
-    docs_url: "https://github.com/joshmedeski/sesh"
-
   tmux-tree-editor:
     category: session-management
     description: "Rearrange tmux sessions, windows and panes in yazi-style columns, applied on close"
@@ -1276,7 +1257,7 @@ tools:
         desc: "Edit the server a tmux -L scratch started instead"
       - cmd: "tmux-tree-editor -version"
         desc: "Print the installed version"
-    see_also: [sesh, tmux]
+    see_also: [tmux]
     tags: [tmux, session, window, pane, tui, go, rearrange]
     docs_url: "https://github.com/datapointchris/tmux-tree-editor"
 

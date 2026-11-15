@@ -81,17 +81,16 @@ tmux new-window  -d -t lab-inbox -n 'stray task'
    - Alternative: `prefix v` / `e` / `g` reshape the panes you already have into
      main-vertical, even, or tiled.
 
-7. **Reach a directory that has no session yet.** `prefix s`
-   - Expect: the sesh picker, a couple of hundred rows deep. `Ctrl-t` filters to
-     running sessions, `Ctrl-g` to the three configured in `sesh.toml`, `Ctrl-x`
-     to zoxide directories, `Ctrl-f` to an `fd` search, `Ctrl-a` back to
-     everything.
-   - Why: most rows are not sessions — they are places sesh can *make* one from.
-     Selecting one creates a session, so when you want the directory inside the
-     session you are already in, open a window instead (`prefix c`, then
-     `prefix ,`).
-   - Alternative: `Ctrl-d` kills the highlighted session without leaving the
-     picker, which is the fastest way to prune several at once.
+7. **Start a session for a directory.** `z <dir>` in any pane, then `Alt t` and
+   a name
+   - Expect: a new session opens in that pane's directory, and you are switched
+     to it. A name already taken switches to that session instead.
+   - Why: a session is named for the work rather than the directory. When you
+     want the directory inside the session you are already in, open a window
+     instead (`prefix c`, then `prefix ,`).
+   - Alternative: `prefix s` shows every session as a tree. `x` kills the
+     highlighted one, and `t` then `X` kills every tagged one, which is the
+     fastest way to prune several at once.
 
 8. **Kill at the right scale.** `prefix x` a pane, `prefix k` a window, `prefix K`
    a session
@@ -113,8 +112,8 @@ tmux kill-session -t '=lab-alpha'; tmux kill-session -t '=lab-beta'; tmux kill-s
 
 ## Notes
 
-- Killing a session does not remove it from the last resurrect save, and restore
-  is all-or-nothing. Anything killed inside the current 15-minute save window
-  comes back the next time the `sesh` wrapper restores on a cold start.
+- Killing a session does not remove it from the last resurrect save until the
+  next one, within a minute. Anything killed inside that minute comes back on a
+  cold start.
 - `prefix t` shows the full keybinding reference in a popup, and `howto find`
   searches the same card by binding or by description.

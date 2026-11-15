@@ -74,8 +74,8 @@ session's windows on the second.
 | prefix + K      | kill session (asks first)        |
 | prefix + T      | promote window → its own session |
 | prefix + w      | find a window in ANY session     |
-| prefix + s      | session picker (sesh)            |
-| prefix + L      | last session (sesh)              |
+| prefix + s      | session tree (tmux choose-tree)  |
+| prefix + L      | last session                     |
 | prefix + d      | detach                           |
 | prefix + $      | rename session                   |
 | prefix + Ctrl-s | resurrect save                   |
