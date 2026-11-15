@@ -6,7 +6,7 @@ tags: [sops, age, secrets, encryption, yaml, homelab, recipe]
 
 ```bash
 # GOAL: read or change a secret in a sops-encrypted file (e.g. homelab's
-# pyinfra/group_data/secrets.yaml) and commit the ENCRYPTED result. Backend here
+# host-deploys/group_data/secrets.yaml) and commit the ENCRYPTED result. Backend here
 # is age — your private key lives at ~/.config/sops/age/keys.txt (the default
 # SOPS_AGE_KEY_FILE), and the matching public recipient is declared per-path in
 # the repo's .sops.yaml. sops encrypts VALUES, not keys, so structure stays
