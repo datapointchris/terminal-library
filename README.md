@@ -135,7 +135,7 @@ tags: [git, stash, version-control, workflow]
 The cards are terse, second person and imperative. A code block carries commands with aligned `#`
 comments. A table carries keybindings. A recipe numbers its steps, as in `# 1. ASK GITHUB WHY`, and
 most recipes close on `## Gotchas`. A wrong claim is fixed in place. The sentences around it stay as
-written.
+written. A card that is not wrong is not restyled.
 
 ## A filename is an ID, and renaming one breaks what cites it
 

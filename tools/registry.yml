@@ -1404,21 +1404,21 @@ tools:
 
   forge:
     category: custom-tools
-    description: "Run commands and dies (reusable scripts) across all git repos"
+    description: "Apply reusable operations (dies) and ad-hoc commands across all git repos"
     installed_via: go
-    usage: "forge <command> [args]"
-    why_use: "Execute maintenance scripts and ad-hoc commands across your entire repo fleet with filtering, dry-run, and execution tracking"
+    usage: "forge repos <plan|check|apply|exec|list> [args]"
+    why_use: "Apply maintenance operations and ad-hoc commands across every repo you keep, with filtering, a plan before apply, and execution tracking"
     examples:
-      - cmd: "forge exec -- git status --short"
+      - cmd: "forge repos exec -- git status --short"
         desc: "Run git status in every repo"
-      - cmd: "forge exec -F dotfiles,homelab -- git pull"
+      - cmd: "forge repos exec -F <repo>,<repo> -- git pull"
         desc: "Pull specific repos"
       - cmd: "forge dies list"
         desc: "List available dies with descriptions and run stats"
-      - cmd: "forge dies run maintenance/add-planning-to-gitignore.sh"
-        desc: "Run a die across all repos"
-      - cmd: "forge dies run maintenance/fix.sh -F dotfiles -n"
-        desc: "Dry run a die on one repo"
+      - cmd: "forge repos plan precommit"
+        desc: "Show what one die would change in every repo, writing nothing"
+      - cmd: "forge repos apply precommit -F <repo>"
+        desc: "Apply one die to one repo"
       - cmd: "forge dies search planning"
         desc: "Search dies by name, description, or tags"
       - cmd: "forge dies stats"
@@ -1620,11 +1620,13 @@ tools:
     category: custom-tools
     description: "Check if local git repos are fully synced before switching machines"
     installed_via: uv
-    usage: "syncer [command]"
+    usage: "syncer <check|apply|fetch|issues> [options]"
     why_use: "Fetch each configured repo, detect uncommitted/unpushed/behind/stashed state, and auto-pull or auto-push when safe"
     examples:
-      - cmd: "syncer"
-        desc: "Check sync status of all configured repos"
+      - cmd: "syncer check"
+        desc: "Report what each configured repo needs, writing nothing"
+      - cmd: "syncer apply"
+        desc: "Pull, push, fast-forward and clone whatever is safe"
       - cmd: "syncer update"
         desc: "Update syncer to the latest release"
     see_also: [forge, git]

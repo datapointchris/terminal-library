@@ -45,7 +45,7 @@ nvim $(rg -l 'pattern' | fzf -m --preview 'bat --color=always {}')
 # Shell (this card): you're ALREADY in the terminal, or you want to pipe/compose
 #   the result (fzf preview, xargs, count first). Entry point = rg + fzf.
 # telescope (<leader>fg): you're ALREADY in nvim, or you want its quickfix flow
-#   feeding :cfdo directly. Entry point = the picker. See telescope.md.
+#   feeding :cfdo directly. Entry point = the picker. See `telescope`.
 # Same destination (editing the matches); pick by where you already are.
 ```
 

@@ -6,7 +6,7 @@ tags: [hyprland, keybindings, window-manager, wayland, linux, screenshot]
 
 The Linux half of a deliberately parallel pair. Every chord here has the same
 shape as the AeroSpace one on macOS, with `SUPER` where AeroSpace uses `alt` —
-see `aerospace-keybindings.md` for the other side.
+see `aerospace-keybindings` for the other side.
 
 ## Windows and focus
 
