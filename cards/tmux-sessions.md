@@ -23,9 +23,9 @@ the last whole save comes back. So after a reboot, plain `tmux` brings
 everything back, including sessions you were done with.
 
 Each pane gets its program back. Claude resumes its own conversation with its
-own flags. abtop, btop, yazi, watch, ssh and `prs tui` start again, plus what
-`~/.config/tmux/restored-programs.conf` adds on that machine. Anything else
-comes back typed at the prompt, waiting for Enter.
+own flags. abtop, btop, yazi, watch and `prs tui` start again, plus what
+`~/.config/tmux/restored-programs.conf` adds on that machine. Anything else,
+ssh included, comes back typed at the prompt, waiting for Enter.
 
 ```bash
 # Key bindings
