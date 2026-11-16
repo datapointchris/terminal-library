@@ -7,7 +7,6 @@ tags: [git, vcs, rebase]
 ```bash
 # Start interactive rebase
 git rebase -i HEAD~3              # rebase last 3 commits
-git rebase -i main                # rebase current branch onto main
 ```
 
 Actions (change the word before each commit hash):
@@ -30,12 +29,17 @@ git status                        # see which files conflict
 git add <files>
 git rebase --continue             # move to next commit
 git rebase --abort                # cancel entire rebase
+```
 
-# Rebase onto main (update branch with latest main)
+Rebase only commits you have not pushed. A rebase gives every commit a new
+sha, so rewriting pushed work ends in a force push, and Claude sessions' Bash
+hook refuses every force push. A pushed branch catches up with main by merging:
+
+```bash
 git switch my-branch
 git fetch origin
-git rebase origin/main
-
-# After rebase, force push is required for remote branches
-git push --force-with-lease       # safer than --force
+git merge origin/main -m "chore: merge main into my-branch"
+git push                          # no force: a merge only adds commits
 ```
+
+A conflict in that merge: `unblock-a-pr-that-will-not-merge`.

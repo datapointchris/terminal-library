@@ -77,9 +77,9 @@ checked out elsewhere, including in the main repo. That is a feature — it is w
 `.git` safe — but it means switching a branch between worktrees is a remove-then-add, not a
 `git switch`.
 
-**One worktree per stack, at its top.** A stacked branch checked out in a second worktree is skipped
-silently by `rebase.updateRefs`, leaving that ref on pre-rebase commits. See
-`standards/git-workflow.md`.
+**One worktree per stack.** A fix on a lower branch is merged up into each child, so the worktree
+switches between the stack's branches. A stacked branch checked out in a second worktree cannot be
+switched to, by the rule above. See `git-stacking-prs`.
 
 ## In dotfiles specifically, a checkout *is* the running machine
 
