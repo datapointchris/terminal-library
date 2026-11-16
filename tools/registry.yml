@@ -1233,12 +1233,12 @@ tools:
     description: "Give a session its own index, and land it on main without a PR"
     installed_via: dotfiles
     usage: "worktree [new <slug> | land | drop | list | show | choose]"
-    why_use: "A checkout's index is shared by every session standing in it, so concurrent work collides. `new` isolates in seconds and `land` rebases, fast-forwards main and cleans up — one commit stays one commit"
+    why_use: "A checkout's index is shared by every session standing in it, so concurrent work collides. `new` isolates in seconds and `land` fast-forwards main, or merges where main moved, and cleans up — every commit keeps its sha"
     examples:
       - cmd: "worktree new session-token-refresh"
         desc: "Isolate a session off origin's default branch"
       - cmd: "worktree land"
-        desc: "Rebase, push onto main, remove the worktree"
+        desc: "Fast-forward or merge onto main, push, remove the worktree"
       - cmd: "worktree choose"
         desc: "Pick one with fzf across every repo"
     see_also: [git, prs, lazygit]
