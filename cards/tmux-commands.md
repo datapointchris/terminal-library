@@ -57,7 +57,8 @@ are on `tmux-tree-editor`.
 
 Hold Alt and tap to move several at once. Direction is where the key sits, not
 what it stands for: `n` is left of `p`, so Alt+n goes left. This is the reverse
-of tmux's own `prefix n` / `prefix p`, which still mean next / previous.
+of tmux's stock `prefix n` / `prefix p`, and both of those keys now do other
+things: the pane that needs you and the PR board.
 
 ## Sessions
 
@@ -74,6 +75,7 @@ session's windows on the second.
 | prefix + K      | kill session (asks first)        |
 | prefix + T      | promote window → its own session |
 | prefix + w      | find a window in ANY session     |
+| prefix + n      | pane that has needed you longest |
 | prefix + s      | session tree (tmux choose-tree)  |
 | prefix + L      | last session                     |
 | prefix + d      | detach                           |
@@ -115,9 +117,9 @@ per step on `h`/`l`. Windows and panes are carried across intact.
 
 ## Popups & tools
 
-| prefix + t | this reference     |
-| prefix + a | Claude popup       |
-| prefix + p | pick a PR to review |
+| prefix + t | this reference            |
+| prefix + a | Claude popup              |
+| prefix + p | PR board, or back from it |
 
 ## General
 
